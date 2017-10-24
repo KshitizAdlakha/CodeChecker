@@ -1,0 +1,18 @@
+#Compiled Java files
+*.class
+*.jar
+/bin/
+
+#Temporary files and output
+*.log
+*.temp
+
+#Archive Files
+*.zip
+*.tar.gz
+*.rar
+
+#Eclipse Files
+.classpath
+.project
+
