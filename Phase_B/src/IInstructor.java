@@ -19,7 +19,7 @@ public interface IInstructor extends IUser {
 	 * Sets the assignment submission to be reviewed from within the current assignment topic.
 	 * @param _submission- the unique identifier of the assignment submission to be analyzed.
 	 */
-	void reviewCode(IAssignmentSubmission _as_id);
+	void reviewCode(String _as_id);
 	/**
 	 * Toggle's the instructor's view of the current assignment submission between original
 	 * and processed.
