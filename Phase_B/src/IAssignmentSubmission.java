@@ -31,11 +31,11 @@ public interface IAssignmentSubmission {
     String textualRepresentation();
     
     /**
-     * Get the id of the assignment topic
+     * Get the id of the assignment submissions
      */
     public String getAssignmentSubmissionId();
     /**
-     * Set id name of the assignment topic
+     * Set id name of the assignment submission
      */
     public void SetAssignmentSubmissionId();
 }
