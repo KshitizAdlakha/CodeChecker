@@ -1,0 +1,8 @@
+0:0:0:0:0:0:0:1 - - [11/Nov/2017:18:05:18 -0500] "GET /code-checker HTTP/1.1" 302 - http-bio-8080-exec-1 0
+0:0:0:0:0:0:0:1 - - [11/Nov/2017:18:05:20 -0500] "GET /code-checker/ HTTP/1.1" 404 949 http-bio-8080-exec-3 1884
+0:0:0:0:0:0:0:1 - - [11/Nov/2017:18:05:29 -0500] "GET /code-checker/test HTTP/1.1" 200 7 http-bio-8080-exec-4 1168
+0:0:0:0:0:0:0:1 - - [11/Nov/2017:19:57:15 -0500] "GET /code-checker HTTP/1.1" 302 - http-bio-8080-exec-1 0
+0:0:0:0:0:0:0:1 - - [11/Nov/2017:19:57:17 -0500] "GET /code-checker/ HTTP/1.1" 404 949 http-bio-8080-exec-2 1969
+0:0:0:0:0:0:0:1 - - [11/Nov/2017:19:57:20 -0500] "GET /code-checker/test HTTP/1.1" 200 62 http-bio-8080-exec-3 75
+0:0:0:0:0:0:0:1 - - [11/Nov/2017:19:57:32 -0500] "GET /code-checker/postTest HTTP/1.1" 405 1045 http-bio-8080-exec-4 3
+0:0:0:0:0:0:0:1 - - [11/Nov/2017:19:57:35 -0500] "GET /code-checker/test2 HTTP/1.1" 200 62 http-bio-8080-exec-5 3
