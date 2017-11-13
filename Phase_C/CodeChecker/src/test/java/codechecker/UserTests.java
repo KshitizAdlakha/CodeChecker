@@ -1,6 +1,6 @@
 package codechecker;
 
-import codechecker.mvc.entities.User;
+import codechecker.core.entities.User;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
