@@ -1,0 +1,59 @@
+<div class="navbar-fixed">
+    <nav class="t1-navbar">
+        <div class="nav-wrapper container">
+            <a id="logo-container" href="/#/" class="brand-logo left white-text">Code Checker</a>
+            <ul class="right ">
+                <li><a href="/#/" class="white-text hide-on-small-only">Log Out</a></li>
+                <li><a href="" class="white-text hide-on-med-and-up"><i class="material-icons">exit_to_app</i></a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+        <br>
+        <h4 class="header center t1-heading-color">Side-by-side Diff Between Two Submissions</h4>
+
+        <div class="row">
+            <h5 class="col s12 left black-text">Similarity metric:</h5>
+            <h6 class="col s6">
+                <ul>
+                    <li>Points: {{model.similarityPoints}}</li>
+                    <br>
+                    <li>Percentage: {{model.similarityPercentage}}%</li>
+                </ul>
+            </h6>
+            <div class="col push-s2 s4">
+                <br>
+                <div class="row">
+                    <div class="col s6">
+                        <input class="with-gap" name="group3" type="radio" id="original" checked />
+                        <label for="original">Original File</label>
+                    </div>
+                    <div class="col s6">
+                        <input class="with-gap" name="group3" type="radio" id="transformed" />
+                        <label for="transformed">Transformed File</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="section no-pad-bot" >
+    <div class="container">
+        <div class="row" >
+            <div class="col s6 center blue-text t1-darkgrey-border">{{model.firstFileName}}.java</div>
+            <div class="col s6 center blue-text t1-darkgrey-border">{{model.secondFileName}}.java</div>
+        </div>
+        <div class="row" style="margin-top: -20px">
+            <div class="col s6 t1-min-height-box t1-darkgrey-border">
+
+            </div>
+            <div class="col s6 t1-min-height-box t1-darkgrey-border">
+
+            </div>
+        </div>
+    </div>
+</div>
+<br>
