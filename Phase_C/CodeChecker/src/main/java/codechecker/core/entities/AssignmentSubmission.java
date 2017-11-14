@@ -1,6 +1,12 @@
 package codechecker.core.entities;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.Date;
+import com.github.javaparser.JavaParser;
+import com.github.javaparser.ast.CompilationUnit;
+import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 
 public class AssignmentSubmission implements IAssignmentSubmission {
     private Long studentId;
@@ -33,7 +39,19 @@ public class AssignmentSubmission implements IAssignmentSubmission {
 	
 	@Override
 	public String textualRepresentation() {
-		return null;
+        FileInputStream in;
+		try {
+			in = new FileInputStream(associatedFile);
+	        // parse the file
+	        CompilationUnit cu = JavaParser.parse(in);
+
+	        // prints the resulting compilation unit to default system output
+	        return cu.toString();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "";
+		}
 	}
 
     /**
