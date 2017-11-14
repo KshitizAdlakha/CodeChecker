@@ -1,3 +1,4 @@
+
 public interface IAssignmentSubmission {
 
     /**
@@ -28,4 +29,13 @@ public interface IAssignmentSubmission {
      *Textual representation of the Course object
      */
     String textualRepresentation();
+    
+    /**
+     * Get the id of the assignment submissions
+     */
+    public String getAssignmentSubmissionId();
+    /**
+     * Set id name of the assignment submission
+     */
+    public void SetAssignmentSubmissionId();
 }
