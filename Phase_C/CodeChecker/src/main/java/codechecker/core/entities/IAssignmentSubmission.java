@@ -1,31 +1,33 @@
 package codechecker.core.entities;
 
+import java.util.Date;
+
 public interface IAssignmentSubmission {
 
     /**
-     * Get the name of the student
+     * Get the associated student
      */
-    public String getStudentName();
+    public User getStudent();
     /**
-     * Set the name of the student
+     * Set the id of the student
      */
-    public void setStudentName();
+    public void setStudent(Long _studentId);
     /**
      * Get the name of the assignment topic related to the submission
      */
-    public String getAssignmentTopic();
+    public IAssignmentTopic getAssignmentTopic();
     /**
-     * Set the name of the assignment topic related to the submission
+     * Set assignment topic(by id) related to the submission
      */
-    public void setAssignmentTopic();
+    public void setAssignmentTopic(Long _topic);
     /**
      * Get the date of the assignment submission
      */
-    public String getDateSubmitted();
+    public Date getDateSubmitted();
     /**
      * Set the date of the assignment submission
      */
-    public void setDateSubmitted();
+    public void setDateSubmitted(Date _submittedDate);
     /**
      *Textual representation of the Course object
      */
