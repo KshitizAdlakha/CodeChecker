@@ -4,7 +4,11 @@
             <a id="logo-container" href="/#/" class="brand-logo left white-text">Code Checker</a>
             <ul class="right ">
                 <li><a href="/#/" class="white-text hide-on-small-only">Log Out</a></li>
-                <li><a href="" class="white-text hide-on-med-and-up"><i class="material-icons">exit_to_app</i></a></li>
+                <li><a href="/#/" class="white-text hide-on-med-and-up"><i class="material-icons">exit_to_app</i></a></li>
+            </ul>
+            <ul class="right ">
+                <li><a href="/#/help" class="white-text hide-on-small-only">Help</a></li>
+                <li><a href="/#/help" class="white-text hide-on-med-and-up"><i class="material-icons">help</i></a></li>
             </ul>
         </div>
     </nav>
@@ -27,7 +31,7 @@
                 <div class="red-text" ng-show="model.error">
                     {{model.error}}
                 </div>
-                <ul class="collection">
+                <ul class="col s12 push-s3 m12 collection">
                     <li class="collection-item center t1-green-text">
                         <h5>Upload Files</h5>
                     </li>
@@ -47,7 +51,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="file-field col s10 m8 push-s2 push-m2 input-field">
+                    <div class="file-field col s12 m8 push-m2 input-field">
                         <div class="btn">
                             <span>Upload Files</span>
                             <input type="file" ngf-select="model.validateFileType($files)"  multiple>
@@ -59,7 +63,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col s10 m8 push-s2 push-m2">
+                    <div class="input-field col s12 m8 push-m2">
                         <a class="btn center form-control t1-login-btn"
                            ng-click="model.loginLoader=1"
                            ng-class="{disabled: model.loginLoader==1}"
@@ -68,7 +72,7 @@
                             Analyze Results
                         </a>
                     </div>
-                    <div class="input-field col s10 m8 push-s2 push-m2">
+                    <div class="input-field col s12 m8 push-m2">
                         <a class="btn center form-control t1-analysis-history-btn"
                            href="/#/analysis-history"
                            type="submit">

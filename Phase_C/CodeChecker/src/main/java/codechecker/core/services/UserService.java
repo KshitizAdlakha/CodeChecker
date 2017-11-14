@@ -6,5 +6,5 @@ public interface UserService {
     public User findUserByUsername(String username);
     public User findUserById(Long id);
     public User findUserByUsernameAndPassword(String username, String password);
-    public void createUser(User user);
+    public User createUser(User user);
 }

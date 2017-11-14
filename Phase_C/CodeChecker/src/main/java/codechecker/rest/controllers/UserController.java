@@ -2,6 +2,8 @@ package codechecker.rest.controllers;
 
 import codechecker.core.entities.User;
 import codechecker.core.services.UserService;
+import codechecker.core.services.exceptions.AccountExistsException;
+import codechecker.rest.exceptions.ConflictException;
 import codechecker.rest.resources.UserResource;
 import codechecker.rest.resources.asm.UserResourceAsm;
 import org.springframework.http.HttpHeaders;
@@ -17,10 +19,10 @@ import java.net.URI;
 
 @Controller
 public class UserController {
-    private UserService service;
+    private UserService userService;
 
-    public UserController(UserService service){
-        this.service=service;
+    public UserController(UserService _service){
+        this.userService=_service;
     }
 
 //    GET Requests
@@ -28,7 +30,7 @@ public class UserController {
     // Using ResponseEntity<> to return response
     @RequestMapping(value= "/rest/user/{userId}", method = RequestMethod.GET)
     public ResponseEntity<UserResource> getUserById(@PathVariable Long userId){
-        User user = service.findUserById(userId);
+        User user = userService.findUserById(userId);
         if(user==null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
@@ -45,7 +47,7 @@ public class UserController {
             @RequestBody UserResource sentUser
     ) {
         try {
-            User createdUser = UserService.createUser(sentUser.toUser());
+            User createdUser = userService.createUser(sentUser.toUser());
             UserResource res = new UserResourceAsm().toResource(createdUser);
             HttpHeaders headers = new HttpHeaders();
             headers.setLocation(URI.create(res.getLink("self").getHref()));

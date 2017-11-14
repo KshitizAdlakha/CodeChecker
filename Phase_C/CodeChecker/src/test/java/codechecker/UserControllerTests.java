@@ -62,32 +62,5 @@ public class UserControllerTests {
                 .andDo(print());
     }
 
-//    @Test
-//    public void testUrlResultUsingRequestMapping() throws Exception {
-//        mockMvc.perform(get("/test")).andDo(print());
-//    }
-//
-//    @Test
-//    public void testUrlResultUsingResponseBody() throws Exception {
-//        mockMvc.perform(get("/test2")).andDo(print());
-//    }
-//
-//    @Test
-//    public void testPostRequest() throws Exception {
-//        mockMvc.perform(post("/postTest")
-//                .content("{\"name\":\"test\", \"username\":\"test\", \"password\":\"test\"}")
-//                .contentType(MediaType.APPLICATION_JSON))
-//                .andDo(print());
-//    }
-//
-//    @Test
-//    public void testPostRequestResultUsingJsonPath() throws Exception {
-//        mockMvc.perform(post("/postTest")
-//                .content("{\"name\":\"test\", \"username\":\"test\", \"password\":\"test\"}")
-//                .contentType(MediaType.APPLICATION_JSON))
-//                .andExpect(jsonPath("$.name", is("test")))
-//                .andDo(print());
-//    }
-
 
 }

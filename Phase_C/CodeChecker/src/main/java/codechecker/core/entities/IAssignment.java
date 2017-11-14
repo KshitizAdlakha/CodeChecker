@@ -1,7 +1,6 @@
 package codechecker.core.entities;
 
 public interface IAssignment {
-
     /**
      * Get the name of the assignment topic
      */
@@ -24,13 +23,21 @@ public interface IAssignment {
     /**
      * Get the id of the assignment topic
      */
-    public Long getAssignmentTopicId();
+    public Long getAssignmentId();
     /**
      * Set id name of the assignment topic
      */
-    public void setAssignmentTopicId(Long assignmentTopicId);
+    public void setAssignmentId(Long assignmentTopicId);
     /**
      *Textual representation of the Assignment object
      */
     String textualRepresentation(IAssignment iAssignment);
+    /**
+     * Get id of the user to whom the assignment belongs
+     */
+    public Long getUserId();
+    /**
+     * Set id of the user to whom the assignment belongs
+     */
+    public void setUserId(Long userId);
 }
