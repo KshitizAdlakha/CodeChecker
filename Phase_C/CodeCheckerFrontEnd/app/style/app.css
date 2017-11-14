@@ -1,0 +1,70 @@
+/* app css stylesheet */
+
+.menu {
+  list-style: none;
+  border-bottom: 0.1em solid black;
+  margin-bottom: 2em;
+  padding: 0 0 0.5em;
+}
+
+.menu:before {
+  content: "[";
+}
+
+.menu:after {
+  content: "]";
+}
+
+.menu > li {
+  display: inline;
+}
+
+.menu > li + li:before {
+  content: "|";
+  padding-right: 0.3em;
+}
+.t1-navbar, .t1-back-btn, .t1-green-btn {
+  background-color: #335C67!important;
+}
+.t1-green-text{
+    color: #335C67;
+}
+.t1-heading-color {
+    color: #DD892A;
+}
+.t1-orange-btn {
+    background-color: #DD892A!important;
+}
+.t1-login-btn {
+    border-radius: 40px!important;
+    margin-bottom: 0;
+    background-color: #DD892A!important;
+    width: 100%;
+    /*height: 30px;*/
+}
+.t1-analysis-history-btn {
+    border-radius: 40px!important;
+    margin-bottom: 0;
+    background-color: #335C67!important;
+    width: 100%;
+    /*height: 30px;*/
+}
+.t1-preloader-margin {
+    margin-right: 20px;
+}
+.t1-66-width {
+    width: 66.67%!important;
+}
+.t1-diff-box-border {
+    border: solid 1px grey;
+    min-height: 400px;
+}
+.t1-darkgrey-border {
+    border: solid 1px darkgrey;
+}
+.t1-min-height-box {
+    min-height: 400px!important;
+}
+.t1-margin-top-less-50 {
+    margin-top: -50px;
+}
