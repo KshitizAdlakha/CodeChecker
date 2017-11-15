@@ -9,7 +9,8 @@ angular.module('codeChecker', [
     'codeChecker.analysisHistory',
     'codeChecker.analysisResults',
     'codeChecker.sideBySide',
-    'codeChecker.uploadSubmission'
+    'codeChecker.uploadSubmission',
+    'codeChecker.help'
 ]).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $routeProvider.otherwise({redirectTo: '/'});

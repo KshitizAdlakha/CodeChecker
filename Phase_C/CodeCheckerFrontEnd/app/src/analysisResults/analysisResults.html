@@ -14,67 +14,69 @@
     <div class="container">
         <br>
         <div class="row">
-            <div class="col s12 center">
-                <h4 class="header t1-heading-color">Result For {{model.assignment.name}}</h4>
-            </div>
-            <div class="col push s1 left t1-margin-top-less-50">
+            <div class="col push s1 left">
                 <a href="/#/upload-submission" class="btn"><i class="small material-icons">keyboard_return</i></a>
             </div>
         </div>
-    </div>
-    <br>
-    <div class="row">
-        <ul class="collection col s10 m8 push-s2 push-m2">
-            <li class="collection-item">
-                <div class="row">
-                    <div class="col s2 center">
-                        <b>Rank</b>
+        <div class="row">
+            <div class="col s12 center">
+                <h4 class="header t1-heading-color">Result For {{model.assignment.name}}</h4>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <ul class="collection col s12 m8 push-m2">
+                <li class="collection-item">
+                    <div class="row">
+                        <div class="col s2 center">
+                            <b>Rank</b>
+                        </div>
+                        <div class="col s5 center">
+                            <b>Student Submission Time</b>
+                        </div>
+                        <div class="col s5 center">
+                            <b>Student  Details</b>
+                        </div>
                     </div>
-                    <div class="col s5 center">
-                        <b>Student Submission Time</b>
-                    </div>
-                    <div class="col s5 center">
-                        <b>Student  Details</b>
-                    </div>
-                </div>
-            </li>
+                </li>
 
-            <!--Sample-->
-            <li class="collection-item">
-                <div class="row">
-                    <div class="col s2 center">
-                        Rank 1 <br>
-                        <a href="/#/side-by-side">(Side-by-side)</a>
+                <!--Sample-->
+                <li class="collection-item">
+                    <div class="row">
+                        <div class="col s2 center">
+                            Rank 1 <br>
+                            <a href="/#/side-by-side">(Side-by-side)</a>
+                        </div>
+                        <div class="col s5 center">
+                            Student 1: Oct 7, 2017 8:00 PM<br>
+                            Student 2: Oct 7, 2017 8:05 PM
+                        </div>
+                        <div class="col s5 center">
+                            <em>Alice Wonderland, Bob Ed</em><br>
+                            Similarity Percentage: 78%
+                        </div>
                     </div>
-                    <div class="col s5 center">
-                        Student 1: Oct 7, 2017 8:00 PM<br>
-                        Student 2: Oct 7, 2017 8:05 PM
-                    </div>
-                    <div class="col s5 center">
-                        <em>Alice Wonderland, Bob Ed</em><br>
-                         Similarity Percentage: 78%
-                    </div>
-                </div>
-            </li>
+                </li>
 
 
-            <li class="collection-item" ng-repeat="result in model.analysisResults">
-                <div class="row">
-                    <div class="col s2 center">
-                        Rank {{result.rank}} <br>
-                        <a href="/#/side-by-side">(Side-by-side)</a>
+                <li class="collection-item" ng-repeat="result in model.analysisResults">
+                    <div class="row">
+                        <div class="col s2 center">
+                            Rank {{result.rank}} <br>
+                            <a href="/#/side-by-side">(Side-by-side)</a>
+                        </div>
+                        <div class="col s5 center">
+                            Student 1: {{result.student1.timeSubmitted}}<br>
+                            Student 2: {{result.student2.timeSubmitted}}
+                        </div>
+                        <div class="col s5 center">
+                            <em>{{result.student1.name}}, {{result.student2.name}}</em><br>
+                            Similarity Percentage: {{result.similarityPercentage}}
+                        </div>
                     </div>
-                    <div class="col s5 center">
-                        Student 1: {{result.student1.timeSubmitted}}<br>
-                        Student 2: {{result.student2.timeSubmitted}}
-                    </div>
-                    <div class="col s5 center">
-                        <em>{{result.student1.name}}, {{result.student2.name}}</em><br>
-                        Similarity Percentage: {{result.similarityPercentage}}
-                    </div>
-                </div>
-            </li>
+                </li>
 
-        </ul>
+            </ul>
+        </div>
     </div>
 </div>
