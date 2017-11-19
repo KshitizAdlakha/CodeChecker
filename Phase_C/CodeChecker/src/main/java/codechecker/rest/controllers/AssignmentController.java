@@ -37,7 +37,7 @@ public class AssignmentController {
         return new ResponseEntity<>(assignmentResource, HttpStatus.OK);
     }
     
-    @RequestMapping(value="/rest/{assignmentId}", method = RequestMethod.GET)
+    @RequestMapping(value="/rest/{assignmentId}/compare", method = RequestMethod.GET)
     public ResponseEntity<Double> compareAssignmentSubmissions(@PathVariable Long assignmentId, @RequestParam Long otherAssignmentId) {
         double percentMatch = assignmentService.compareAssignmentSubmissions(assignmentId, otherAssignmentId);
         return new ResponseEntity<>(percentMatch, HttpStatus.OK);
