@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class AssignmentController {
@@ -34,5 +35,11 @@ public class AssignmentController {
         Assignment assignment = assignmentService.findAssignment(userId, assignmentId);
         AssignmentResource assignmentResource = new AssignmentResourceAsm().toResource(assignment);
         return new ResponseEntity<>(assignmentResource, HttpStatus.OK);
+    }
+    
+    @RequestMapping(value="/rest/{assignmentId}", method = RequestMethod.GET)
+    public ResponseEntity<Double> compareAssignmentSubmissions(@PathVariable Long assignmentId, @RequestParam Long otherAssignmentId) {
+        double percentMatch = assignmentService.compareAssignmentSubmissions(assignmentId, otherAssignmentId);
+        return new ResponseEntity<>(percentMatch, HttpStatus.OK);
     }
 }
