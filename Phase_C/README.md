@@ -7,7 +7,7 @@
 5. Browse to http://localhost:8080/code-checker/app/index.html#/ to access the application
 
 
-# # Alternate Way using IntelliJ IDEA:
+### Alternate Way using IntelliJ IDEA:
 
 1. Open the project through project window
 2. Open the Maven Tool Window and click on install under the code-checker -> Lifecycle tab
