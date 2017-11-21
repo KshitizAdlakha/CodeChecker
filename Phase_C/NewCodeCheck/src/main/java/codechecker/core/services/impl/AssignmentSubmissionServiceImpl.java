@@ -58,10 +58,20 @@ public class AssignmentSubmissionServiceImpl implements AssignmentSubmissionServ
 	         * This is where all the visitors will go.
 	         */
 
+            /*
+             * HashCodeVisitor works on the assumption that the comments are already removed from the submissions.
+             */
+            HashCodeVisitor hcv1 = new HashCodeVisitor();
+            HashCodeVisitor hcv2 = new HashCodeVisitor();
+            cu1.accept(hcv1, null);
+            cu2.accept(hcv2, null);
+
 	        /*
 	         * This is where the diff function will go
 	         * retur diff(cu1.toString(), cu2.toString());
 	         */
+            SimilarityPercentGenerator spg = new SimilarityPercentGenerator();
+            String similarityPercent = String.format("%.2f", spg.getSimilarityPercent(hcv1, hcv2));
 
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
