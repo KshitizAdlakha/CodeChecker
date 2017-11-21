@@ -2,7 +2,7 @@
 
 1. Install Maven on your local system
 2. Run `npm install` in the `NewCodeCheck/src/main/web-app/app` directory
-3. Run `man install` to run import the dependencies included in the pom.xml file
+3. Run `mvn install` to run import the dependencies included in the pom.xml file
 4. Run `mvn tomcat:run` or `mvn tomcat7:run` to run the application
 5. Browse to http://localhost:8080/code-checker/app/index.html#/ to access the application
 
