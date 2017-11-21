@@ -37,6 +37,16 @@ public class AssignmentController {
         return new ResponseEntity<>(assignmentResource, HttpStatus.OK);
     }
     
+    /* 
+     * An API method that follows the pattern '/rest/assignment/{assignmentId}/compare'
+     * {assignmentId} - The id of the assignment submission to be compared against.
+     * otherAssignmentId - The id of the assignment submission to be compared to the assignment
+     * submission id with assignmentId.
+     * 
+     * Returns: a number from 0 to 1 that represents the percent match between the two
+     * assignment submissions.
+     * 
+     */
     @RequestMapping(value="/rest/assignment/{assignmentId}/compare", method = RequestMethod.GET)
     public ResponseEntity<Double> compareAssignmentSubmissions(@PathVariable Long assignmentId, @RequestParam Long otherAssignmentId) {
         double percentMatch = assignmentService.compareAssignmentSubmissions(assignmentId, otherAssignmentId);

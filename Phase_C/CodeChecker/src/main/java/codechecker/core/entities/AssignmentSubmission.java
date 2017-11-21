@@ -68,5 +68,12 @@ public class AssignmentSubmission implements IAssignmentSubmission {
     public void setStudent(Long _studentId) {
 		studentId = _studentId;
 	}
+	
+    /**
+     * Get the associated file
+     */
+	public File getAssociatedFile() {
+		return associatedFile;
+	}
 
 }

@@ -39,14 +39,7 @@ public class AssignmentSubmissionControllerTests {
     }
 
     @Test
-    public void testToGetExistingUser() throws Exception{
-        User user= new User();
-        user.setId(1L);
-        user.setName("Bob");
-        user.setUsername("bob");
-        user.setPassword("bob");
-
-        //when(service.findUserById(1L)).thenReturn(user);
+    public void testCompareAssignmentSubmissions() throws Exception{
 
         mockMvc.perform(get("/rest/assignment/1/compare").param("otherAssignmentId", "3"))
                 .andExpect(status().isOk())
