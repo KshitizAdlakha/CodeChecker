@@ -79,10 +79,19 @@ public class AssignmentSubmissionServiceImpl implements AssignmentSubmissionServ
 	         * This is where all the visitors will go.
 	         */
 
-	        /*
-	         * This is where the diff function will go
-	         * retur diff(cu1.toString(), cu2.toString());
-	         */
+            /*
+             * HashCodeVisitor works on the assumption that the comments are already removed from the submissions.
+             */
+            HashCodeVisitor hcv1 = new HashCodeVisitor();
+            HashCodeVisitor hcv2 = new HashCodeVisitor();
+            cu1.accept(hcv1, null); //All the nodes in the AST generated from the first submission are visited. 
+            cu2.accept(hcv2, null); //All the nodes in the AST generated from the second submission are visited. 
+
+	    /*
+	     * SimilarityPercentGenerator will calculate the percentage based on the similarity of the two programs.
+	     */
+            SimilarityPercentGenerator spg = new SimilarityPercentGenerator();
+            String similarityPercent = String.format("%.2f", spg.getSimilarityPercent(hcv1, hcv2)); //Converted to string to display the percent rounded off to two decimal places 
 
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
