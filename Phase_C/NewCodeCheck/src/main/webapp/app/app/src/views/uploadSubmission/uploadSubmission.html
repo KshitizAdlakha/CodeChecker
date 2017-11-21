@@ -1,0 +1,92 @@
+<div class="navbar-fixed">
+    <nav class="t1-navbar">
+        <div class="nav-wrapper container">
+            <a id="logo-container" href="#/" class="brand-logo left white-text">Code Checker</a>
+            <ul class="right ">
+                <li><a ng-click="model.logout()" href="#/" class="white-text hide-on-small-only">Log Out</a></li>
+                <li><a ng-click="model.logout()" href="#/" class="white-text hide-on-med-and-up"><i class="material-icons">exit_to_app</i></a></li>
+            </ul>
+            <ul class="right ">
+                <li><a href="#/help" class="white-text hide-on-small-only">Help</a></li>
+                <li><a href="#/help" class="white-text hide-on-med-and-up"><i class="material-icons">help</i></a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+        <br>
+        <h4 class="header center t1-heading-color">Detect Plagiarism</h4>
+        <div class="row center">
+            <h6 class="header col s12 light">Browse and upload programming assignments submissions using the 'Upload Files' button<br>
+                After uploading the files, click on 'Analyze Results' to detect plagiarism in these files</h6>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col s12">
+        <div class="row container">
+            <div class="col s12 m10 push-m2 t1-66-width">
+                <div class="red-text" ng-show="model.error">
+                    {{model.error}}
+                </div>
+                <ul class="col s12 push-s3 m12 collection">
+                    <li class="collection-item center t1-green-text">
+                        <h5>Upload Files</h5>
+                    </li>
+                </ul>
+            </div>
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s12 m8 push-m2">
+                        <input id="assignmentName" type="text" ng-model="user.assignmentName" class="validate">
+                        <label for="assignmentName">Programming Assignment Name*</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12 m8 push-m2">
+                        <input id="assignmentTopic" type="text" ng-model="user.assignmentTopic" class="validate">
+                        <label for="assignmentTopic">Programming Assignment Topic*</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="file-field col s12 m8 push-m2 input-field">
+                        <div class="btn">
+                            <span>Upload Files</span>
+                            <input type="file" ngf-select="model.validateFileType($files)"  multiple>
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text"
+                                   placeholder="Upload two or more files">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12 m8 push-m2">
+                        <a class="btn center form-control t1-login-btn"
+                           ng-click="model.loginLoader=1"
+                           ng-class="{disabled: model.loginLoader==1}"
+                           href="#/analysis-result"
+                           type="submit">
+                            Analyze Results
+                        </a>
+                    </div>
+                    <div class="input-field col s12 m8 push-m2">
+                        <a class="btn center form-control t1-analysis-history-btn"
+                           href="#/analysis-history"
+                           type="submit">
+                            Analysis History
+                        </a>
+                        <div class="active" ng-if="model.loginLoader==1">
+                            <br>
+                            <div class="progress">
+                                <div class="indeterminate"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

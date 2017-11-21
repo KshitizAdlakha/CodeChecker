@@ -1,0 +1,69 @@
+<div class="navbar-fixed">
+    <nav class="t1-navbar">
+        <div class="nav-wrapper container">
+            <a id="logo-container" href="#/" class="brand-logo left white-text">Code Checker</a>
+            <ul class="right ">
+                <li><a href="#/sign-up" class="white-text">Sign Up</a></li>
+                <!--<li><a href="/#/sign-up" class="white-text hide-on-med-and-up"><i class="material-icons">create</i></a></li>-->
+            </ul>
+        </div>
+    </nav>
+</div>
+<div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+        <br>
+        <h4 class="header center t1-heading-color">Plagiarism Detection in Programming Assignments</h4>
+        <div class="row center">
+            <h5 class="header col s12 light">Easily Upload, Compare, and Analyze Student Submissions<br> to Check Code Copying</h5>
+        </div>
+        <br>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col s12">
+        <div class="row container">
+            <div class="col s12 m10 center push-s2 push-m2 t1-66-width">
+                <ul class="collection">
+                    <li class="collection-item center t1-green-text">
+                        <h5>Sign In To Your Account</h5>
+                    </li>
+                </ul>
+            </div>
+            <form class="col s12">
+                <div class="row">
+                    <div class="red-text col s12 m10 push-m2" role="alert" ng-show="model.error">
+                        {{model.error}}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12 m8 push-m2">
+                        <input id="username" type="text" ng-model="user.name" class="validate">
+                        <label for="username">Username*</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12 m8 push-m2">
+                        <input id="password" type="password" ng-model="user.password" class="validate">
+                        <label for="password">Password*</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12 m8 push-m2">
+                        <a class="btn center form-control t1-login-btn" ng-class="{'disabled':(model.loginLoader==1)}"
+                                ng-click="model.login(user); model.loginLoader=1"
+                                type="submit">
+                            Log In
+                        </a>
+                        <div class="col s12 m10 push-m2" ng-if="model.loginLoader==1">
+                            <div class="progress">
+                                <div class="indeterminate"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

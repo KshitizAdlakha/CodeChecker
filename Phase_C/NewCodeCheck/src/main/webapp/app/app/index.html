@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="codeChecker" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="codeChecker" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="codeChecker" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="codeChecker" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Code Checker</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
+    <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
+    <link rel="stylesheet" href="style/app.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+</head>
+<body>
+  <div ng-view></div>
+  <!-- In production use:
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>-->
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="app.js"></script>
+  <script src="https://code.angularjs.org/1.5.0/angular-resource.js"></script>
+  <script src="bower_components/angular-base64/angular-base64.js"></script>
+
+  <!--controllers-->
+  <script src="src/views/login/login.js"></script>
+  <script src="src/views/signUp/signUp.js"></script>
+  <script src="src/views/analysisHistory/analysisHistory.js"></script>
+  <script src="src/views/analysisResults/analysisResults.js"></script>
+  <script src="src/views/sideBySide/sideBySide.js"></script>
+  <script src="src/views/help/help.js"></script>
+  <script src="src/views/uploadSubmission/uploadSubmission.js"></script>
+
+  <!--services-->
+  <script src="src/services/accountService.js"></script>
+  <script src="src/services/sessionService.js"></script>
+  <script src="src/services/assignmentService.js"></script>
+
+  <!--file upload-->
+  <script src="js/ng-file-upload/ng-file-upload-shim.min.js"></script>
+  <script src="js/ng-file-upload/ng-file-upload.min.js"></script>
+</body>
+</html>
