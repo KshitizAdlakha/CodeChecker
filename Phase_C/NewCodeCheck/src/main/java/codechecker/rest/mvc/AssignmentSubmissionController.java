@@ -24,7 +24,7 @@ public class AssignmentSubmissionController {
         this.service = service;
     }
 
-    @RequestMapping(value="/{assignmentSubmissionId}",
+/*    @RequestMapping(value="/{assignmentSubmissionId}",
             method = RequestMethod.GET)
     public ResponseEntity<AssignmentSubmissionResource> getAssignmentSubmission (
             @PathVariable Long assignmentSubmissionId) {
@@ -36,7 +36,7 @@ public class AssignmentSubmissionController {
             return new ResponseEntity<AssignmentSubmissionResource>(HttpStatus.NOT_FOUND);
         }
     }
-
+*/
     @RequestMapping(value="/{assignmentSubmissionId}",
             method = RequestMethod.DELETE)
     public ResponseEntity<AssignmentSubmissionResource> deleteAssignmentSubmission(
@@ -64,5 +64,21 @@ public class AssignmentSubmissionController {
         } else {
             return new ResponseEntity<AssignmentSubmissionResource>(HttpStatus.NOT_FOUND);
         }
+    }
+    
+    /* 
+     * An API method that follows the pattern '/rest/assignment/{assignmentId}/compare'
+     * {assignmentId} - The id of the assignment submission to be compared against.
+     * otherAssignmentId - The id of the assignment submission to be compared to the assignment
+     * submission id with assignmentId.
+     * 
+     * Returns: a number from 0 to 1 that represents the percent match between the two
+     * assignment submissions.
+     * 
+     */
+    @RequestMapping(value="/compare", method = RequestMethod.GET)
+    public ResponseEntity<Double> compareAssignmentSubmissions(@RequestParam Long assignmentId, @RequestParam Long otherAssignmentId) {
+        double percentMatch = service.compareAssignmentSubmissions(assignmentId, otherAssignmentId);
+        return new ResponseEntity<Double>(percentMatch, HttpStatus.OK);
     }
 }

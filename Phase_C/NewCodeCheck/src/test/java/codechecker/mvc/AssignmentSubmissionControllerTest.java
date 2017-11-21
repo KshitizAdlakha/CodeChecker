@@ -18,8 +18,8 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 public class AssignmentSubmissionControllerTest {
     @InjectMocks
@@ -116,5 +116,15 @@ public class AssignmentSubmissionControllerTest {
                 .content("{\"title\":\"Test Title\"}")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());
+    }
+    
+    @Test
+    public void testCompareAssignmentSubmissions() throws Exception{
+
+        mockMvc.perform(get("/rest/assignment-submissions/compare")
+        		.param("assignmentId", "1")
+        		.param("otherAssignmentId", "3"))
+                .andExpect(status().isOk())
+                .andDo(print());
     }
 }
