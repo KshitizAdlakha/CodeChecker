@@ -5,6 +5,7 @@ import codechecker.core.models.entities.Assignment;
 import codechecker.core.services.util.AccountList;
 import codechecker.core.services.util.AssignmentList;
 
+
  public interface AccountService {
     Account findAccount(Long id);
     Account createAccount(Account data);
