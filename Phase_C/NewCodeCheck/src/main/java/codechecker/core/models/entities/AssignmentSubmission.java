@@ -11,6 +11,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
+/**
+ * Assignment Submission Class
+ */
 @Entity
 public class AssignmentSubmission {
 
@@ -27,10 +30,16 @@ public class AssignmentSubmission {
     @ManyToOne
     private Assignment assignment;
 
+    /**
+     * get assignment submission title
+     */
     public String getTitle() {
         return title;
     }
 
+    /**
+     * parse input file
+     */
     public String textualRepresentation() {
         FileInputStream in;
         try {
@@ -47,38 +56,65 @@ public class AssignmentSubmission {
         }
     }
 
+    /**
+     * set assignment submission title
+     */
     public void setTitle(String title) {
         this.title = title;
     }
 
+    /**
+     * get assignment submission id
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     * set assignment submission id
+     */
     public void setId(Long id) {
         this.id = id;
     }
 
+    /**
+     * get assignment
+     */
     public Assignment getAssignment() {
         return assignment;
     }
 
+    /**
+     * set assignment
+     */
     public void setAssignment(Assignment assignment) {
         this.assignment = assignment;
     }
 
+    /**
+     * get assignment submission content
+     */
     public String getContent() {
         return content;
     }
 
+    /**
+     * set assignment submission content
+     */
     public void setContent(String content) {
         this.content = content;
     }
 
+    /**
+     * get assignment submission file
+     */
     public File getAssociatedFile() {
         return associatedFile;
     }
 
+    /**
+     * set assignment submission file
+     */
     public void setAssociatedFile(File associatedFile) {
         this.associatedFile = associatedFile;
     }
