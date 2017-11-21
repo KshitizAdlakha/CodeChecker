@@ -4,13 +4,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
- * Created by on 6/30/14.
+ * Conflict Exception
  */
 @ResponseStatus(value= HttpStatus.CONFLICT)
 public class ConflictException extends RuntimeException {
+
+    // Constructor
     public ConflictException() {
     }
 
+    // Parameterized Constructor
     public ConflictException(Throwable cause) {
         super(cause);
     }

@@ -4,13 +4,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
- * Created by on 6/30/14.
+ * Bad Request Exception
  */
 @ResponseStatus(value= HttpStatus.BAD_REQUEST)
 public class BadRequestException extends RuntimeException {
+
+    // Constructor
     public BadRequestException() {
     }
 
+    // Parameterized Constructor
     public BadRequestException(Throwable cause) {
         super(cause);
     }
