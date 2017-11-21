@@ -6,6 +6,9 @@ import codechecker.core.services.exceptions.AssignmentNotFoundException;
 import codechecker.core.services.util.AssignmentSubmissionList;
 import codechecker.core.services.util.AssignmentList;
 
+/**
+ * Assignment Service interface
+ */
 public interface AssignmentService {
     /**
      * @param assignmentId the id of the assignment to add this AssignmentSubmission to
@@ -15,9 +18,20 @@ public interface AssignmentService {
      */
     AssignmentSubmission createAssignmentSubmission(Long assignmentId, AssignmentSubmission data);
 
+    /**
+     * find all assignments
+     */
     AssignmentList findAllAssignments();
 
+    /**
+     * @param assignmentId for which assignment submissions are to be found
+     * @return the found assignment submission list with given assignmentId
+     */
     AssignmentSubmissionList findAllAssignmentSubmissions(Long assignmentId); // findAssignment all associated assignment entries
 
+    /**
+     * @param id for which assignment is to be found
+     * @return the found assignment with given id
+     */
     Assignment findAssignment(Long id);
 }

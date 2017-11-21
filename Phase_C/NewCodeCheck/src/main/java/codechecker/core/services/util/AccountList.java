@@ -6,20 +6,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by on 7/22/14.
+ * Account List class
  */
 public class AccountList {
 
     private List<Account> accounts = new ArrayList<Account>();
 
+    /**
+     * Account list constructor
+     */
     public AccountList(List<Account> list) {
         this.accounts = list;
     }
 
+    /**
+     * get accounts method
+     */
     public List<Account> getAccounts() {
         return accounts;
     }
 
+    /**
+     * set accounts method
+     */
     public void setAccounts(List<Account> accounts) {
         this.accounts = accounts;
     }

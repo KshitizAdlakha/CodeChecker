@@ -3,6 +3,9 @@ package codechecker.core.services;
 
 import codechecker.core.models.entities.AssignmentSubmission;
 
+/**
+ * Assignment Submission Service interface
+ */
 public interface AssignmentSubmissionService {
 	// Returns the AssignmentSubmission or null if it can't be found
 	AssignmentSubmission findAssignmentSubmission(Long id);

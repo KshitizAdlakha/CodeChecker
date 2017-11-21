@@ -4,6 +4,7 @@ import codechecker.core.models.entities.Account;
 
 import java.util.List;
 
+
 public interface AccountRepo {
     List<Account> findAllAccounts();
     Account findAccount(Long id);

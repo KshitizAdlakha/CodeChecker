@@ -14,6 +14,9 @@ import codechecker.core.services.exceptions.AssignmentExistsException;
 import codechecker.core.services.util.AccountList;
 import codechecker.core.services.util.AssignmentList;
 
+/**
+ * Account Service Implementation class
+ */
 @Service
 @Transactional
 public class AccountServiceImpl implements AccountService {
@@ -29,6 +32,10 @@ public class AccountServiceImpl implements AccountService {
         return accountRepo.findAccount(id);
     }
 
+    /**
+     * @param account data to create a new account
+     * @return the created account with given account data
+     */
     @Override
     public Account createAccount(Account data) {
         Account account = accountRepo.findAccountByName(data.getName());
@@ -39,6 +46,11 @@ public class AccountServiceImpl implements AccountService {
         return accountRepo.createAccount(data);
     }
 
+    /**
+     * @param accountId with which the assignment will be created
+     * @param assignment data which will be included in assignment
+     * @return the created assignment with accountId and data
+     */
     @Override
     public Assignment createAssignment(Long accountId, Assignment data) {
         Assignment assignmentSameTitle = assignmentRepo.findAssignmentByTitle(data.getTitle());
@@ -61,6 +73,10 @@ public class AccountServiceImpl implements AccountService {
         return createdAssignment;
     }
 
+    /**
+     * @param accountId with which assignments of same accountId will be found
+     * @return list of assignments with same accountId
+     */
     @Override
     public AssignmentList findAssignmentsByAccount(Long accountId) {
         Account account = accountRepo.findAccount(accountId);
@@ -71,11 +87,17 @@ public class AccountServiceImpl implements AccountService {
         return new AssignmentList(assignmentRepo.findAssignmentsByAccount(accountId));
     }
 
+    /**
+     * find all accounts method
+     */
     @Override
     public AccountList findAllAccounts() {
         return new AccountList(accountRepo.findAllAccounts());
     }
 
+    /**
+     * find account by given name method
+     */
     @Override
     public Account findByAccountName(String name) {
         return accountRepo.findAccountByName(name);
