@@ -26,11 +26,14 @@
         </div>
 
         <div class="row">
+            <div class="red-text col s12 m10 push-m2" role="alert" ng-show="model.error">
+                {{model.error}}
+            </div>
             <h5 class="col s12 left black-text">Similarity metric:</h5>
             <h6 class="col s6">
                 <ul>
-                    <li>Points: {{model.similarityPoints}}</li>
-                    <br>
+                    <!--<li>Points: {{model.similarityPoints}}</li>-->
+                    <!--<br>-->
                     <li>Percentage: {{model.similarityPercentage}}%</li>
                 </ul>
             </h6>

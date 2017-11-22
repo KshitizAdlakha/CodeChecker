@@ -14,6 +14,10 @@ angular
             });
         };
 
+        service.compareAssignments = function (id1, id2) {
+            return $http.get("/code-checker/rest/assignment-submissions/compare?assignmentId="+id1+"&otherAssignmentId="+id2);
+        };
+
         service.getAssignmentsForAccount = function(accountId) {
             var deferred = $q.defer();
 

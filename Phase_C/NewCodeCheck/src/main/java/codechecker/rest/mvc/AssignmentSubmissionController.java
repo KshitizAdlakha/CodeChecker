@@ -3,6 +3,7 @@ package codechecker.rest.mvc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import codechecker.core.models.entities.AssignmentSubmission;
@@ -74,6 +75,7 @@ public class AssignmentSubmissionController {
      * 
      */
     @RequestMapping(value="/compare", method = RequestMethod.GET)
+    @PreAuthorize("permitAll")
     public ResponseEntity<String> compareAssignmentSubmissions(@RequestParam Long assignmentId, @RequestParam Long otherAssignmentId) {
         String percentMatch = service.compareAssignmentSubmissions(assignmentId, otherAssignmentId);
         return new ResponseEntity<String>(percentMatch, HttpStatus.OK);

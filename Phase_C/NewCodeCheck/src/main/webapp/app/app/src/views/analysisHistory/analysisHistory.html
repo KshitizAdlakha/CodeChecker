@@ -56,10 +56,10 @@
             <li class="collection-item" ng-repeat="assignment in model.assignments">
                 <div class="row">
                     <div class="col s4 center">
-                        {{assignment.date}}
+                        {{assignment.title}}
                     </div>
                     <div class="col s3 center">
-                        {{assignment.name}}
+                        {{assignment.owner.rid}}
                     </div>
                     <div class="col s2 center">
                         <a href="#/analysis-result/{{assignment.id}}" class="btn t1-green-btn" ng-if="assignment.processed">Open</a>
