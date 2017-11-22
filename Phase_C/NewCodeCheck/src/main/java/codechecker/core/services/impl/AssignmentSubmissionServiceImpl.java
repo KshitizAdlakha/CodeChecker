@@ -58,7 +58,6 @@ public class AssignmentSubmissionServiceImpl implements AssignmentSubmissionServ
      */
     @Override
     public String compareAssignmentSubmissions(Long assignmentId, Long otherAssignmentId) {
-        //This needs to be further implemented.
         FileInputStream in1;
         FileInputStream in2;
         String similarityPercent="0";
@@ -73,24 +72,27 @@ public class AssignmentSubmissionServiceImpl implements AssignmentSubmissionServ
 			 */
             in1 = new FileInputStream(new File("src//test//java//codechecker//Test1.java"));
             in2 = new FileInputStream(new File("src//test//java//codechecker//Test2.java"));
+
             // parse the file
             CompilationUnit cu1 = JavaParser.parse(in1);
             CompilationUnit cu2 = JavaParser.parse(in2);
-	        /*
-	         * This is where all the visitors will go.
-	         */
 
-            /*
-             * HashCodeVisitor works on the assumption that the comments are already removed from the submissions.
-             */
+	        /*
+	         * Visitors for removal of comments and obtaining the hash codes
+	         */
+            CommentRemovalVisitor crv1 = new CommentRemovalVisitor();
+            CommentRemovalVisitor crv2 = new CommentRemovalVisitor();
             HashCodeVisitor hcv1 = new HashCodeVisitor();
             HashCodeVisitor hcv2 = new HashCodeVisitor();
-            cu1.accept(hcv1, null); //All the nodes in the AST generated from the first submission are visited. 
-            cu2.accept(hcv2, null); //All the nodes in the AST generated from the second submission are visited. 
 
-	    /*
-	     * SimilarityPercentGenerator will calculate the percentage based on the similarity of the two programs.
-	     */
+            cu1.accept(crv1, null); //All the nodes in the AST generated from the first submission are visited and the nodes identified as comments are removed
+            cu2.accept(crv2, null); //All the nodes in the AST generated from the second submission are visited and the nodes identified as comments are removed
+            cu1.accept(hcv1, null); //All the nodes in the AST generated from the first submission are visited.
+            cu2.accept(hcv2, null); //All the nodes in the AST generated from the second submission are visited.
+
+	        /*
+	        * SimilarityPercentGenerator will calculate the percentage based on the similarity of the two programs.
+	        */
             SimilarityPercentGenerator spg = new SimilarityPercentGenerator();
             similarityPercent = String.format("%.2f", spg.getSimilarityPercent(hcv1, hcv2)); //Converted to string to display the percent rounded off to two decimal places
 
