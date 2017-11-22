@@ -75,16 +75,21 @@
                     <div class="center col s12 m8 push-m2">
                         We only allow .java files for now, so make sure the files you upload are written in JAVA
                     </div>
+                    <div class="center col s12 m8 push-m2">
+                        Note: The application currently uses dummy files. File upload will be working soon
+                    </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12 m8 push-m2">
                         <a class="btn center form-control t1-login-btn"
                            ng-disabled="model.loader==1 || !assignment.title || !model.file1 || !model.file2"
-                           ng-click="model.loader=1; model.uploadFiles(assignment)"
+                           href="#/side-by-side?submissionId1=1&submissionId2=2"
                            type="submit">
                             Analyze Results
                         </a>
                     </div>
+                    <!--ng-click="model.loader=1; model.uploadFiles(assignment)"-->
+
                     <!--<div class="input-field col s12 m8 push-m2">-->
                         <!--<a class="btn center form-control t1-analysis-history-btn"-->
                            <!--href="#/analysis-history"-->
