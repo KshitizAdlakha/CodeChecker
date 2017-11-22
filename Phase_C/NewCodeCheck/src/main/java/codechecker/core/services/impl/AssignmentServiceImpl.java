@@ -27,7 +27,7 @@ public class AssignmentServiceImpl implements AssignmentService {
 
     /**
      * @param assignmentId with which the assignment submission will be created
-     * @param assignmentSubmission data which will be included in assignment submission
+     * @param data data which will be included in assignment submission
      * @return the created assignmentSubmission with assignmentId and assignmentSubmission data
      */
     @Override

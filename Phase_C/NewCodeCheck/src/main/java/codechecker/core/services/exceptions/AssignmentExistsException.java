@@ -2,6 +2,7 @@ package codechecker.core.services.exceptions;
 
 /**
  *  Assignment Exists Exception
+ *  Thrown when trying to create an assignment that already exists
  */
 public class AssignmentExistsException extends RuntimeException {
     // constructor
