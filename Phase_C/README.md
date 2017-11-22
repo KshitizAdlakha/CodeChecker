@@ -14,3 +14,12 @@
 3. Open the Maven Tool Window and click on install under the code-checker -> Lifecycle tab
 4. Click on tomcat7:run under the code-checker -> Plugins -> tomcat7 tab
 5. Browse to http://localhost:8080/code-checker/app/index.html#/ to access the application
+
+# Running the CodeChecker
+
+1. Create an account by filling the form on the http://localhost:8080/code-checker/app/index.html#/sign-up page
+2. Add the name of the assignment, select the two files containing the assignment submissions
+3. Click on Analyze Results
+4. You will be navigated to the result page, containing a side-by-side of the files
+
+(NOTE: The application is using dummy files for now, the upload files feature will be functional soon)
