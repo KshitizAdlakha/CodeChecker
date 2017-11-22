@@ -57,10 +57,11 @@ public class AssignmentSubmissionServiceImpl implements AssignmentSubmissionServ
      * @return the checked assignmentSubmission of the given two assignmentIds
      */
     @Override
-    public double compareAssignmentSubmissions(Long assignmentId, Long otherAssignmentId) {
+    public String compareAssignmentSubmissions(Long assignmentId, Long otherAssignmentId) {
         //This needs to be further implemented.
         FileInputStream in1;
         FileInputStream in2;
+        String similarityPercent="0";
         //Assignment firstSubmission = findAssignment((long) 0, assignmentId);
         //Assignment secondSubmission  = findAssignment((long) 0, otherAssignmentId);
 
@@ -91,12 +92,12 @@ public class AssignmentSubmissionServiceImpl implements AssignmentSubmissionServ
 	     * SimilarityPercentGenerator will calculate the percentage based on the similarity of the two programs.
 	     */
             SimilarityPercentGenerator spg = new SimilarityPercentGenerator();
-            String similarityPercent = String.format("%.2f", spg.getSimilarityPercent(hcv1, hcv2)); //Converted to string to display the percent rounded off to two decimal places 
+            similarityPercent = String.format("%.2f", spg.getSimilarityPercent(hcv1, hcv2)); //Converted to string to display the percent rounded off to two decimal places
 
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        return 0;
+        return similarityPercent;
     }
 }

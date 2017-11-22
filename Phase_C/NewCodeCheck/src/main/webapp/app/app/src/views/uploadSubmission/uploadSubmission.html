@@ -40,34 +40,47 @@
             <form class="col s12">
                 <div class="row">
                     <div class="input-field col s12 m8 push-m2">
-                        <input id="assignmentName" type="text" ng-model="user.assignmentName" class="validate">
+                        <input id="assignmentName" type="text" ng-model="assignment.title" class="validate">
                         <label for="assignmentName">Programming Assignment Name*</label>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col s12 m8 push-m2">
-                        <input id="assignmentTopic" type="text" ng-model="user.assignmentTopic" class="validate">
-                        <label for="assignmentTopic">Programming Assignment Topic*</label>
+                    <div class="col s12 m8 push-m2 input-field">
+                        <div class="row">
+                            <div class="col s6 file-field">
+                                <div class="btn">
+                                    <span>File 1</span>
+                                    <input type="file" name="file1" ng-model="model.file1" ngf-select="model.validateFileType($file)">
+                                </div>
+                                <div class="file-path-wrapper">
+                                    <input class="file-path validate" type="text"
+                                           placeholder="Select first file">
+                                </div>
+                            </div>
+                            <div class="col s6 file-field">
+                                <div class="btn">
+                                    <span>File 2</span>
+                                    <input type="file" name="file1" ng-model="model.file2" ngf-select="model.validateFileType($file)">
+                                </div>
+                                <div class="file-path-wrapper">
+                                    <input class="file-path validate" type="text"
+                                           placeholder="Select second file">
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
                 <div class="row">
-                    <div class="file-field col s12 m8 push-m2 input-field">
-                        <div class="btn">
-                            <span>Upload Files</span>
-                            <input type="file" ngf-select="model.validateFileType($files)"  multiple>
-                        </div>
-                        <div class="file-path-wrapper">
-                            <input class="file-path validate" type="text"
-                                   placeholder="Upload two or more files">
-                        </div>
+                    <div class="center col s12 m8 push-m2">
+                        We only allow .java files for now, so make sure the files you upload are written in JAVA
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12 m8 push-m2">
                         <a class="btn center form-control t1-login-btn"
-                           ng-click="model.loginLoader=1"
-                           ng-class="{disabled: model.loginLoader==1}"
-                           href="#/analysis-result"
+                           ng-disabled="model.loader==1 || !assignment.title || !model.file1 || !model.file2"
+                           ng-click="model.loader=1; model.uploadFiles(assignment)"
                            type="submit">
                             Analyze Results
                         </a>

@@ -26,14 +26,11 @@
         <ul class="collection col s10 m8 push-s2 push-m2">
             <li class="collection-item">
                 <div class="row">
-                    <div class="col s4 center">
+                    <div class="col s5 center">
                         <b>Assignment Date</b>
                     </div>
-                    <div class="col s3 center">
+                    <div class="col s5 center">
                         <b>Assignment Name</b>
-                    </div>
-                    <div class="col s3 center">
-                        <b>Assignment Topic</b>
                     </div>
                     <div class="col s2 center">
                         <b>Status</b>
@@ -44,14 +41,11 @@
             <!--Sample-->
             <li class="collection-item">
                 <div class="row">
-                    <div class="col s4 center">
+                    <div class="col s5 center">
                         Oct 7, 2017 6:00 PM
                     </div>
-                    <div class="col s3 center">
+                    <div class="col s5 center">
                         Assignment 1
-                    </div>
-                    <div class="col s3 center">
-                        Sample Topic
                     </div>
                     <div class="col s2 center">
                         <a href="#/analysis-result" class="btn t1-green-btn">Open</a>
@@ -66,9 +60,6 @@
                     </div>
                     <div class="col s3 center">
                         {{assignment.name}}
-                    </div>
-                    <div class="col s3 center">
-                        {{assignment.topic}}
                     </div>
                     <div class="col s2 center">
                         <a href="#/analysis-result/{{assignment.id}}" class="btn t1-green-btn" ng-if="assignment.processed">Open</a>

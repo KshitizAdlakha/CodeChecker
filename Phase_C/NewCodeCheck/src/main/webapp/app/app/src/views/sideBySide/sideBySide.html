@@ -42,7 +42,7 @@
                         <label for="original">Original File</label>
                     </div>
                     <div class="col s12 m6">
-                        <input class="with-gap" name="group3" type="radio" id="transformed" />
+                        <input class="with-gap" disabled name="group3" type="radio" id="transformed" />
                         <label for="transformed">Transformed File</label>
                     </div>
                 </div>
@@ -53,15 +53,15 @@
 <div class="section no-pad-bot" >
     <div class="container">
         <div class="row" >
-            <div class="col s6 center blue-text t1-darkgrey-border">{{model.firstFileName}}.java</div>
-            <div class="col s6 center blue-text t1-darkgrey-border">{{model.secondFileName}}.java</div>
+            <div class="col s6 center blue-text t1-darkgrey-border">{{model.file1Name}}.java</div>
+            <div class="col s6 center blue-text t1-darkgrey-border">{{model.file2Name}}.java</div>
         </div>
         <div class="row" style="margin-top: -20px">
             <div class="col s6 t1-min-height-box t1-darkgrey-border">
-
+                <pre><ng-include src="'/code-checker/app/upload/' + model.file1Name + '.java'"></ng-include></pre>
             </div>
             <div class="col s6 t1-min-height-box t1-darkgrey-border">
-
+                <pre><ng-include src="'/code-checker/app/upload/' + model.file2Name + '.java'"></ng-include></pre>
             </div>
         </div>
     </div>

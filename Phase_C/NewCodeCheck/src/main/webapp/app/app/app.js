@@ -7,7 +7,7 @@ angular
                 controller: 'LoginCtrl',
                 controllerAs: "model",
                 resolve:{
-                    currentUser: alreadyLoggedIn
+                    loginCheck: alreadyLoggedIn
                 }
             })
             .when('/sign-up', {
@@ -15,7 +15,7 @@ angular
                 controller: 'SignUpCtrl',
                 controllerAs: "model",
                 resolve:{
-                    currentUser: alreadyLoggedIn
+                    loginCheck: alreadyLoggedIn
                 }
             })
             .when('/upload-submission', {
@@ -23,20 +23,26 @@ angular
                 controller: 'UploadSubmissionCtrl',
                 controllerAs: "model",
                 resolve:{
-                    currentUser: notLoggedIn
+                    loginCheck: notLoggedIn,
+                    account: getCurrentUser
                 }
             })
             .when('/help', {
                 templateUrl: 'src/views/help/help.html',
                 controller: 'HelpCtrl',
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve:{
+                    loginCheck: notLoggedIn,
+                    account: getCurrentUser
+                }
             })
             .when('/side-by-side', {
                 templateUrl: 'src/views/sideBySide/sideBySide.html',
                 controller: 'SideBySideCtrl',
                 controllerAs: "model",
                 resolve:{
-                    currentUser: notLoggedIn
+                    loginCheck: notLoggedIn,
+                    account: getCurrentUser
                 }
             })
             .when('/analysis-result', {
@@ -44,7 +50,8 @@ angular
                 controller: 'AnalysisResultsCtrl',
                 controllerAs: "model",
                 resolve:{
-                    currentUser: notLoggedIn
+                    loginCheck: notLoggedIn,
+                    account: getCurrentUser
                 }
             })
             .when('/analysis-history', {
@@ -52,20 +59,25 @@ angular
                 controller: 'AnalysisHistoryCtrl',
                 controllerAs: "model",
                 resolve:{
-                    currentUser: notLoggedIn
+                    loginCheck: notLoggedIn,
+                    account: getCurrentUser
                 }
             })
             .otherwise({redirectTo: '/'});
 
-        function alreadyLoggedIn(sessionService, $location) {
+        function alreadyLoggedIn(sessionService, $location, accountService) {
             if(sessionService.isLoggedIn()) {
                 $location.url("/upload-submission")
             }
         }
 
-        function notLoggedIn(sessionService, $location) {
+        function notLoggedIn(sessionService, $location, accountService) {
             if(!sessionService.isLoggedIn()) {
                 $location.url("/")
             }
+        }
+
+        function getCurrentUser(accountService) {
+            return accountService.getCurrentUser();
         }
     });

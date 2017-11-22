@@ -17,7 +17,8 @@
             accountService.userExists(account, function (account) {
                 sessionService
                     .login(account)
-                    .success(function () {
+                    .success(function (data) {
+                        console.log(data);
                         localStorage.setItem("session", {});
                         $location.url('/upload-submission');
                     })

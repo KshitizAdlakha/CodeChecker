@@ -29,12 +29,7 @@ angular.module('ngBoilerplate.account', ['ui.router', 'ngResource', 'base64'])
                     controller: 'AccountSearchCtrl'
                 }
             },
-            data : { pageTitle : "Search Accounts" },
-            resolve: {
-                accounts: function(accountService) {
-                    return accountService.getAllAccounts();
-                }
-            }
+            data : { pageTitle : "Search Accounts" }
     });
 })
 .factory('sessionService', function($http) {
@@ -83,12 +78,6 @@ angular.module('ngBoilerplate.account', ['ui.router', 'ngResource', 'base64'])
         },
         failure);
     };
-    service.getAllAccounts = function() {
-          var Account = $resource("/code-checker/rest/accounts");
-          return Account.get().$promise.then(function(data) {
-            return data.accounts;
-          });
-      };
     return service;
 })
 .controller("LoginCtrl", function($scope, sessionService, accountService, $state) {

@@ -10,9 +10,6 @@ import codechecker.core.services.AssignmentSubmissionService;
 import codechecker.rest.resources.AssignmentSubmissionResource;
 import codechecker.rest.resources.asm.AssignmentSubmissionResourceAsm;
 
-/**
- * Created by on 6/5/14.
- */
 @Controller
 @RequestMapping("/rest/assignment-submissions")
 public class AssignmentSubmissionController {
@@ -24,7 +21,7 @@ public class AssignmentSubmissionController {
         this.service = service;
     }
 
-/*    @RequestMapping(value="/{assignmentSubmissionId}",
+    @RequestMapping(value="/{assignmentSubmissionId}",
             method = RequestMethod.GET)
     public ResponseEntity<AssignmentSubmissionResource> getAssignmentSubmission (
             @PathVariable Long assignmentSubmissionId) {
@@ -36,7 +33,7 @@ public class AssignmentSubmissionController {
             return new ResponseEntity<AssignmentSubmissionResource>(HttpStatus.NOT_FOUND);
         }
     }
-*/
+
     @RequestMapping(value="/{assignmentSubmissionId}",
             method = RequestMethod.DELETE)
     public ResponseEntity<AssignmentSubmissionResource> deleteAssignmentSubmission(
@@ -77,8 +74,8 @@ public class AssignmentSubmissionController {
      * 
      */
     @RequestMapping(value="/compare", method = RequestMethod.GET)
-    public ResponseEntity<Double> compareAssignmentSubmissions(@RequestParam Long assignmentId, @RequestParam Long otherAssignmentId) {
-        double percentMatch = service.compareAssignmentSubmissions(assignmentId, otherAssignmentId);
-        return new ResponseEntity<Double>(percentMatch, HttpStatus.OK);
+    public ResponseEntity<String> compareAssignmentSubmissions(@RequestParam Long assignmentId, @RequestParam Long otherAssignmentId) {
+        String percentMatch = service.compareAssignmentSubmissions(assignmentId, otherAssignmentId);
+        return new ResponseEntity<String>(percentMatch, HttpStatus.OK);
     }
 }

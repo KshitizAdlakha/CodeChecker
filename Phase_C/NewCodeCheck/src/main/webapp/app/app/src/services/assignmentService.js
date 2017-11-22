@@ -1,6 +1,36 @@
 angular
     .module('codeChecker')
-    .factory('assignmentService', function (){
+    .factory('assignmentService', function ($http, $resource){
         var service = {};
+        service.createAssignment = function(userId, assignment) {
+            var Assignment = $resource("/code-checker/rest/accounts/:paramAccountId/assignments");
+            return Assignment.save({paramAccountId: userId}, assignment).$promise;
+        };
+
+        service.getAllAssignments = function() {
+            var Assignment = $resource("/code-checker/rest/assignments");
+            return Assignment.get().$promise.then(function(data) {
+                return data.assignments;
+            });
+        };
+
+        service.getAssignmentsForAccount = function(accountId) {
+            var deferred = $q.defer();
+
+            var Account = $resource("/code-checker/rest/accounts/:paramAccountId");
+            Account.get({paramAccountId:accountId}, function(account) {
+                var Assignment = account.resource('assignments');
+                Assignment.get(null,
+                    function(data) {
+                        deferred.resolve(data.assignments);
+                    },
+                    function() {
+                        deferred.reject();
+                    }
+                );
+            });
+            return deferred.promise;
+        };
+
         return service;
     });

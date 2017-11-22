@@ -2,11 +2,14 @@
     var app = angular.module('codeChecker');
     app.factory('accountService', accountService);
 
-    function accountService ($resource) {
+    function accountService ($resource, $http) {
         var service = {};
         service.register = function(account, success, failure) {
             var Account = $resource("/code-checker/rest/accounts");
             Account.save({}, account, success, failure);
+        };
+        service.getCurrentUser = function () {
+           return $http.get("/code-checker/rest/accounts/getMeId");
         };
         service.getAccountById = function(accountId) {
             var Account = $resource("/code-checker/rest/accounts/:paramAccountId");
