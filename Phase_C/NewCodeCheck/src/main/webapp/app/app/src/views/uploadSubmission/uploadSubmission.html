@@ -28,9 +28,6 @@
     <div class="col s12">
         <div class="row container">
             <div class="col s12 m10 push-m2 t1-66-width">
-                <div class="red-text" ng-show="model.error">
-                    {{model.error}}
-                </div>
                 <ul class="col s12 push-s3 m12 collection">
                     <li class="collection-item center t1-green-text">
                         <h5>Upload Files</h5>
@@ -38,6 +35,9 @@
                 </ul>
             </div>
             <form class="col s12">
+                <div class="red-text" ng-show="model.error">
+                    {{model.error}}
+                </div>
                 <div class="row">
                     <div class="input-field col s12 m8 push-m2">
                         <input id="assignmentName" type="text" ng-model="assignment.title" class="validate">
@@ -50,7 +50,8 @@
                             <div class="col s6 file-field">
                                 <div class="btn">
                                     <span>File 1</span>
-                                    <input type="file" name="file1" ng-model="model.file1" ngf-select="model.validateFileType($file)">
+                                    <input type="file" accept=".java"
+                                           name="file1" ng-model="model.file1" ngf-select="model.validateFileType($file)">
                                 </div>
                                 <div class="file-path-wrapper">
                                     <input class="file-path validate" type="text"
@@ -60,7 +61,8 @@
                             <div class="col s6 file-field">
                                 <div class="btn">
                                     <span>File 2</span>
-                                    <input type="file" name="file1" ng-model="model.file2" ngf-select="model.validateFileType($file)">
+                                    <input type="file" accept=".java"
+                                           name="file1" ng-model="model.file2" ngf-select="model.validateFileType($file)">
                                 </div>
                                 <div class="file-path-wrapper">
                                     <input class="file-path validate" type="text"

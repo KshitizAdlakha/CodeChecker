@@ -14,7 +14,7 @@
         http://www.springframework.org/schema/security/spring-security.xsd">
     <context:component-scan base-package="codechecker.rest.mvc"/>
 
-    <mvc:resources mapping="/app/**" location="/app/app/"/>
+    <mvc:resources mapping="/**" location="/app/app/"/>
 
     <mvc:annotation-driven/>
 
