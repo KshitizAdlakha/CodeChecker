@@ -22,4 +22,6 @@
 3. Click on Analyze Results
 4. You will be navigated to the result page, containing a side-by-side of the files
 
+
+#### The application can also be accessed at https://codechecker.herokuapp.com/#/
 (NOTE: The application is using dummy files for now, the upload files feature will be functional soon)
