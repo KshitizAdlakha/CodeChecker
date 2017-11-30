@@ -18,7 +18,6 @@
                 sessionService
                     .login(account)
                     .success(function (data) {
-                        console.log(data);
                         localStorage.setItem("session", {});
                         $location.url('/upload-submission');
                     })
@@ -28,7 +27,7 @@
                     });
             }, function () {
                 vm.loginLoader = 0;
-                vm.error = "Account does not exist"
+                vm.error = "The email/password combination is incorrect"
             });
         }
     };

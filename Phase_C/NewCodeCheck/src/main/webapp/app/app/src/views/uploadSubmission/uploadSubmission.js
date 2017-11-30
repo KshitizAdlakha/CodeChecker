@@ -51,6 +51,7 @@ angular.module('codeChecker')
                 vm.file1=null;
                 vm.file2=null;
                 vm.error="One or more files you have selected does not have the .java extension";
+                vm.invalidFileType=true;
             } else {
             }
             // files.forEach(function (file) {

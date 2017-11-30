@@ -35,9 +35,12 @@
                 </ul>
             </div>
             <form class="col s12">
-                <div class="red-text" ng-show="model.error">
-                    {{model.error}}
+                <div class="row">
+                    <div class="red-text col s12 m8 push-m2" ng-show="model.error">
+                        {{model.error}}
+                    </div>
                 </div>
+
                 <div class="row">
                     <div class="input-field col s12 m8 push-m2">
                         <input id="assignmentName" type="text" ng-model="assignment.title" class="validate">
@@ -50,22 +53,22 @@
                             <div class="col s6 file-field">
                                 <div class="btn">
                                     <span>File 1</span>
-                                    <input type="file" accept=".java"
+                                    <input type="file" accept=".java" ng-class="{invalid: !invalidFileType}"
                                            name="file1" ng-model="model.file1" ngf-select="model.validateFileType($file)">
                                 </div>
                                 <div class="file-path-wrapper">
-                                    <input class="file-path validate" type="text"
+                                    <input class="file-path" type="text"
                                            placeholder="Select first file">
                                 </div>
                             </div>
                             <div class="col s6 file-field">
                                 <div class="btn">
                                     <span>File 2</span>
-                                    <input type="file" accept=".java"
+                                    <input type="file" accept=".java" ng-class="{invalid: !invalidFileType}"
                                            name="file1" ng-model="model.file2" ngf-select="model.validateFileType($file)">
                                 </div>
                                 <div class="file-path-wrapper">
-                                    <input class="file-path validate" type="text"
+                                    <input class="file-path" type="text"
                                            placeholder="Select second file">
                                 </div>
                             </div>
