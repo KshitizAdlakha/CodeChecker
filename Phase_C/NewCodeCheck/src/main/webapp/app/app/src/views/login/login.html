@@ -51,7 +51,8 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12 m8 push-m2">
-                        <a class="btn center form-control t1-login-btn" ng-class="{'disabled':(model.loginLoader==1)}"
+                        <a class="btn center form-control t1-login-btn"
+                           ng-class="{'disabled':(model.loginLoader==1) || (!user.name) || (!user.password)}"
                                 ng-click="model.login(user); model.loginLoader=1"
                                 type="submit">
                             Log In
