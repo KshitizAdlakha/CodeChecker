@@ -22,7 +22,8 @@
                                 vm.error="Registered successfully. Try logging in from the login page"
                             });
                         },
-                    function() {
+                    function(err) {
+                        console.log(err);
                         vm.registerLoader = 0;
                         vm.error="Failed to register. Try changing the username";
                     });

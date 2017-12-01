@@ -5,7 +5,9 @@ angular.module('codeChecker')
     .controller('UploadSubmissionCtrl', function(account, sessionService, assignmentService, Upload) {
         var vm=this;
         function init() {
-            vm.currentUser=account.data;
+            if(account){
+                vm.currentUser=account.data;
+            }
             vm.validateFileType=validateFileType;
             vm.loader=0;
             vm.logout=function () {
@@ -32,7 +34,7 @@ angular.module('codeChecker')
 
             Upload.upload({
                 url: 'upload',
-                fields: {'username': 'zouroto'}, // additional data to send
+                // fields: {'username': 'zouroto'}, // additional data to send
                 file: file
             }).progress(function (evt) {
                 var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);

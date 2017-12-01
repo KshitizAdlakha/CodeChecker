@@ -15,6 +15,9 @@
             session.isLoggedIn = function() {
                 return localStorage.getItem("session") !== null;
             };
+            session.unsetStorage = function () {
+                localStorage.removeItem("session");
+            };
             return session;
         });
 })();

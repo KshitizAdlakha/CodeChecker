@@ -77,7 +77,14 @@ angular
             }
         }
 
-        function getCurrentUser(accountService) {
-            return accountService.getCurrentUser();
+        function getCurrentUser(accountService, sessionService, $location) {
+            return accountService
+                .getCurrentUser()
+                .then(function (data) {
+                    return data;
+                }, function () {
+                    sessionService.unsetStorage();
+                    $location.url("/");
+                })
         }
     });
