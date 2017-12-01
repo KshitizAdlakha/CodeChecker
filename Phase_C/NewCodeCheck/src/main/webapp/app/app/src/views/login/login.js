@@ -9,6 +9,8 @@
         function init() {
             vm.loginLoader = 0;
             vm.login = login;
+            vm.showPassword = false;
+            vm.toggleShowPassword=toggleShowPassword;
         }
 
         init();
@@ -29,6 +31,10 @@
                 vm.loginLoader = 0;
                 vm.error = "The email/password combination is incorrect"
             });
+        }
+
+        function toggleShowPassword() {
+            vm.showPassword = !vm.showPassword;
         }
     };
 })();

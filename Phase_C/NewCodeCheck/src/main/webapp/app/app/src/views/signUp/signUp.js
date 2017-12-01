@@ -5,6 +5,8 @@
             function init() {
                 vm.registerLoader = 0;
                 vm.register = register;
+                vm.showPassword = false;
+                vm.toggleShowPassword=toggleShowPassword;
             }
 
             init();
@@ -27,7 +29,10 @@
                         vm.registerLoader = 0;
                         vm.error="Failed to register. Try changing the username";
                     });
+            }
 
+            function toggleShowPassword() {
+                vm.showPassword = !vm.showPassword;
             }
         });
 })();

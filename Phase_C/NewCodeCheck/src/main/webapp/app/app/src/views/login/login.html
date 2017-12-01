@@ -44,9 +44,15 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col s12 m8 push-m2">
-                        <input id="password" type="password" ng-model="user.password" class="validate">
+                    <div class="input-field col suffix s12 m8 push-m2">
+                        <input id="password" ng-attr-type="{{ model.showPassword ? 'text' : 'password' }}"
+                               ng-model="user.password"
+                               type="password" class="validate">
                         <label for="password">Password*</label>
+                        <a ng-click="model.toggleShowPassword()" style="cursor: pointer; color: black">
+                            <i class="fa" ng-class="{'fa-eye':!model.showPassword, 'fa-eye-slash':model.showPassword}"
+                               aria-hidden="true"></i>
+                        </a>
                     </div>
                 </div>
                 <div class="row">
@@ -57,10 +63,10 @@
                                 type="submit">
                             Log In
                         </a>
-                        <div class="col s12 m10 push-m2" ng-if="model.loginLoader==1">
-                            <div class="progress">
-                                <div class="indeterminate"></div>
-                            </div>
+                    </div>
+                    <div class="col s12 m8 push-m2" ng-if="model.loginLoader==1">
+                        <div class="progress">
+                            <div class="indeterminate"></div>
                         </div>
                     </div>
                 </div>

@@ -11,6 +11,15 @@
   content: "[";
 }
 
+.input-field.suffix i {
+    position: absolute;
+    width: 3rem;
+    font-size: 1.7rem;
+    transition: color .2s;
+    top: 10px;
+    right: 0px;
+}
+
 .menu:after {
   content: "]";
 }
