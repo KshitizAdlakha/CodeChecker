@@ -4,7 +4,7 @@
         .service('sessionService', function ($http, $base64, $location) {
             var session = {};
             session.login = function(data) {
-                return $http.post("/login", "username=" + data.name +
+                return $http.post("/code-checker/login", "username=" + data.name +
                     "&password=" + data.password, {
                     headers: {'Content-Type': 'application/x-www-form-urlencoded'}
                 });

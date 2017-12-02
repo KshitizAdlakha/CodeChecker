@@ -28,8 +28,7 @@ public class AccountRepoTest {
     @Before
     @Transactional
     @Rollback(false)
-    public void setup()
-    {
+    public void setup() {
         account = new Account();
         account.setName("name");
         account.setPassword("password");
@@ -38,8 +37,7 @@ public class AccountRepoTest {
 
     @Test
     @Transactional
-    public void testFind()
-    {
+    public void testFind() {
         Account account = repo.findAccount(this.account.getId());
         assertNotNull(account);
         assertEquals(account.getName(), "name");
