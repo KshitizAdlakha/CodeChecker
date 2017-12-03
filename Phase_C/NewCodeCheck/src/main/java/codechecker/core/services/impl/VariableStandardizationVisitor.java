@@ -7,9 +7,11 @@ import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.body.VariableDeclarator;
 import com.github.javaparser.ast.expr.AssignExpr;
+import com.github.javaparser.ast.expr.BinaryExpr;
 import com.github.javaparser.ast.expr.Expression;
 import com.github.javaparser.ast.expr.NameExpr;
 import com.github.javaparser.ast.expr.SimpleName;
+import com.github.javaparser.ast.expr.UnaryExpr;
 import com.github.javaparser.ast.expr.VariableDeclarationExpr;
 import com.github.javaparser.ast.stmt.ExpressionStmt;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
@@ -70,6 +72,19 @@ public class VariableStandardizationVisitor extends VoidVisitorAdapter<Void> {
     		Node valueExpr = ((AssignExpr) n).getValue();
     		replaceVariable(valueExpr);
     		String x = "6";
+    	}
+    	
+    	else if(n instanceof UnaryExpr) {
+    		UnaryExpr unary = ((UnaryExpr) n);
+    		Node operand = unary.getExpression();
+    		replaceVariable(operand);
+    	}
+    	else if(n instanceof BinaryExpr) {
+    		BinaryExpr binary = ((BinaryExpr) n);
+    		Node leftSide = binary.getLeft();
+    		Node rightSide = binary.getRight();
+    		replaceVariable(leftSide);
+    		replaceVariable(rightSide);
     	}
     	else {
 	        for(Node child : n.getChildNodes()) {
