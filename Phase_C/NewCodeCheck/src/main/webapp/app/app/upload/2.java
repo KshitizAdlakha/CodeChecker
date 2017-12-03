@@ -1,32 +1,21 @@
 package plagpolice;
 
-// represents a continuous part of a source file
-public class CodeStub {
-    //first line number of the code stub
-    private int startLine;
-    //last line number of the code stub
-    private int endLine;
+import java.io.IOException;
+import java.nio.file.FileSystemNotFoundException;
+import java.util.List;
 
-    //constructor
-    public CodeStub(int startLine,int endLine){
-        this.startLine = startLine;
-        this.endLine = endLine;
-    }
+// interface for different clone detection techniques
+public interface CloneTechnique {
 
-    //getter for startLine
-    public int getStartLine() {
-        return startLine;
-    }
+    // finds all the clones using its detection technique
+    void findClones() throws FileSystemNotFoundException,IOException;
 
-    //getter for endLine
-    public int getEndLine() {
-        return endLine;
-    }
+    // accepts a visitor
+    void accept(ISimilarityVisitor v);
 
-    //checks if the stub is equal to this object
-    public boolean isEqual(CodeStub stub){
-        if(stub.startLine==this.startLine && stub.endLine==this.endLine)
-            return true;
-        return false;
-    }
+    // getter for the clones found
+    public List<Clone> getClones();
+
+    // getter for the type of technique
+    public String getType();
 }

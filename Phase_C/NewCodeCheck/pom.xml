@@ -132,6 +132,12 @@
             <version>3.5.3</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.github.javaparser</groupId>
+            <artifactId>java-symbol-solver-core</artifactId>
+            <version>0.3.2</version>
+        </dependency>
+
         <!--file upload-->
         <dependency>
             <groupId>commons-fileupload</groupId>
