@@ -1,16 +1,21 @@
 package codechecker.core.services.impl;
 
+import java.io.File;
 import java.util.Hashtable;
 
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.body.VariableDeclarator;
 import com.github.javaparser.ast.expr.AssignExpr;
+import com.github.javaparser.ast.expr.Expression;
 import com.github.javaparser.ast.expr.NameExpr;
 import com.github.javaparser.ast.expr.SimpleName;
 import com.github.javaparser.ast.expr.VariableDeclarationExpr;
 import com.github.javaparser.ast.stmt.ExpressionStmt;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
+import com.github.javaparser.symbolsolver.javaparser.Navigator;
+import com.github.javaparser.symbolsolver.javaparsermodel.JavaParserFacade;
+import com.github.javaparser.symbolsolver.resolution.typesolvers.JavaParserTypeSolver;
 
 //This class visits all the nodes in the AST and removes the nodes identified as comments
 public class VariableStandardizationVisitor extends VoidVisitorAdapter<Void> {
@@ -59,10 +64,11 @@ public class VariableStandardizationVisitor extends VoidVisitorAdapter<Void> {
     	}
     	else if(n instanceof AssignExpr) {
     		Node target = ((AssignExpr) n).getTarget();
-    		if(target instanceof NameExpr) {
-    			NameExpr ne = (NameExpr)target;
-    			ne.setName(replacementMap.get(ne.getName()));
-    		}
+    		replaceVariable(target);
+    		
+    		//Change this to a visitor 
+    		Node valueExpr = ((AssignExpr) n).getValue();
+    		replaceVariable(valueExpr);
     		String x = "6";
     	}
     	else {
@@ -70,5 +76,12 @@ public class VariableStandardizationVisitor extends VoidVisitorAdapter<Void> {
 	            visit(child, arg);
 	        }
     	}
+    }
+    
+    private void replaceVariable(Node e) {
+		if(e instanceof NameExpr) {
+			NameExpr ne = (NameExpr)e;
+			ne.setName(replacementMap.get(ne.getName()));
+		}
     }
 }

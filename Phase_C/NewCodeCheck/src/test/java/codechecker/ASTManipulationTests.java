@@ -123,7 +123,7 @@ public class ASTManipulationTests {
 
             try {
                 in1 = new FileInputStream(new File("src//test//java//codechecker//VariableStandardizationSample_1.java"));
-                in2 = new FileInputStream(new File("src//test//java//codechecker//VariableDeclarationSample_2.java"));
+                in2 = new FileInputStream(new File("src//test//java//codechecker//VariableStandardizationSample_2.java"));
 
                 // parse the file
                 CompilationUnit cu1 = JavaParser.parse(in1);
