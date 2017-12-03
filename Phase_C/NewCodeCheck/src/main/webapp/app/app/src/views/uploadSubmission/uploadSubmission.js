@@ -40,8 +40,8 @@ angular.module('codeChecker')
                             .then(function (response) {
                                 var assignmentSubmission1Id=response.data.rid;
                                 Upload.upload({
-                                    url: 'rest/assignment-submissions/'+assignmentSubmission1Id+'' +
-                                    '/upload?${_csrf.parameterName}=${_csrf.token}',
+                                    url: encodeURI('rest/assignment-submissions/'+assignmentSubmission1Id+'' +
+                                    '/upload?${_csrf.parameterName}=${_csrf.token}'),
                                     fields: {'assignmentSubmissionId': assignmentSubmission1Id}, // additional data to send
                                     file: file1
                                 }).success(function () {
@@ -50,8 +50,8 @@ angular.module('codeChecker')
                                         .then(function (response) {
                                             var assignmentSubmission2Id=response.data.rid;
                                             Upload.upload({
-                                                url: 'rest/assignment-submissions/'+assignmentSubmission2Id+
-                                                '/upload?${_csrf.parameterName}=${_csrf.token}',
+                                                url: encodeURI('rest/assignment-submissions/'+assignmentSubmission2Id+
+                                                '/upload?${_csrf.parameterName}=${_csrf.token}'),
                                                 fields: {'assignmentSubmissionId': assignmentSubmission2Id}, // additional data to send
                                                 file: file2
                                             }).progress(function (evt) {

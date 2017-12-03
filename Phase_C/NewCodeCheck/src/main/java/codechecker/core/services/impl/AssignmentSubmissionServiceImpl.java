@@ -91,8 +91,8 @@ public class AssignmentSubmissionServiceImpl implements AssignmentSubmissionServ
             cu2.accept(crv2, null); //All the nodes in the AST generated from the second submission are visited and the nodes identified as comments are removed
             
             //Standardizes variable naming
-//            cu1.accept(vsv1, null);
-//            cu2.accept(vsv2, null);
+            cu1.accept(vsv1, null);
+            cu2.accept(vsv2, null);
             
             cu1.accept(hcv1, null); //All the nodes in the AST generated from the first submission are visited.
             cu2.accept(hcv2, null); //All the nodes in the AST generated from the second submission are visited.
