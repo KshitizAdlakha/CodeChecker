@@ -19,7 +19,7 @@ public class AssignmentSubmissionResourceAsm extends ResourceAssemblerSupport<As
     public AssignmentSubmissionResource toResource(AssignmentSubmission assignmentSubmission) {
         AssignmentSubmissionResource res = new AssignmentSubmissionResource();
         res.setTitle(assignmentSubmission.getTitle());
-        res.setContent(assignmentSubmission.getContent());
+//        res.setContent(assignmentSubmission.getContent());
         res.setRid(assignmentSubmission.getId());
         Link self = linkTo(AssignmentSubmissionController.class).slash(assignmentSubmission.getId()).withSelfRel();
         res.add(self);

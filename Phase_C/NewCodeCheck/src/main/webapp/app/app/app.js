@@ -1,6 +1,10 @@
 angular
     .module('codeChecker', ['ngRoute', 'ngFileUpload', 'ngResource', 'base64'])
-    .config(function($locationProvider, $routeProvider) {
+    .config(function($locationProvider, $routeProvider, $httpProvider) {
+
+        $httpProvider.defaults.xsrfCookieName = 'csrftoken';
+        $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+
         $routeProvider
             .when('/', {
                 templateUrl: 'src/views/login/login.html',

@@ -70,8 +70,8 @@ public class AssignmentSubmissionServiceImpl implements AssignmentSubmissionServ
 			 *  in1 = new FileInputStream(firstSubmission.getAssociatedFile());
 			 *  in2 = new FileInputStream(secondSubmission.getAssociatedFile());
 			 */
-            in1 = new FileInputStream(new File("src//test//java//codechecker//Test1.java"));
-            in2 = new FileInputStream(new File("src//test//java//codechecker//Test2.java"));
+            in1 = new FileInputStream(new File("src//main//webapp//app//app//upload//"+assignmentId+".java"));
+            in2 = new FileInputStream(new File("src//main//webapp//app//app//upload//"+otherAssignmentId+".java"));
 
             // parse the file
             CompilationUnit cu1 = JavaParser.parse(in1);

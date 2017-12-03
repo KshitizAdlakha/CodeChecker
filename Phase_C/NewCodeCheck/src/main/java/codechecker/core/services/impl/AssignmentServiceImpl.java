@@ -72,4 +72,9 @@ public class AssignmentServiceImpl implements AssignmentService {
     public Assignment findAssignment(Long id) {
         return assignmentRepo.findAssignment(id);
     }
+
+    @Override
+    public Assignment findAssignmentByAssignmentName(String name) {
+        return assignmentRepo.findAssignmentByTitle(name);
+    }
 }

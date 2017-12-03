@@ -59,8 +59,22 @@ public class AssignmentController {
         }
     }
 
+    @RequestMapping(value="/name/{assignmentName}",
+            method = RequestMethod.GET)
+    @PreAuthorize("permitAll")
+    public ResponseEntity<AssignmentResource> findAssignmentByName(@PathVariable String assignmentName) {
+        Assignment assignment = assignmentService.findAssignmentByAssignmentName(assignmentName);
+        if(assignment != null) {
+            AssignmentResource res = new AssignmentResourceAsm().toResource(assignment);
+            return new ResponseEntity<AssignmentResource>(res, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<AssignmentResource>(HttpStatus.NOT_FOUND);
+        }
+    }
+
     @RequestMapping(value="/{assignmentId}/assignment-submissions",
             method = RequestMethod.POST)
+    @PreAuthorize("permitAll")
     public ResponseEntity<AssignmentSubmissionResource> createAssignmentSubmission(
             @PathVariable Long assignmentId,
             @RequestBody AssignmentSubmissionResource sentAssignmentSubmission) {

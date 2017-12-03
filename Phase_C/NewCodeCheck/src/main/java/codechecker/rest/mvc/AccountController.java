@@ -1,5 +1,7 @@
 package codechecker.rest.mvc;
 
+import codechecker.rest.resources.*;
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -20,15 +22,14 @@ import codechecker.core.services.util.AssignmentList;
 import codechecker.rest.exceptions.ConflictException;
 import codechecker.rest.exceptions.ForbiddenException;
 import codechecker.rest.exceptions.NotFoundException;
-import codechecker.rest.resources.AccountListResource;
-import codechecker.rest.resources.AccountResource;
-import codechecker.rest.resources.AssignmentListResource;
-import codechecker.rest.resources.AssignmentResource;
 import codechecker.rest.resources.asm.AccountListResourceAsm;
 import codechecker.rest.resources.asm.AccountResourceAsm;
 import codechecker.rest.resources.asm.AssignmentListResourceAsm;
 import codechecker.rest.resources.asm.AssignmentResourceAsm;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.URI;
 import java.security.Principal;
 import java.util.ArrayList;
@@ -129,12 +130,10 @@ public class AccountController {
             method = RequestMethod.POST)
     @PreAuthorize("permitAll")
     public ResponseEntity<AssignmentResource> createAssignment(
-            @PathVariable Long accountId,
-            @RequestBody AssignmentResource res) {
-        System.out.println("Here1");
+            @RequestBody AssignmentResource res,
+            @PathVariable Long accountId) {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if(principal instanceof UserDetails) {
-            System.out.println("Here2");
             UserDetails details = (UserDetails)principal;
             Account loggedIn = accountService.findByAccountName(details.getUsername());
             if(loggedIn.getId() == accountId) {
@@ -156,6 +155,7 @@ public class AccountController {
             throw new ForbiddenException();
         }
     }
+
 
     @RequestMapping(value="/{accountId}/assignments",
             method = RequestMethod.GET)
