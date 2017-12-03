@@ -82,11 +82,18 @@ public class AssignmentSubmissionServiceImpl implements AssignmentSubmissionServ
 	         */
             CommentRemovalVisitor crv1 = new CommentRemovalVisitor();
             CommentRemovalVisitor crv2 = new CommentRemovalVisitor();
+            VariableStandardizationVisitor vsv1 = new VariableStandardizationVisitor();
+            VariableStandardizationVisitor vsv2 = new VariableStandardizationVisitor();
             HashCodeVisitor hcv1 = new HashCodeVisitor();
             HashCodeVisitor hcv2 = new HashCodeVisitor();
 
             cu1.accept(crv1, null); //All the nodes in the AST generated from the first submission are visited and the nodes identified as comments are removed
             cu2.accept(crv2, null); //All the nodes in the AST generated from the second submission are visited and the nodes identified as comments are removed
+            
+            //Standardizes variable naming
+            cu1.accept(vsv1, null);
+            cu2.accept(vsv2, null);
+            
             cu1.accept(hcv1, null); //All the nodes in the AST generated from the first submission are visited.
             cu2.accept(hcv2, null); //All the nodes in the AST generated from the second submission are visited.
 
