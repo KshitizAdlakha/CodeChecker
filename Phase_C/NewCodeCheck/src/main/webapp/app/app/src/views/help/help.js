@@ -4,7 +4,10 @@ angular.module('codeChecker')
         function init() {
             vm.logout=function () {
                 sessionService.logout();
-            }
+            };
+            $(document).ready(function(){
+                $('.collapsible').collapsible();
+            });
         }
         init();
     });

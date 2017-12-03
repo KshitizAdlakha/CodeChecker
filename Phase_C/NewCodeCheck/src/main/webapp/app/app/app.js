@@ -34,11 +34,7 @@ angular
             .when('/help', {
                 templateUrl: 'src/views/help/help.html',
                 controller: 'HelpCtrl',
-                controllerAs: "model",
-                resolve:{
-                    loginCheck: notLoggedIn,
-                    account: getCurrentUser
-                }
+                controllerAs: "model"
             })
             .when('/side-by-side', {
                 templateUrl: 'src/views/sideBySide/sideBySide.html',
