@@ -1,6 +1,6 @@
-package codechecker;
+package codechecker.core.services;
 
-public class TestClass {
+public class VariableDeclarationTest_1 {
 
 	public static void main(String[] args) {
 		String x = "horse";

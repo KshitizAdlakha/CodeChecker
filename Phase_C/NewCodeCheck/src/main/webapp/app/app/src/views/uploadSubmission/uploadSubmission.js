@@ -26,7 +26,8 @@ angular.module('codeChecker')
                 .checkIfAssignmentAlreadyExists(assignment)
                 .then(function () {
                     vm.error="Assignment of the same name already exists";
-                },
+                    vm.loader=0;
+                    },
                 function () {
                 assignmentService
                     .createAssignment(vm.currentUser.rid, assignment)
@@ -78,7 +79,6 @@ angular.module('codeChecker')
                             });
                     }, function (err) {
                         vm.error="Failed to create Assignment Submission 1";
-                        console.log("Error", err);
                     });
 
                 });

@@ -1,4 +1,4 @@
-package codechecker;
+package codechecker.core.services;
 
 import static org.junit.Assert.*;
 
@@ -28,7 +28,7 @@ public class ASTManipulationTests {
 
         try {
             in1 = new FileInputStream(new File("src//test//java//codechecker//Test1.java"));
-            in2 = new FileInputStream(new File("src//test//java//codechecker//Test1_Comments_Removed.java"));
+            in2 = new FileInputStream(new File("src//test//java//codechecker//TestCommentsRemoved.java"));
 
             // parse the file
             CompilationUnit cu1 = JavaParser.parse(in1);
@@ -67,8 +67,8 @@ public class ASTManipulationTests {
             FileInputStream in2;
 
             try {
-                in1 = new FileInputStream(new File("src//test//java//codechecker//VariableDeclarationSample_1.java"));
-                in2 = new FileInputStream(new File("src//test//java//codechecker//VariableDeclarationSample_2.java"));
+                in1 = new FileInputStream(new File("src//test//java//codechecker//core//services//VariableDeclarationTest_1.java"));
+                in2 = new FileInputStream(new File("src//test//java//codechecker//core//services//VariableDeclarationTest_2.java"));
 
                 // parse the file
                 CompilationUnit cu1 = JavaParser.parse(in1);
@@ -122,8 +122,8 @@ public class ASTManipulationTests {
             FileInputStream in2;
 
             try {
-                in1 = new FileInputStream(new File("src//test//java//codechecker//VariableStandardizationSample_1.java"));
-                in2 = new FileInputStream(new File("src//test//java//codechecker//VariableStandardizationSample_2.java"));
+                in1 = new FileInputStream(new File("src//test//java//codechecker//core//services//VariableStandardizationTest_1.java"));
+                in2 = new FileInputStream(new File("src//test//java//codechecker//core//services//VariableStandardizationTest_2.java"));
 
                 // parse the file
                 CompilationUnit cu1 = JavaParser.parse(in1);
@@ -177,8 +177,8 @@ public class ASTManipulationTests {
             FileInputStream in2;
 
             try {
-                in1 = new FileInputStream(new File("src//test//java//codechecker//VariableStandardizationSample_3.java"));
-                in2 = new FileInputStream(new File("src//test//java//codechecker//VariableStandardizationSample_4.java"));
+                in1 = new FileInputStream(new File("src//test//java//codechecker//core//services//VariableStandardizationSample_3.java"));
+                in2 = new FileInputStream(new File("src//test//java//codechecker//core//services//VariableStandardizationSample_4.java"));
 
                 // parse the file
                 CompilationUnit cu1 = JavaParser.parse(in1);
