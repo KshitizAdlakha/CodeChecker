@@ -19,7 +19,7 @@ import com.github.javaparser.symbolsolver.javaparser.Navigator;
 import com.github.javaparser.symbolsolver.javaparsermodel.JavaParserFacade;
 import com.github.javaparser.symbolsolver.resolution.typesolvers.JavaParserTypeSolver;
 
-//This class visits all the nodes in the AST and removes the nodes identified as comments
+//This class visits all the nodes in the AST and renames the variables
 public class VariableStandardizationVisitor extends VoidVisitorAdapter<Void> {
 
 	private static final String VARIABLE_PREFIX = "v";
