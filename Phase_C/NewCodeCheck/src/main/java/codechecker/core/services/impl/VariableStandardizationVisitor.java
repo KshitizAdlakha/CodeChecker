@@ -33,7 +33,7 @@ public class VariableStandardizationVisitor extends VoidVisitorAdapter<Void> {
 		return nextName;
 	}
     /*
-     * Function to visit the nodes of the AST and remove the nodes identified as comments
+     * Function to visit each of the child nodes of an AST
      */
     @Override
     public void visit(CompilationUnit n, Void arg) {
