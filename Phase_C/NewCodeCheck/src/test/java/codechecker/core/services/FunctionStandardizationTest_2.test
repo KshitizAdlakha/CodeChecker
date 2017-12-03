@@ -1,0 +1,13 @@
+package codechecker.core.services;
+
+public class TestClass {
+
+	public static void main(String[] args) {
+		String a = getAnimal();
+	}
+	
+	public static String getAnimal() {
+		return "zebra";
+	}
+
+}

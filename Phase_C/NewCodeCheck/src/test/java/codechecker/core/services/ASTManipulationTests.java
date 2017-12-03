@@ -13,6 +13,7 @@ import com.github.javaparser.JavaParser;
 import com.github.javaparser.ast.CompilationUnit;
 
 import codechecker.core.services.impl.CommentRemovalVisitor;
+import codechecker.core.services.impl.FunctionStandardizationVisitor;
 import codechecker.core.services.impl.HashCodeVisitor;
 import codechecker.core.services.impl.VariableStandardizationVisitor;
 
@@ -27,8 +28,8 @@ public class ASTManipulationTests {
         FileInputStream in2;
 
         try {
-            in1 = new FileInputStream(new File("src//test//java//codechecker//Test1.java"));
-            in2 = new FileInputStream(new File("src//test//java//codechecker//TestCommentsRemoved.java"));
+            in1 = new FileInputStream(new File("src//test//java//codechecker//core//services//Test1.test"));
+            in2 = new FileInputStream(new File("src//test//java//codechecker//core//services//TestCommentsRemoved.test"));
 
             // parse the file
             CompilationUnit cu1 = JavaParser.parse(in1);
@@ -67,8 +68,8 @@ public class ASTManipulationTests {
             FileInputStream in2;
 
             try {
-                in1 = new FileInputStream(new File("src//test//java//codechecker//core//services//VariableDeclarationTest_1.java"));
-                in2 = new FileInputStream(new File("src//test//java//codechecker//core//services//VariableDeclarationTest_2.java"));
+                in1 = new FileInputStream(new File("src//test//java//codechecker//core//services//VariableDeclarationTest_1.test"));
+                in2 = new FileInputStream(new File("src//test//java//codechecker//core//services//VariableDeclarationTest_2.test"));
 
                 // parse the file
                 CompilationUnit cu1 = JavaParser.parse(in1);
@@ -122,8 +123,8 @@ public class ASTManipulationTests {
             FileInputStream in2;
 
             try {
-                in1 = new FileInputStream(new File("src//test//java//codechecker//core//services//VariableStandardizationTest_1.java"));
-                in2 = new FileInputStream(new File("src//test//java//codechecker//core//services//VariableStandardizationTest_2.java"));
+                in1 = new FileInputStream(new File("src//test//java//codechecker//core//services//VariableStandardizationTest_1.test"));
+                in2 = new FileInputStream(new File("src//test//java//codechecker//core//services//VariableStandardizationTest_2.test"));
 
                 // parse the file
                 CompilationUnit cu1 = JavaParser.parse(in1);
@@ -177,8 +178,8 @@ public class ASTManipulationTests {
             FileInputStream in2;
 
             try {
-                in1 = new FileInputStream(new File("src//test//java//codechecker//core//services//VariableStandardizationSample_3.java"));
-                in2 = new FileInputStream(new File("src//test//java//codechecker//core//services//VariableStandardizationSample_4.java"));
+                in1 = new FileInputStream(new File("src//test//java//codechecker//core//services//VariableStandardizationTest_3.test"));
+                in2 = new FileInputStream(new File("src//test//java//codechecker//core//services//VariableStandardizationTest_4.test"));
 
                 // parse the file
                 CompilationUnit cu1 = JavaParser.parse(in1);
@@ -218,6 +219,62 @@ public class ASTManipulationTests {
 
             } catch (FileNotFoundException e) {
                 // TODO Auto-generated catch block
+            	fail("Not yet implemented");
+            }
+	}
+    	
+    	
+    	
+    	/*
+		 * Checks to see if function declarations and calls within a single 
+		 * file are properly renamed.
+    	 */
+    	@Test
+    	public void standardFunctionTest1() {
+            FileInputStream in1;
+            FileInputStream in2;
+
+            try {
+                in1 = new FileInputStream(new File("src//test//java//codechecker//core//services//FunctionStandardizationTest_1.test"));
+                in2 = new FileInputStream(new File("src//test//java//codechecker//core//services//FunctionStandardizationTest_2.test"));
+
+                // parse the file
+                CompilationUnit cu1 = JavaParser.parse(in1);
+                CompilationUnit cu2 = JavaParser.parse(in2);
+
+    	        /*
+    	         * Visitors for standardizing functions and obtaining the hash codes
+    	         */
+                FunctionStandardizationVisitor fsv1 = new FunctionStandardizationVisitor();
+                FunctionStandardizationVisitor fsv2 = new FunctionStandardizationVisitor();
+                HashCodeVisitor hcv1 = new HashCodeVisitor();
+                HashCodeVisitor hcv2 = new HashCodeVisitor();
+
+                /*
+                 * All the nodes in the AST generated from the first submission are visited and 
+                 * the function nodes are properly renamed.
+                 */
+                cu1.accept(fsv1, null); 
+                /*
+                 * All the nodes in the AST generated from the second submission are visited and 
+                 * the function nodes are properly renamed.
+                 */
+                cu2.accept(fsv2, null);
+                /*
+                 * Each node in first submission is visited and hashed.
+                 */
+                cu1.accept(hcv1, null); 
+                /*
+                 * Each node in second submission is visited and hashed.
+                 */
+                cu2.accept(hcv2, null);
+                
+                HashSet<Integer> a = hcv1.getNodeHashCodes();
+                HashSet<Integer> b = hcv2.getNodeHashCodes();
+
+                assertEquals(true, a.equals(b));
+
+            } catch (FileNotFoundException e) {
             	fail("Not yet implemented");
             }
 	}

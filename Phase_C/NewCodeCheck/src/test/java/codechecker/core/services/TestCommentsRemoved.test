@@ -1,6 +1,6 @@
 package codechecker;
 
-public class TestCommentsRemoved {
+public class TestClass {
 
 	public static void main(String[] args) {
 		String x = "horse";

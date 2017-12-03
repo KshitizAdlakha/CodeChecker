@@ -1,6 +1,6 @@
 package codechecker.core.services;
 
-public class VariableStandardizationTest_4 {
+public class TestClass {
 
 	public static void main(String[] args) {
 		for(int j = 0; j<10; j++) {
