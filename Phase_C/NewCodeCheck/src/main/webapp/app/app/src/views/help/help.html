@@ -2,10 +2,6 @@
     <nav class="t1-navbar">
         <div class="nav-wrapper container">
             <a id="logo-container" href="#/" class="brand-logo left white-text">Code Checker</a>
-            <ul class="right ">
-                <li><a ng-click="model.logout()" href="#/" class="white-text hide-on-small-only">Log Out</a></li>
-                <li><a ng-click="model.logout()" href="#/" class="white-text hide-on-med-and-up"><i class="material-icons">exit_to_app</i></a></li>
-            </ul>
         </div>
     </nav>
 </div>
@@ -32,7 +28,7 @@
                         <h6 class="blue-text center">QUICK ANSWERS TO</h6>
                         <h4 class="center">Common Questions</h4>
                         <div class="row">
-                            <div class="col s6">
+                            <div class="col m6 s12">
                                 <h5>How do I get started?</h5>
                                 <h6 class="blue-grey-text" style="line-height: 200%; text-align: justify">
                                     Code Checker detects plagiarism between two JAVA programming assignments
@@ -42,23 +38,23 @@
                                 <br>
                                 <h5>How do I read the plagiarism report?</h5>
                                 <h6 class="blue-grey-text" style="line-height: 200%; text-align: justify">
-                                    Code Checker detects plagiarism between two JAVA programming assignments
-                                    and returns a similarity metric. To get started, just create an account from the
-                                    <a href="/signup">Sign Up</a> page and get started detecting plagiarism
+                                    The plagiarism report shows the two assignment submission files side-by-side for you to review manually,
+                                    as well as displays a similarity percentage between the two files, which is calculated using our plagiarism detection
+                                    algorithm.
                                 </h6>
                             </div>
-                            <div class="col s6">
+                            <div class="col m6 s12">
                                 <h5>How do I detect plagiarism?</h5>
                                 <h6 class="blue-grey-text" style="line-height: 200%; text-align: justify">
                                     Once you have the files you want to check, navigate to the <b>Upload Submissions</b> page,
                                     type in a name for your coding assignment, select the files from your computer, and click on the "Analyze Results" button and you are done!
                                 </h6>
                                 <br>
-                                <h5>How do you do it?</h5>
+                                <h5>How does this really work?</h5>
                                 <h6 class="blue-grey-text" style="line-height: 200%; text-align: justify">
-                                    Code Checker detects plagiarism between two JAVA programming assignments
-                                    and returns a similarity metric. To get started, just create an account from the
-                                    <a href="/signup">Sign Up</a> page and get started detecting plagiarism
+                                    Code Checker analyzes the two uploaded files using a complex algorithm, and applies a number of transformations like
+                                    standardizing variables names, method names, class and package names, the order of method definitions, removing comments, and
+                                    unused imports, etc. and then compares the transformed files for similarities.
                                 </h6>
                             </div>
                         </div>
@@ -67,8 +63,21 @@
             </li>
             <li>
                 <div class="collapsible-header"><i class="material-icons">account_box</i>Your Account</div>
-                <div class="collapsible-body"><span><b>NOTE:</b> We currently do not allow a "Forgot Password" option.
-                    If you forgot or lost your password, you will need to create a new account the application again</span></div>
+                <div class="collapsible-body">
+                    <span>
+                        <div class="row">
+                            <div class="col m6 s12" style="text-align: justify">
+                                <b>NOTE:</b> We currently do not allow a "Forgot Password" option.
+                                If you forgot or lost your password, you will need to create a new account the application again
+                            </div>
+
+                            <div class="col m6 s12" style="text-align: justify">
+                                We are working on implementing the account security and account recovery options, these features will be
+                                released in the next development cycle of the application
+                            </div>
+                        </div>
+                    </span>
+                </div>
             </li>
             <li>
                 <div class="collapsible-header"><i class="material-icons">error</i>See a bug?</div>
@@ -76,8 +85,28 @@
             </li>
             <li>
                 <div class="collapsible-header"><i class="material-icons">file_upload</i>File Upload</div>
-                <div class="collapsible-body"><span>If you are experiencing problems with the file upload, please make sure that
-                    the files being uploaded are syntax-error free and less than 50MB in size</span></div>
+                <div class="collapsible-body">
+                    <span>
+                        <div class="row">
+                            <div class="col m6 s12" style="text-align: justify">If you are experiencing problems with the file upload, please make sure that
+                                the files being uploaded are syntax-error free and less than 50MB in size
+                            </div>
+                            <div class="col m6 s12" style="text-align: justify">
+                                <b>NOTE: </b>This application only works with programming assignments written in JAVA language for now, so make sure the
+                                files that you upload are written in JAVA
+                            </div>
+                        </div>
+                    </span>
+                </div>
+            </li>
+
+            <li>
+                <div class="collapsible-header"><i class="material-icons">question_answer</i>Questions/Suggestions</div>
+                <div class="collapsible-body">
+                    <span>
+                        Direct all your questions and suggestions by writing us an email at <a href="maillto:team1@codechecker.com">team1@codechecker.com</a>
+                    </span>
+                </div>
             </li>
         </ul>
 
