@@ -34,4 +34,10 @@ public interface AssignmentService {
      * @return the found assignment with given id
      */
     Assignment findAssignment(Long id);
+
+    /**
+     * @param name for which assignment is to be found
+     * @return the found assignment with given id
+     */
+    Assignment findAssignmentByAssignmentName(String name);
 }

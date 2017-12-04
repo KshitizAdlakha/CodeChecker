@@ -1,6 +1,6 @@
 package codechecker;
 
-public class Test1 {
+public class TestClass {
 
 	public static void main(String[] args) {
 		//This is a test comment

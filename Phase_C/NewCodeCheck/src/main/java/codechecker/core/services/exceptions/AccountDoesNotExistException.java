@@ -2,6 +2,7 @@ package codechecker.core.services.exceptions;
 
 /**
  *  Account Does Not Exist Exception
+ *  Thrown while logging in
  */
 public class AccountDoesNotExistException extends RuntimeException {
     // parameterized constructor

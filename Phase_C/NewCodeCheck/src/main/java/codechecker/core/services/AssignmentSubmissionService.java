@@ -31,6 +31,5 @@ public interface AssignmentSubmissionService {
      * assignment submissions.
      * 
      */
-    double compareAssignmentSubmissions(Long assignmentId, Long otherAssignmentId);
-
+    String compareAssignmentSubmissions(Long assignmentId, Long otherAssignmentId);
 }

@@ -33,7 +33,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     /**
-     * @param account data to create a new account
+     * @param data to create a new account
      * @return the created account with given account data
      */
     @Override
@@ -48,7 +48,7 @@ public class AccountServiceImpl implements AccountService {
 
     /**
      * @param accountId with which the assignment will be created
-     * @param assignment data which will be included in assignment
+     * @param data which will be included in assignment
      * @return the created assignment with accountId and data
      */
     @Override

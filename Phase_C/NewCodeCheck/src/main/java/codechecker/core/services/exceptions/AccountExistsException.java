@@ -2,6 +2,7 @@ package codechecker.core.services.exceptions;
 
 /**
  *  Account Exists Exception
+ *  Checks if an account with the same username already exists
  */
 public class AccountExistsException extends RuntimeException {
     // parameterized constructor

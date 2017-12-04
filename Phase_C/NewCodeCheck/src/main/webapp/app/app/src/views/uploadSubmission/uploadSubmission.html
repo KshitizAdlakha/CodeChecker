@@ -18,7 +18,7 @@
         <br>
         <h4 class="header center t1-heading-color">Detect Plagiarism</h4>
         <div class="row center">
-            <h6 class="header col s12 light">Browse and upload programming assignments submissions using the 'Upload Files' button<br>
+            <h6 class="header col s12 light">Browse and upload programming assignments submissions using the 'Upload Files' button<br><br>
                 After uploading the files, click on 'Analyze Results' to detect plagiarism in these files</h6>
         </div>
     </div>
@@ -28,9 +28,6 @@
     <div class="col s12">
         <div class="row container">
             <div class="col s12 m10 push-m2 t1-66-width">
-                <div class="red-text" ng-show="model.error">
-                    {{model.error}}
-                </div>
                 <ul class="col s12 push-s3 m12 collection">
                     <li class="collection-item center t1-green-text">
                         <h5>Upload Files</h5>
@@ -39,51 +36,63 @@
             </div>
             <form class="col s12">
                 <div class="row">
+                    <div class="red-text col s12 m8 push-m2" ng-show="model.error">
+                        {{model.error}}
+                    </div>
+                </div>
+
+                <div class="row">
                     <div class="input-field col s12 m8 push-m2">
-                        <input id="assignmentName" type="text" ng-model="user.assignmentName" class="validate">
+                        <input id="assignmentName" type="text" ng-model="assignment.title" class="validate">
                         <label for="assignmentName">Programming Assignment Name*</label>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col s12 m8 push-m2">
-                        <input id="assignmentTopic" type="text" ng-model="user.assignmentTopic" class="validate">
-                        <label for="assignmentTopic">Programming Assignment Topic*</label>
+                    <div class="col s12 m8 push-m2 input-field">
+                        <div class="row">
+                            <div class="col s12 m6 file-field">
+                                <div class="btn">
+                                    <span>File 1</span>
+                                    <input type="file" accept=".java" ng-class="{invalid: !invalidFileType}"
+                                           name="file1" ng-model="model.file1" ngf-select="model.validateFileType($file)">
+                                </div>
+                                <div class="file-path-wrapper">
+                                    <input class="file-path" type="text"
+                                           placeholder="Select first file">
+                                </div>
+                            </div>
+                            <div class="col s12 m6 file-field">
+                                <div class="btn">
+                                    <span>File 2</span>
+                                    <input type="file" accept=".java" ng-class="{invalid: !invalidFileType}"
+                                           name="file1" ng-model="model.file2" ngf-select="model.validateFileType($file)">
+                                </div>
+                                <div class="file-path-wrapper">
+                                    <input class="file-path" type="text"
+                                           placeholder="Select second file">
+                                </div>
+                            </div>
+                            <div class="progress col s12 m8 push-m2" ng-if="model.loader==1">
+                                <div class="determinate" ng-bind="model.progressPercentage + '%'"
+                                     style="width: {{model.progressPercentage}}%"></div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
                 <div class="row">
-                    <div class="file-field col s12 m8 push-m2 input-field">
-                        <div class="btn">
-                            <span>Upload Files</span>
-                            <input type="file" ngf-select="model.validateFileType($files)"  multiple>
-                        </div>
-                        <div class="file-path-wrapper">
-                            <input class="file-path validate" type="text"
-                                   placeholder="Upload two or more files">
-                        </div>
+                    <div class="center col s12 m8 push-m2">
+                        We only allow .java files for now, so make sure the files you upload are written in JAVA
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12 m8 push-m2">
                         <a class="btn center form-control t1-login-btn"
-                           ng-click="model.loginLoader=1"
-                           ng-class="{disabled: model.loginLoader==1}"
-                           href="#/analysis-result"
+                           ng-disabled="model.loader==1 || !assignment.title || !model.file1 || !model.file2"
+                           ng-click="model.uploadFiles(assignment, model.file1, model.file2); model.loader=1"
                            type="submit">
                             Analyze Results
                         </a>
-                    </div>
-                    <div class="input-field col s12 m8 push-m2">
-                        <a class="btn center form-control t1-analysis-history-btn"
-                           href="#/analysis-history"
-                           type="submit">
-                            Analysis History
-                        </a>
-                        <div class="active" ng-if="model.loginLoader==1">
-                            <br>
-                            <div class="progress">
-                                <div class="indeterminate"></div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </form>

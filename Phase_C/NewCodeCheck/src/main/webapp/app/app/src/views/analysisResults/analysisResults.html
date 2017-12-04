@@ -32,10 +32,10 @@
                             <b>Rank</b>
                         </div>
                         <div class="col s5 center">
-                            <b>Student Submission Time</b>
+                            <b>File Names</b>
                         </div>
                         <div class="col s5 center">
-                            <b>Student  Details</b>
+                            <b>Similarity</b>
                         </div>
                     </div>
                 </li>
@@ -48,11 +48,10 @@
                             <a href="#/side-by-side">(Side-by-side)</a>
                         </div>
                         <div class="col s5 center">
-                            Student 1: Oct 7, 2017 8:00 PM<br>
-                            Student 2: Oct 7, 2017 8:05 PM
+                            Student 1.java<br>
+                            Student 2.java
                         </div>
                         <div class="col s5 center">
-                            <em>Alice Wonderland, Bob Ed</em><br>
                             Similarity Percentage: 78%
                         </div>
                     </div>
@@ -66,11 +65,10 @@
                             <a href="#/side-by-side">(Side-by-side)</a>
                         </div>
                         <div class="col s5 center">
-                            Student 1: {{result.student1.timeSubmitted}}<br>
-                            Student 2: {{result.student2.timeSubmitted}}
+                            Student 1: {{result.file1.name}}.java<br>
+                            Student 2: {{result.file2.name}}.java
                         </div>
                         <div class="col s5 center">
-                            <em>{{result.student1.name}}, {{result.student2.name}}</em><br>
                             Similarity Percentage: {{result.similarityPercentage}}
                         </div>
                     </div>

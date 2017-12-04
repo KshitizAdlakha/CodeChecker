@@ -57,10 +57,10 @@ public class AssignmentSubmissionServiceImpl implements AssignmentSubmissionServ
      * @return the checked assignmentSubmission of the given two assignmentIds
      */
     @Override
-    public double compareAssignmentSubmissions(Long assignmentId, Long otherAssignmentId) {
-        //This needs to be further implemented.
+    public String compareAssignmentSubmissions(Long assignmentId, Long otherAssignmentId) {
         FileInputStream in1;
         FileInputStream in2;
+        String similarityPercent="0";
         //Assignment firstSubmission = findAssignment((long) 0, assignmentId);
         //Assignment secondSubmission  = findAssignment((long) 0, otherAssignmentId);
 
@@ -70,33 +70,49 @@ public class AssignmentSubmissionServiceImpl implements AssignmentSubmissionServ
 			 *  in1 = new FileInputStream(firstSubmission.getAssociatedFile());
 			 *  in2 = new FileInputStream(secondSubmission.getAssociatedFile());
 			 */
-            in1 = new FileInputStream(new File("src//test//java//codechecker//Test1.java"));
-            in2 = new FileInputStream(new File("src//test//java//codechecker//Test2.java"));
+            in1 = new FileInputStream(new File("src//main//webapp//app//app//upload//"+assignmentId+".java"));
+            in2 = new FileInputStream(new File("src//main//webapp//app//app//upload//"+otherAssignmentId+".java"));
+
             // parse the file
             CompilationUnit cu1 = JavaParser.parse(in1);
             CompilationUnit cu2 = JavaParser.parse(in2);
-	        /*
-	         * This is where all the visitors will go.
-	         */
 
-            /*
-             * HashCodeVisitor works on the assumption that the comments are already removed from the submissions.
-             */
+	        /*
+	         * Visitors for removal of comments and obtaining the hash codes
+	         */
+            CommentRemovalVisitor crv1 = new CommentRemovalVisitor();
+            CommentRemovalVisitor crv2 = new CommentRemovalVisitor();
+            VariableStandardizationVisitor vsv1 = new VariableStandardizationVisitor();
+            VariableStandardizationVisitor vsv2 = new VariableStandardizationVisitor();
+            FunctionStandardizationVisitor fsv1 = new FunctionStandardizationVisitor();
+            FunctionStandardizationVisitor fsv2 = new FunctionStandardizationVisitor();
             HashCodeVisitor hcv1 = new HashCodeVisitor();
             HashCodeVisitor hcv2 = new HashCodeVisitor();
-            cu1.accept(hcv1, null); //All the nodes in the AST generated from the first submission are visited. 
-            cu2.accept(hcv2, null); //All the nodes in the AST generated from the second submission are visited. 
 
-	    /*
-	     * SimilarityPercentGenerator will calculate the percentage based on the similarity of the two programs.
-	     */
+            cu1.accept(crv1, null); //All the nodes in the AST generated from the first submission are visited and the nodes identified as comments are removed
+            cu2.accept(crv2, null); //All the nodes in the AST generated from the second submission are visited and the nodes identified as comments are removed
+            
+            //Standardizes variable naming
+            cu1.accept(vsv1, null);
+            cu2.accept(vsv2, null);
+            
+            //Standardizes function naming
+            cu1.accept(fsv1, null);
+            cu2.accept(fsv2, null);
+            
+            cu1.accept(hcv1, null); //All the nodes in the AST generated from the first submission are visited.
+            cu2.accept(hcv2, null); //All the nodes in the AST generated from the second submission are visited.
+
+	        /*
+	        * SimilarityPercentGenerator will calculate the percentage based on the similarity of the two programs.
+	        */
             SimilarityPercentGenerator spg = new SimilarityPercentGenerator();
-            String similarityPercent = String.format("%.2f", spg.getSimilarityPercent(hcv1, hcv2)); //Converted to string to display the percent rounded off to two decimal places 
+            similarityPercent = String.format("%.2f", spg.getSimilarityPercent(hcv1, hcv2)); //Converted to string to display the percent rounded off to two decimal places
 
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        return 0;
+        return similarityPercent;
     }
 }

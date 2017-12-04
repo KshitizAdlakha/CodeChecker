@@ -6,7 +6,6 @@ import codechecker.core.models.entities.AssignmentSubmission;
 public class AssignmentSubmissionResource extends ResourceSupport {
     private String title;
 
-    private String content;
 
     private Long rid;
 
@@ -26,18 +25,10 @@ public class AssignmentSubmissionResource extends ResourceSupport {
         this.title = title;
     }
 
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
 
     public AssignmentSubmission toAssignmentSubmission() {
         AssignmentSubmission entry = new AssignmentSubmission();
         entry.setTitle(title);
-        entry.setContent(content);
         return entry;
     }
 }

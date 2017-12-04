@@ -29,18 +29,13 @@ angular.module('ngBoilerplate.account', ['ui.router', 'ngResource', 'base64'])
                     controller: 'AccountSearchCtrl'
                 }
             },
-            data : { pageTitle : "Search Accounts" },
-            resolve: {
-                accounts: function(accountService) {
-                    return accountService.getAllAccounts();
-                }
-            }
+            data : { pageTitle : "Search Accounts" }
     });
 })
 .factory('sessionService', function($http) {
     var session = {};
     session.login = function(data) {
-        return $http.post("/code-checker/login", "username=" + data.name + "&password=" + data.password, {
+        return $http.post("/login", "username=" + data.name + "&password=" + data.password, {
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).then(function(data) {
             alert("login successful");
@@ -64,15 +59,15 @@ angular.module('ngBoilerplate.account', ['ui.router', 'ngResource', 'base64'])
 .factory('accountService', function($resource) {
     var service = {};
     service.register = function(account, success, failure) {
-        var Account = $resource("/code-checker/rest/accounts");
+        var Account = $resource("/rest/accounts");
         Account.save({}, account, success, failure);
     };
     service.getAccountById = function(accountId) {
-        var Account = $resource("/code-checker/rest/accounts/:paramAccountId");
+        var Account = $resource("/rest/accounts/:paramAccountId");
         return Account.get({paramAccountId:accountId}).$promise;
     };
     service.userExists = function(account, success, failure) {
-        var Account = $resource("/code-checker/rest/accounts");
+        var Account = $resource("/rest/accounts");
         var data = Account.get({name:account.name, password:account.password}, function() {
             var accounts = data.accounts;
             if(accounts.length !== 0) {
@@ -83,12 +78,6 @@ angular.module('ngBoilerplate.account', ['ui.router', 'ngResource', 'base64'])
         },
         failure);
     };
-    service.getAllAccounts = function() {
-          var Account = $resource("/code-checker/rest/accounts");
-          return Account.get().$promise.then(function(data) {
-            return data.accounts;
-          });
-      };
     return service;
 })
 .controller("LoginCtrl", function($scope, sessionService, accountService, $state) {

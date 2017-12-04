@@ -3,13 +3,17 @@
 angular.module('codeChecker')
 
     .controller('AnalysisHistoryCtrl', function(sessionService) {
+        var vm=this;
         function init() {
-            var vm=this;
             vm.assignments=[];
             vm.logout=function () {
                 sessionService.logout();
             }
         }
         init();
+        getAllAssignments();
 
+        function getAllAssignments() {
+            vm.assignments=assignmentService.getAllAssignments();
+        }
     });

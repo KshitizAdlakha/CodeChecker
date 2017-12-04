@@ -27,7 +27,7 @@ public class AssignmentServiceImpl implements AssignmentService {
 
     /**
      * @param assignmentId with which the assignment submission will be created
-     * @param assignmentSubmission data which will be included in assignment submission
+     * @param data data which will be included in assignment submission
      * @return the created assignmentSubmission with assignmentId and assignmentSubmission data
      */
     @Override
@@ -71,5 +71,10 @@ public class AssignmentServiceImpl implements AssignmentService {
     @Override
     public Assignment findAssignment(Long id) {
         return assignmentRepo.findAssignment(id);
+    }
+
+    @Override
+    public Assignment findAssignmentByAssignmentName(String name) {
+        return assignmentRepo.findAssignmentByTitle(name);
     }
 }

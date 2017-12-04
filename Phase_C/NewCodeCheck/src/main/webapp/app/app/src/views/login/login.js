@@ -9,6 +9,8 @@
         function init() {
             vm.loginLoader = 0;
             vm.login = login;
+            vm.showPassword = false;
+            vm.toggleShowPassword=toggleShowPassword;
         }
 
         init();
@@ -17,7 +19,7 @@
             accountService.userExists(account, function (account) {
                 sessionService
                     .login(account)
-                    .success(function () {
+                    .success(function (data) {
                         localStorage.setItem("session", {});
                         $location.url('/upload-submission');
                     })
@@ -27,8 +29,12 @@
                     });
             }, function () {
                 vm.loginLoader = 0;
-                vm.error = "Account does not exist"
+                vm.error = "The email/password combination is incorrect"
             });
+        }
+
+        function toggleShowPassword() {
+            vm.showPassword = !vm.showPassword;
         }
     };
 })();

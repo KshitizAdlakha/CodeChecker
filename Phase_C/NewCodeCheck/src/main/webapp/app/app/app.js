@@ -1,13 +1,17 @@
 angular
     .module('codeChecker', ['ngRoute', 'ngFileUpload', 'ngResource', 'base64'])
-    .config(function($locationProvider, $routeProvider) {
+    .config(function($locationProvider, $routeProvider, $httpProvider) {
+
+        $httpProvider.defaults.xsrfCookieName = 'csrftoken';
+        $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+
         $routeProvider
             .when('/', {
                 templateUrl: 'src/views/login/login.html',
                 controller: 'LoginCtrl',
                 controllerAs: "model",
                 resolve:{
-                    currentUser: alreadyLoggedIn
+                    loginCheck: alreadyLoggedIn
                 }
             })
             .when('/sign-up', {
@@ -15,7 +19,7 @@ angular
                 controller: 'SignUpCtrl',
                 controllerAs: "model",
                 resolve:{
-                    currentUser: alreadyLoggedIn
+                    loginCheck: alreadyLoggedIn
                 }
             })
             .when('/upload-submission', {
@@ -23,7 +27,8 @@ angular
                 controller: 'UploadSubmissionCtrl',
                 controllerAs: "model",
                 resolve:{
-                    currentUser: notLoggedIn
+                    loginCheck: notLoggedIn,
+                    account: getCurrentUser
                 }
             })
             .when('/help', {
@@ -36,7 +41,8 @@ angular
                 controller: 'SideBySideCtrl',
                 controllerAs: "model",
                 resolve:{
-                    currentUser: notLoggedIn
+                    loginCheck: notLoggedIn,
+                    account: getCurrentUser
                 }
             })
             .when('/analysis-result', {
@@ -44,7 +50,8 @@ angular
                 controller: 'AnalysisResultsCtrl',
                 controllerAs: "model",
                 resolve:{
-                    currentUser: notLoggedIn
+                    loginCheck: notLoggedIn,
+                    account: getCurrentUser
                 }
             })
             .when('/analysis-history', {
@@ -52,20 +59,32 @@ angular
                 controller: 'AnalysisHistoryCtrl',
                 controllerAs: "model",
                 resolve:{
-                    currentUser: notLoggedIn
+                    loginCheck: notLoggedIn,
+                    account: getCurrentUser
                 }
             })
             .otherwise({redirectTo: '/'});
 
-        function alreadyLoggedIn(sessionService, $location) {
+        function alreadyLoggedIn(sessionService, $location, accountService) {
             if(sessionService.isLoggedIn()) {
                 $location.url("/upload-submission")
             }
         }
 
-        function notLoggedIn(sessionService, $location) {
+        function notLoggedIn(sessionService, $location, accountService) {
             if(!sessionService.isLoggedIn()) {
                 $location.url("/")
             }
+        }
+
+        function getCurrentUser(accountService, sessionService, $location) {
+            return accountService
+                .getCurrentUser()
+                .then(function (data) {
+                    return data;
+                }, function () {
+                    sessionService.unsetStorage();
+                    $location.url("/");
+                })
         }
     });
