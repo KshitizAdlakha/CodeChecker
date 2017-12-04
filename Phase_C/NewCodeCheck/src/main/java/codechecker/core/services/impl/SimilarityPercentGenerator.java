@@ -12,9 +12,11 @@ public class SimilarityPercentGenerator {
         HashSet<Integer> crvCode1 = crv1.getNodeHashCodes(); //Hashcodes of the nodes from the first submission
         HashSet<Integer> crvCode2 = crv2.getNodeHashCodes(); //Hashcodes of the nodes from the second submission
         HashSet<Integer> crvIntersection = this.intersection(crvCode1, crvCode2); //Common hashcodes from both submissions
-        HashSet<Integer> crvUnion = this.union(crvCode1, crvCode2); //Combine all the hashcodes from both the submissions
+        HashSet<Integer> crvDiff1 = this.difference(crvCode1, crvIntersection);//Hashodes of the nodes unique to the first submission
+        HashSet<Integer> crvDiff2 = this.difference(crvCode2, crvIntersection);//Hashodes of the nodes unique to the second submission
 
-        double similarityPercent = ((double)crvIntersection.size()/crvUnion.size()) * 100; 
+        double similarityPercent = (((double) 2 * crvIntersection.size()) / ((2 * crvIntersection.size()) + crvDiff1.size()
+                + crvDiff2.size())) * 100; //Similarity percent calculation
         return similarityPercent;
     }
     
@@ -26,13 +28,12 @@ public class SimilarityPercentGenerator {
         crvIntersection.retainAll(crvCode2);
         return crvIntersection;
     }
-    
+
     /*
-     * Function to obtain all the hashcodes from the two given hashsets
+     * Function to obtain the hashcodes that are unique to the first HashSet in the argument.
      */
-    private HashSet<Integer> union(HashSet<Integer> crvCode1, HashSet<Integer> crvCode2){
-        HashSet<Integer> crvUnion = new HashSet<Integer>(crvCode1);
-        crvUnion.addAll(crvCode2);
-        return crvUnion;
+    private HashSet<Integer> difference(HashSet<Integer> crvCode, HashSet<Integer> crvCommon){
+        crvCode.removeAll(crvCommon);
+        return crvCode;
     }
 }
