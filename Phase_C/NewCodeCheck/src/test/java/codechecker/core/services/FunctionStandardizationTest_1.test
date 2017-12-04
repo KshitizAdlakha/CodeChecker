@@ -2,12 +2,11 @@ package codechecker.core.services;
 
 public class TestClass {
 
-	public static void main(String[] args) {
-		String a = getZebra();
-	}
-	
 	public static String getZebra() {
 		return "zebra";
 	}
 
+	public static void main(String[] args) {
+		String a = getZebra();
+	}
 }
