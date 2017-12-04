@@ -23,7 +23,7 @@ angular.module('codeChecker')
             vm.error=null;
 
             assignmentService
-                .checkIfAssignmentAlreadyExists(assignment)
+                .checkIfAssignmentAlreadyExists(assignment, vm.currentUser.rid)
                 .then(function () {
                     vm.error="Assignment of the same name already exists";
                     vm.loader=0;
@@ -40,8 +40,8 @@ angular.module('codeChecker')
                             .then(function (response) {
                                 var assignmentSubmission1Id=response.data.rid;
                                 Upload.upload({
-                                    url: 'rest/assignment-submissions/'+assignmentSubmission1Id+'' +
-                                    '/upload?${_csrf.parameterName}=${_csrf.token}',
+                                    url: encodeURI('rest/assignment-submissions/'+assignmentSubmission1Id+'' +
+                                    '/upload?${_csrf.parameterName}=${_csrf.token}'),
                                     fields: {'assignmentSubmissionId': assignmentSubmission1Id}, // additional data to send
                                     file: file1
                                 }).success(function () {
@@ -50,8 +50,8 @@ angular.module('codeChecker')
                                         .then(function (response) {
                                             var assignmentSubmission2Id=response.data.rid;
                                             Upload.upload({
-                                                url: 'rest/assignment-submissions/'+assignmentSubmission2Id+
-                                                '/upload?${_csrf.parameterName}=${_csrf.token}',
+                                                url: encodeURI('rest/assignment-submissions/'+assignmentSubmission2Id+
+                                                '/upload?${_csrf.parameterName}=${_csrf.token}'),
                                                 fields: {'assignmentSubmissionId': assignmentSubmission2Id}, // additional data to send
                                                 file: file2
                                             }).progress(function (evt) {
@@ -78,7 +78,7 @@ angular.module('codeChecker')
                                 console.log(err)
                             });
                     }, function (err) {
-                        vm.error="Failed to create Assignment Submission 1";
+                        vm.error="Failed to create assignment. Please make sure the assignment name is unique";
                     });
 
                 });

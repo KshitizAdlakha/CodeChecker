@@ -3,6 +3,7 @@ angular
     .factory('assignmentService', function ($http, $resource){
         var service = {};
         service.createAssignment = function(userId, assignment) {
+            assignment.title=userId+"_"+assignment.title;
             return $http.post("/code-checker/rest/accounts/"+userId+"/assignments", assignment)
         };
 
@@ -21,8 +22,8 @@ angular
             return $http.get("/code-checker/rest/assignment-submissions/compare?assignmentId="+id1+"&otherAssignmentId="+id2);
         };
 
-        service.checkIfAssignmentAlreadyExists = function (assignment) {
-            return $http.get("/code-checker/rest/assignments/name/"+assignment.title);
+        service.checkIfAssignmentAlreadyExists = function (assignment, accountId) {
+            return $http.get("/code-checker/rest/assignments/name/"+accountId+"_"+assignment.title);
         };
 
         service.getAssignmentsForAccount = function(accountId) {
