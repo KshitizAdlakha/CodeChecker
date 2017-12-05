@@ -9,13 +9,19 @@ import codechecker.rest.resources.AssignmentResource;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.*;
 
 /**
- * Created by on 6/30/14.
+ * Assignment Resource Asm class
  */
 public class AssignmentResourceAsm extends ResourceAssemblerSupport<Assignment, AssignmentResource> {
+    /**
+     * Assignment Resource Asm constructor
+     */
     public AssignmentResourceAsm() {
         super(AssignmentController.class, AssignmentResource.class);
     }
 
+    /**
+     * Function to get assignment resources of the given assignment
+     */
     @Override
     public AssignmentResource toResource(Assignment assignment) {
         AssignmentResource resource = new AssignmentResource();

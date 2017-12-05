@@ -17,7 +17,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.*;
 
-
+/*
+ * Function Ordering Visitor class
+ * extends Void Visitor Adapter
+ */
 public class FunctionOrderingVisitor extends VoidVisitorAdapter<Void> {
     @Override
     public void visit(CompilationUnit cu, Void arg) {
@@ -29,6 +32,9 @@ public class FunctionOrderingVisitor extends VoidVisitorAdapter<Void> {
         }
     }
 
+    /*
+     * Function to visit all the method declarations in the submitted java program
+     */
     private void visit(TypeDeclaration type, Void arg){
         List<MethodDeclaration> methodDeclarations = type.getMethods();
 
@@ -80,14 +86,23 @@ public class FunctionOrderingVisitor extends VoidVisitorAdapter<Void> {
             }
         });
 
+        /*
+        * Function to remove all method declarations
+        */
         for(MethodDeclaration m: methodDeclarations){
             type.remove(m);
         }
 
+        /*
+         * Function to add method declartations from list
+        */
         for (MethodDeclaration t: temp){
             type.addMember(t);
         }
 
+        /*
+         * Function to get instance of child nodes from declaration
+        */
         for(Node node : type.getChildNodes()){
             if(node instanceof TypeDeclaration){
                 visit((TypeDeclaration) node, arg);

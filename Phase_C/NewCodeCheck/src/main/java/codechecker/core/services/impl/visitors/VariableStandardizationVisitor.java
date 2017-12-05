@@ -94,7 +94,10 @@ public class VariableStandardizationVisitor extends VoidVisitorAdapter<Void> {
 	        }
     	}
     }
-    
+
+	/*
+     * Function to replace the variable with a named expression
+     */
     private void replaceVariable(Node e) {
 		if(e instanceof NameExpr) {
 			NameExpr ne = (NameExpr)e;

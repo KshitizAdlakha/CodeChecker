@@ -16,17 +16,26 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Assignment Submission Controller
+ */
 @Controller
 @RequestMapping("/rest/assignment-submissions")
 public class AssignmentSubmissionController {
     private AssignmentSubmissionService service;
 
+    /**
+     * Assignment Submission Controller constructor
+     */
     @Autowired
     public AssignmentSubmissionController(AssignmentSubmissionService service)
     {
         this.service = service;
     }
 
+    /**
+     * Function to find all assignment submissions
+     */
     @RequestMapping(value="/{assignmentSubmissionId}",
             method = RequestMethod.GET)
     public ResponseEntity<AssignmentSubmissionResource> getAssignmentSubmission (
@@ -40,6 +49,9 @@ public class AssignmentSubmissionController {
         }
     }
 
+    /**
+     * Function to upload the submitted java file
+     */
     @RequestMapping(value = "/{assignmentSubmissionId}/upload", method = RequestMethod.POST)
     @PreAuthorize("permitAll")
     public ResponseEntity<AssignmentSubmissionResource> upload(
@@ -56,6 +68,9 @@ public class AssignmentSubmissionController {
         return new ResponseEntity<AssignmentSubmissionResource>(HttpStatus.OK);
     }
 
+    /**
+     * Function to delete an assignment submission by assignment submission id
+     */
     @RequestMapping(value="/{assignmentSubmissionId}",
             method = RequestMethod.DELETE)
     public ResponseEntity<AssignmentSubmissionResource> deleteAssignmentSubmission(
@@ -69,6 +84,9 @@ public class AssignmentSubmissionController {
         }
     }
 
+    /**
+     * Function to update assignment submission by given assignment submission id
+     */
     @RequestMapping(value="/{assignmentSubmissionId}",
             method = RequestMethod.PUT)
     public ResponseEntity<AssignmentSubmissionResource> updateAssignmentSubmission(
