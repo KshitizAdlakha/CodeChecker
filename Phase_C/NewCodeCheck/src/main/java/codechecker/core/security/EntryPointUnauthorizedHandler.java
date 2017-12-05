@@ -9,8 +9,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * Entry Point Unauthorized Handler class
+ * extends Authentication Entry Point
+ */
 @Component
 public class EntryPointUnauthorizedHandler implements AuthenticationEntryPoint {
+
+    /**
+     * method to send error in response to servlet call
+     */
     @Override
     public void commence(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
         httpServletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Access Denied");

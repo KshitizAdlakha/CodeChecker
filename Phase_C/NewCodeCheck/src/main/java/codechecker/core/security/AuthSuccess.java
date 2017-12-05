@@ -9,8 +9,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * Auth Success
+ * extends Simple Url Authentication Failure Handler
+ */
 @Component
 public class AuthSuccess extends SimpleUrlAuthenticationSuccessHandler {
+
+    /**
+     * method to set status of sucessfully authentication
+     */
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
             throws IOException, ServletException {

@@ -7,9 +7,14 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
+/**
+ * Security Config class
+ * extends Web Security Configure Adapter
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
 
     @Autowired
     private AuthFailure authFailure;
@@ -23,11 +28,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailServiceImpl userDetailService;
 
+    /**
+     * method to pass user details to service
+     */
     @Autowired
     public void configAuthBuilder(AuthenticationManagerBuilder builder) throws Exception {
         builder.userDetailsService(userDetailService);
     }
 
+    /**
+     * method to configure the requests and handle it
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
