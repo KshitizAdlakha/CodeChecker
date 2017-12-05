@@ -1,0 +1,11 @@
+package codechecker.core.services;
+
+public class TestClass {
+
+	public static void main(String[] args) {
+		for(int J = 0; J <10; J++) {
+			System.out.println("Cheese");
+		}
+	}
+
+}

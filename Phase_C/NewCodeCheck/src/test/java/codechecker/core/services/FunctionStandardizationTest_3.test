@@ -1,0 +1,21 @@
+package codechecker.core.services;
+
+class Animal {
+    public void printAnimal(){
+	    System.out.println("Animal");
+	    }
+	}
+
+class Zebra extends Animal{
+    public void printZebra(){
+        System.out.println("Zebra");
+        }
+    }
+
+class Test{
+	public static void main(String[] args) {
+	Zebra z = new Zebra();
+	z.printAnimal();
+	z.printZebra();
+	}
+}

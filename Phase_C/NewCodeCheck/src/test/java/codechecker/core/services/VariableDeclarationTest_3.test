@@ -1,0 +1,11 @@
+package codechecker.core.services;
+
+public class TestClass {
+
+	public static void main(String[] args) {
+		String X = "horse";
+		String Y = "horse";
+		String Z = "horse";
+	}
+
+}

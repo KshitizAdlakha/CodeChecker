@@ -1,0 +1,11 @@
+package codechecker.core.services;
+
+public class TestClass {
+
+	public static void main(String[] args) {
+		String owner1Name  = "Adam";
+		String owner2Name = "John";
+		String owner3Name = "Brian";
+	}
+
+}

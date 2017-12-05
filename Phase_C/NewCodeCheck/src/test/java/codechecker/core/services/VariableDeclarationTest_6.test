@@ -1,0 +1,10 @@
+package codechecker.core.services;
+
+public class TestClass {
+
+	public static void main(String[] args) {
+		int sum  = 2222;
+		int average = 900;
+	}
+
+}

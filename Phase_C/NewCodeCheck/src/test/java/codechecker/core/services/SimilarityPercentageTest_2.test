@@ -1,0 +1,17 @@
+
+package codechecker.core.services;
+
+class Animal{
+    void run(){System.out.println("run");}
+}
+
+class Lion extends Animal{
+    void hunt(){System.out.println("hunt");}
+}
+
+class TestInheritance{
+    public static void main(String args[]){
+        Lion l=new Lion();
+        l.run();
+        l.hunt();
+}}
