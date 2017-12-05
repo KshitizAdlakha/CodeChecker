@@ -98,6 +98,7 @@ public class AssignmentSubmissionServiceImpl implements AssignmentSubmissionServ
             cu1.accept(crv1, null); //All the nodes in the AST generated from the first submission are visited and the nodes identified as comments are removed
             cu2.accept(crv2, null); //All the nodes in the AST generated from the second submission are visited and the nodes identified as comments are removed
 
+            // orders Nodes in such a way that the variable declaration is done at the last in a block statement
             cu1.accept(vov1, null);
             cu2.accept(vov2, null);
 
@@ -105,7 +106,7 @@ public class AssignmentSubmissionServiceImpl implements AssignmentSubmissionServ
 //            cu1.accept(vsv1, null);
 //            cu2.accept(vsv2, null);
 
-            //Order nodes in on the number of variables, number of parameters, and the return type
+            //Order nodes in on the basis of number of variables, number of parameters, and the return type
             cu1.accept(nov1, null);
             cu2.accept(nov2, null);
 

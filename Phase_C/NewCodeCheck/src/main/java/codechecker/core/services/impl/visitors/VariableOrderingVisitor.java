@@ -2,11 +2,8 @@ package codechecker.core.services.impl.visitors;
 
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ast.CompilationUnit;
-import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.NodeList;
 import com.github.javaparser.ast.body.*;
-import com.github.javaparser.ast.expr.VariableDeclarationExpr;
-import com.github.javaparser.ast.stmt.BlockStmt;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 
 import java.io.File;
@@ -17,6 +14,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+/**
+ * Visitor class to put the variables at the end of each block statement in a class
+ */
 public class VariableOrderingVisitor extends VoidVisitorAdapter<Void> {
     @Override
     public void visit(CompilationUnit cu, Void arg) {
@@ -61,25 +61,5 @@ public class VariableOrderingVisitor extends VoidVisitorAdapter<Void> {
         for (BodyDeclaration t: temp){
             type.addMember(t);
         }
-    }
-
-
-    public static void main(String [] args){
-
-        FileInputStream in = null;
-        try {
-            in = new FileInputStream(new File("src//main//webapp//app//app//upload//1.java"));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        // parse the file
-        CompilationUnit cu = JavaParser.parse(in);
-
-        System.out.println(cu.toString());
-
-        cu.accept(new VariableOrderingVisitor(), null);
-
-        System.out.println(cu.toString());
     }
 }
