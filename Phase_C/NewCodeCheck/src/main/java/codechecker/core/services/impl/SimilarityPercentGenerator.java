@@ -1,5 +1,7 @@
 package codechecker.core.services.impl;
 
+import codechecker.core.services.impl.visitors.HashCodeVisitor;
+
 import java.util.HashSet;
 
 //Class to obtain the similarity percent between two submissions

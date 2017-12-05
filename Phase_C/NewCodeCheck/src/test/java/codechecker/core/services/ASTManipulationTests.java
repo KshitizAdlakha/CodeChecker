@@ -1,38 +1,28 @@
 package codechecker.core.services;
 
-import static org.junit.Assert.*;
+import codechecker.core.models.entities.Account;
+import codechecker.core.models.entities.Assignment;
+import codechecker.core.repositories.AccountRepo;
+import codechecker.core.repositories.AssignmentRepo;
+import codechecker.core.repositories.AssignmentSubmissionRepo;
+import codechecker.core.services.impl.AssignmentSubmissionServiceImpl;
+import codechecker.core.services.impl.SimilarityPercentGenerator;
+import codechecker.core.services.impl.visitors.CommentRemovalVisitor;
+import codechecker.core.services.impl.visitors.FunctionStandardizationVisitor;
+import codechecker.core.services.impl.visitors.HashCodeVisitor;
+import codechecker.core.services.impl.visitors.VariableStandardizationVisitor;
+import com.github.javaparser.JavaParser;
+import com.github.javaparser.ast.CompilationUnit;
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.HashSet;
-import java.util.List;
 
-import codechecker.core.models.entities.Account;
-import codechecker.core.models.entities.Assignment;
-import codechecker.core.models.entities.AssignmentSubmission;
-import codechecker.core.repositories.AccountRepo;
-import codechecker.core.repositories.AssignmentRepo;
-import codechecker.core.repositories.AssignmentSubmissionRepo;
-import org.junit.Before;
-import org.junit.Test;
-
-import com.github.javaparser.JavaParser;
-import com.github.javaparser.ast.CompilationUnit;
-
-import codechecker.core.services.impl.CommentRemovalVisitor;
-import codechecker.core.services.impl.FunctionStandardizationVisitor;
-import codechecker.core.services.impl.HashCodeVisitor;
-import codechecker.core.services.impl.VariableStandardizationVisitor;
-import codechecker.core.services.impl.SimilarityPercentGenerator;
-import codechecker.core.services.impl.AssignmentSubmissionServiceImpl;
-import codechecker.core.services.impl.AccountServiceImpl;
-
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.annotation.Rollback;
-import org.springframework.transaction.annotation.Transactional;
-
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 public class ASTManipulationTests {
 
@@ -715,16 +705,16 @@ public class ASTManipulationTests {
 
 
 
-    /*Checks to see if two assignments with two different Ids are identical.
-	 */
-    @Test
-    public void compareAssignmentSubmissionsTest() {
-        Assignment assignment1 = new Assignment();
-        Assignment assignment2 = new Assignment();
-        AssignmentSubmissionServiceImpl  asl = new AssignmentSubmissionServiceImpl();
-
-        assertEquals("0",asl.compareAssignmentSubmissions(assignment1.getId(),assignment2.getId()));
-    }
+//    /*Checks to see if two assignments with two different Ids are identical.
+//	 */
+//    @Test
+//    public void compareAssignmentSubmissionsTest() {
+//        Assignment assignment1 = new Assignment();
+//        Assignment assignment2 = new Assignment();
+//        AssignmentSubmissionServiceImpl  asl = new AssignmentSubmissionServiceImpl();
+//
+//        assertEquals("0",asl.compareAssignmentSubmissions(assignment1.getId(),assignment2.getId()));
+//    }
 
 }
 

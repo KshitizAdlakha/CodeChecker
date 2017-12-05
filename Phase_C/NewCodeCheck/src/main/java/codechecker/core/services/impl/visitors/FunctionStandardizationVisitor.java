@@ -1,4 +1,4 @@
-package codechecker.core.services.impl;
+package codechecker.core.services.impl.visitors;
 
 import java.io.File;
 import java.util.Hashtable;
@@ -92,10 +92,4 @@ public class FunctionStandardizationVisitor extends VoidVisitorAdapter<Void> {
         }
     }
     
-    private void replaceVariable(Node e) {
-		if(e instanceof NameExpr) {
-			NameExpr ne = (NameExpr)e;
-			ne.setName(replacementMap.get(ne.getName()));
-		}
-    }
 }

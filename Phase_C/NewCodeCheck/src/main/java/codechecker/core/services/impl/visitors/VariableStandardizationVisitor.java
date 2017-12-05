@@ -1,10 +1,12 @@
-package codechecker.core.services.impl;
+package codechecker.core.services.impl.visitors;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.Hashtable;
 
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.Node;
+import com.github.javaparser.ast.body.FieldDeclaration;
 import com.github.javaparser.ast.body.VariableDeclarator;
 import com.github.javaparser.ast.expr.AssignExpr;
 import com.github.javaparser.ast.expr.BinaryExpr;
@@ -96,7 +98,9 @@ public class VariableStandardizationVisitor extends VoidVisitorAdapter<Void> {
     private void replaceVariable(Node e) {
 		if(e instanceof NameExpr) {
 			NameExpr ne = (NameExpr)e;
+			System.out.println(ne);
 			ne.setName(replacementMap.get(ne.getName()));
 		}
     }
+
 }
