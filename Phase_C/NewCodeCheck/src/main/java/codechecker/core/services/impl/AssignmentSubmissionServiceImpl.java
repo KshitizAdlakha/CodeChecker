@@ -140,6 +140,10 @@ public class AssignmentSubmissionServiceImpl implements AssignmentSubmissionServ
             cu2.accept(mv2, null);
             cu1.accept(fdv1, null);
             cu2.accept(fdv2, null);
+            cu1.accept(cv1, null);
+            cu2.accept(cv2, null);
+            cu1.accept(odv1, null);
+            cu2.accept(odv2, null);
 
             //Order nodes in on the basis of number of variables, number of parameters, and the return type
             cu1.accept(nov1, null);
@@ -152,11 +156,7 @@ public class AssignmentSubmissionServiceImpl implements AssignmentSubmissionServ
             cu1.accept(hcv1, null); //All the nodes in the AST generated from the first submission are visited.
             cu2.accept(hcv2, null); //All the nodes in the AST generated from the second submission are visited.
 
-            cu1.accept(cv1, null);
-            cu2.accept(cv2, null);
 
-            cu1.accept(odv1, null);
-            cu2.accept(odv2, null);
             // save transformed files to be displayed
             try {
                 FileUtils.writeStringToFile(
