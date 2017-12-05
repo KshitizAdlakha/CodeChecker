@@ -17,6 +17,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.*;
 
+/**
+ * Sorts the function nameson the basis of number of their return type, number of parameters and child nodes
 /*
  * Function Ordering Visitor class
  * extends Void Visitor Adapter
@@ -36,10 +38,16 @@ public class FunctionOrderingVisitor extends VoidVisitorAdapter<Void> {
      * Function to visit all the method declarations in the submitted java program
      */
     private void visit(TypeDeclaration type, Void arg){
+        /**
+         * Get all the methods contained in the class
+         */
         List<MethodDeclaration> methodDeclarations = type.getMethods();
 
         List<MethodDeclaration> temp = new ArrayList<MethodDeclaration>(methodDeclarations);
 
+        /**
+         * Sorts on the number of child nodes contained
+         */
         Collections.sort(temp, new Comparator<MethodDeclaration>() {
             @Override
             public int compare(MethodDeclaration o1, MethodDeclaration o2) {
@@ -66,6 +74,10 @@ public class FunctionOrderingVisitor extends VoidVisitorAdapter<Void> {
             }
         });
 
+        /**
+         * Sort on the basis of number of function parameters
+         */
+
         Collections.sort(temp, new Comparator<MethodDeclaration>() {
             @Override
             public int compare(MethodDeclaration o1, MethodDeclaration o2) {
@@ -79,6 +91,9 @@ public class FunctionOrderingVisitor extends VoidVisitorAdapter<Void> {
             }
         });
 
+        /**
+         * Sort on the basis of return type
+         */
         Collections.sort(temp, new Comparator<MethodDeclaration>() {
             @Override
             public int compare(MethodDeclaration o1, MethodDeclaration o2) {

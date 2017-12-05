@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * Visitor class to put the variables at the end of each block statement in a class
  */
-public class VariableOrderingVisitor extends VoidVisitorAdapter<Void> {
+public class VariableOrderingInClassVisitor extends VoidVisitorAdapter<Void> {
     @Override
     public void visit(CompilationUnit cu, Void arg) {
 
@@ -36,6 +36,9 @@ public class VariableOrderingVisitor extends VoidVisitorAdapter<Void> {
 
         List<BodyDeclaration> temp = new ArrayList<BodyDeclaration>(bodyDeclarations);
 
+        /**
+         * Sort all the field declarations to the end of the class
+         */
         Collections.sort(temp, new Comparator() {
             @Override
             public int compare(Object o1, Object o2) {

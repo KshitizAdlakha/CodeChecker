@@ -4,12 +4,14 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Hashtable;
+import java.util.List;
 
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.PackageDeclaration;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
+import com.github.javaparser.ast.body.ConstructorDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.VariableDeclarator;
 import com.github.javaparser.ast.expr.*;
@@ -58,8 +60,10 @@ public class FunctionStandardizationVisitor extends VoidVisitorAdapter<Void> {
      */
     public void visit(Node n, Void arg) {
 
-        // rename classes to a standard name
+        // rename classes and their constructors to a standard name
     	if(n instanceof ClassOrInterfaceDeclaration){
+
+    	    List<ConstructorDeclaration> constructors = ((ClassOrInterfaceDeclaration) n).getConstructors();
 
             ClassOrInterfaceDeclaration cd = (ClassOrInterfaceDeclaration) n;
             SimpleName oldName = cd.getName();
@@ -70,12 +74,14 @@ public class FunctionStandardizationVisitor extends VoidVisitorAdapter<Void> {
                 newName = getNextClassName();
                 replacementMap.put(oldName, newName);
             }
+            for(ConstructorDeclaration constructorDeclaration: constructors){
+                constructorDeclaration.setName(newName);
+            }
             cd.setName(newName);
-
         }
 
         // rename the package to a standard name
-        if(n instanceof PackageDeclaration){
+        else if(n instanceof PackageDeclaration){
             PackageDeclaration pd = (PackageDeclaration) n;
             Name sn = new Name("package");
             pd.setName(sn);
@@ -85,7 +91,7 @@ public class FunctionStandardizationVisitor extends VoidVisitorAdapter<Void> {
     	 * If this is an initialization or a declaration,
     	 * replace the variable being set with a standard value.
     	 */
-    	if(n instanceof MethodDeclaration) {
+    	else if(n instanceof MethodDeclaration) {
     		
     		MethodDeclaration md = ((MethodDeclaration) n);
     		SimpleName newName = getNextFunction();
@@ -121,4 +127,5 @@ public class FunctionStandardizationVisitor extends VoidVisitorAdapter<Void> {
             visit(child, arg);
         }
     }
+
 }

@@ -1,7 +1,11 @@
 package codechecker.core.services.impl.visitors;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.Hashtable;
 
+import com.github.javaparser.JavaParser;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.body.Parameter;
@@ -177,4 +181,20 @@ public class VariableStandardizationVisitor extends VoidVisitorAdapter<Void> {
 		//Replace the variable name
 		vd.setName(newName);
     }
+
+//	public static void main(String [] args){
+//		FileInputStream in = null;
+//		try {
+//		 in = new FileInputStream(new File("src//main//webapp//app//app//upload//1.java"));
+//		  } catch (FileNotFoundException e) {
+//		       e.printStackTrace();
+//		}
+//
+//		// parse the file
+//		CompilationUnit cu = JavaParser.parse(in);
+//		System.out.println(cu.toString());
+//		cu.accept(new VariableStandardizationVisitor(), null);
+//		System.out.println(cu.toString());
+//
+//    }
 }
