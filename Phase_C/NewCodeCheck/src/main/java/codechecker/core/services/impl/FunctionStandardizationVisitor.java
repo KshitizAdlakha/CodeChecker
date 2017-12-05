@@ -92,10 +92,4 @@ public class FunctionStandardizationVisitor extends VoidVisitorAdapter<Void> {
         }
     }
     
-    private void replaceVariable(Node e) {
-		if(e instanceof NameExpr) {
-			NameExpr ne = (NameExpr)e;
-			ne.setName(replacementMap.get(ne.getName()));
-		}
-    }
 }
