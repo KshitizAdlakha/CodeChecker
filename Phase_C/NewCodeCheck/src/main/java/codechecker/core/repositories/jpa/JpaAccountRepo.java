@@ -9,23 +9,36 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.List;
 
+/**
+ * Jpa Account Repo class
+ */
 @Repository
 public class JpaAccountRepo implements AccountRepo {
 
     @PersistenceContext
     private EntityManager em;
 
+
+    /**
+     * method to get all the user created accounts from database
+     */
     @Override
     public List<Account> findAllAccounts() {
         Query query = em.createQuery("SELECT a FROM Account a");
         return query.getResultList();
     }
 
+    /**
+     * method to find user account with given id from database
+     */
     @Override
     public Account findAccount(Long id) {
         return em.find(Account.class, id);
     }
 
+    /**
+     * method to get user account by given name from database
+     */
     @Override
     public Account findAccountByName(String name) {
         Query query = em.createQuery("SELECT a FROM Account a WHERE a.name=?1");
@@ -37,7 +50,9 @@ public class JpaAccountRepo implements AccountRepo {
             return accounts.get(0);
         }
     }
-
+    /**
+     * method to insert new account into database
+     */
     @Override
     public Account createAccount(Account data) {
         em.persist(data);
