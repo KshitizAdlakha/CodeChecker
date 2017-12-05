@@ -16,5 +16,6 @@ public class FieldDatatypeVisitor extends VoidVisitorAdapter<Void> {
         for (VariableDeclarator vars: myVars){
             vars.setType("T"); // Set the datatype of the variables to T
         }
+        super.visit(n, arg);
     }
 }

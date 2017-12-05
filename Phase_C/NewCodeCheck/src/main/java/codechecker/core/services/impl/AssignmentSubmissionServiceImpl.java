@@ -112,6 +112,12 @@ public class AssignmentSubmissionServiceImpl implements AssignmentSubmissionServ
             HashCodeVisitor hcv1 = new HashCodeVisitor();
             HashCodeVisitor hcv2 = new HashCodeVisitor();
 
+            ConstructorVisitor cv1 = new ConstructorVisitor();
+            ConstructorVisitor cv2 = new ConstructorVisitor();
+
+            ObjectDatatypeVisitor odv1 = new ObjectDatatypeVisitor();
+            ObjectDatatypeVisitor odv2 = new ObjectDatatypeVisitor();
+
             cu1.accept(crv1, null); //All the nodes in the AST generated from the first submission are visited and the nodes identified as comments are removed
             cu2.accept(crv2, null); //All the nodes in the AST generated from the second submission are visited and the nodes identified as comments are removed
 
@@ -146,7 +152,11 @@ public class AssignmentSubmissionServiceImpl implements AssignmentSubmissionServ
             cu1.accept(hcv1, null); //All the nodes in the AST generated from the first submission are visited.
             cu2.accept(hcv2, null); //All the nodes in the AST generated from the second submission are visited.
 
+            cu1.accept(cv1, null);
+            cu2.accept(cv2, null);
 
+            cu1.accept(odv1, null);
+            cu2.accept(odv2, null);
             // save transformed files to be displayed
             try {
                 FileUtils.writeStringToFile(
