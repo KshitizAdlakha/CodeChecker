@@ -19,6 +19,9 @@ import java.util.*;
 
 /**
  * Sorts the function nameson the basis of number of their return type, number of parameters and child nodes
+/*
+ * Function Ordering Visitor class
+ * extends Void Visitor Adapter
  */
 public class FunctionOrderingVisitor extends VoidVisitorAdapter<Void> {
     @Override
@@ -31,6 +34,9 @@ public class FunctionOrderingVisitor extends VoidVisitorAdapter<Void> {
         }
     }
 
+    /*
+     * Function to visit all the method declarations in the submitted java program
+     */
     private void visit(TypeDeclaration type, Void arg){
         /**
          * Get all the methods contained in the class
@@ -95,14 +101,23 @@ public class FunctionOrderingVisitor extends VoidVisitorAdapter<Void> {
             }
         });
 
+        /*
+        * Function to remove all method declarations
+        */
         for(MethodDeclaration m: methodDeclarations){
             type.remove(m);
         }
 
+        /*
+         * Function to add method declartations from list
+        */
         for (MethodDeclaration t: temp){
             type.addMember(t);
         }
 
+        /*
+         * Function to get instance of child nodes from declaration
+        */
         for(Node node : type.getChildNodes()){
             if(node instanceof TypeDeclaration){
                 visit((TypeDeclaration) node, arg);

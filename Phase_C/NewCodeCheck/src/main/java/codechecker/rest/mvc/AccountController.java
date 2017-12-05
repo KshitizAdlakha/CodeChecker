@@ -35,16 +35,25 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Account Controller class
+ */
 @Controller
 @RequestMapping("/rest/accounts")
 public class AccountController {
     private AccountService accountService;
 
+    /**
+     * Account Service controller
+     */
     @Autowired
     public AccountController(AccountService accountService) {
         this.accountService = accountService;
     }
 
+    /**
+     * Function to find all accounts in account service
+     */
     @RequestMapping(method = RequestMethod.GET)
     @PreAuthorize("permitAll")
     public ResponseEntity<AccountListResource> findAllAccounts(@RequestParam(value="name", required = false) String name, @RequestParam(value="password", required = false) String password) {
@@ -68,6 +77,9 @@ public class AccountController {
         return new ResponseEntity<AccountListResource>(res, HttpStatus.OK);
     }
 
+    /**
+     * Function to create new accounts in account service
+     */
     @RequestMapping(method = RequestMethod.POST)
     @PreAuthorize("permitAll")
     public ResponseEntity<AccountResource> createAccount(
@@ -83,6 +95,9 @@ public class AccountController {
         }
     }
 
+    /**
+     * Function to get account id in account service
+     */
     @RequestMapping(value="/getMeId", method = RequestMethod.GET)
     @PreAuthorize("permitAll")
     public ResponseEntity<AccountResource> getMeId(Principal principal) {
@@ -95,6 +110,9 @@ public class AccountController {
         }
     }
 
+    /**
+     * Function to find accounts in account service
+     */
     @RequestMapping( value="/{accountId}",
                 method = RequestMethod.GET)
     @PreAuthorize("permitAll")
@@ -111,6 +129,9 @@ public class AccountController {
         }
     }
 
+    /**
+     * Function to find account by username in account service
+     */
     @RequestMapping( value="/check-username/{username}",
             method = RequestMethod.GET)
     @PreAuthorize("permitAll")
@@ -126,6 +147,9 @@ public class AccountController {
         }
     }
 
+    /**
+     * Function to create assignments in account service
+     */
     @RequestMapping(value="/{accountId}/assignments",
             method = RequestMethod.POST)
     @PreAuthorize("permitAll")
@@ -157,6 +181,9 @@ public class AccountController {
     }
 
 
+    /**
+     * Function to find all assignments in account service
+     */
     @RequestMapping(value="/{accountId}/assignments",
             method = RequestMethod.GET)
     @PreAuthorize("permitAll")

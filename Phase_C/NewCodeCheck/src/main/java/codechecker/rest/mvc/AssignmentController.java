@@ -29,16 +29,25 @@ import codechecker.rest.resources.asm.AssignmentResourceAsm;
 import java.net.URI;
 
 
+/**
+ * Assignment Controller class
+ */
 @Controller
 @RequestMapping("/rest/assignments")
 public class AssignmentController {
     private AssignmentService assignmentService;
 
+    /**
+     * Assignment Controller constructor
+     */
     @Autowired
     public AssignmentController(AssignmentService assignmentService) {
         this.assignmentService = assignmentService;
     }
 
+    /**
+     * Function to find all assignments for user
+     */
     @RequestMapping(method = RequestMethod.GET)
     @PreAuthorize("permitAll")
     public ResponseEntity<AssignmentListResource> findAllAssignments() {
@@ -47,6 +56,9 @@ public class AssignmentController {
         return new ResponseEntity<AssignmentListResource>(assignmentListResource, HttpStatus.OK);
     }
 
+    /**
+     * Function to find all assignments for assignment id
+     */
     @RequestMapping(value="/{assignmentId}",
         method = RequestMethod.GET)
     public ResponseEntity<AssignmentResource> getAssignment(@PathVariable Long assignmentId) {
@@ -59,6 +71,9 @@ public class AssignmentController {
         }
     }
 
+    /**
+     * Function to find assignments by name
+     */
     @RequestMapping(value="/name/{assignmentName}",
             method = RequestMethod.GET)
     @PreAuthorize("permitAll")
@@ -72,6 +87,9 @@ public class AssignmentController {
         }
     }
 
+    /**
+     * Function to create assignment submissions
+     */
     @RequestMapping(value="/{assignmentId}/assignment-submissions",
             method = RequestMethod.POST)
     @PreAuthorize("permitAll")
@@ -92,6 +110,9 @@ public class AssignmentController {
         }
     }
 
+    /**
+     * Function to find all assignment submissions
+     */
     @RequestMapping(value="/{assignmentId}/assignment-submissions")
     public ResponseEntity<AssignmentSubmissionListResource> findAllAssignmentSubmissions(
             @PathVariable Long assignmentId) {

@@ -141,7 +141,10 @@ public class VariableStandardizationVisitor extends VoidVisitorAdapter<Void> {
 	        }
     	}
     }
-    
+
+
+	/*
+     * Function to replace the variable with a named expression
     /**
      * Takes a Node and replaces its NameExpr with a standard one
      * @param e - the Node to be renamed

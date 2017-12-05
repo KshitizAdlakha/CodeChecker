@@ -28,6 +28,9 @@ public class VariableOrderingInClassVisitor extends VoidVisitorAdapter<Void> {
         }
     }
 
+    /*
+     * Function to visit all body declarations of the submitted java program
+     */
     private void visit(TypeDeclaration type, Void arg){
         List<BodyDeclaration> bodyDeclarations = type.getMembers();
 
@@ -51,16 +54,25 @@ public class VariableOrderingInClassVisitor extends VoidVisitorAdapter<Void> {
             }
         });
 
+        /*
+        * Function to get instance of type declarations
+        */
         for(Object node : type.getMembers()){
             if(node instanceof TypeDeclaration){
                 visit((TypeDeclaration) node, arg);
             }
         }
 
+        /*
+        * Function to remove body declarations in a program
+         */
         for(BodyDeclaration m: temp){
             type.remove(m);
         }
 
+        /*
+        * Function to add body declarations from a list
+        */
         for (BodyDeclaration t: temp){
             type.addMember(t);
         }

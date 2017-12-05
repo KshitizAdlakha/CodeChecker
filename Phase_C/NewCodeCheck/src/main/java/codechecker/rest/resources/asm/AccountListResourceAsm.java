@@ -9,15 +9,21 @@ import codechecker.rest.resources.AccountResource;
 import java.util.List;
 
 /**
- * Created by on 7/22/14.
+ * Account List Resource Asm class
+ * extends Resource Assembler Support
  */
 public class AccountListResourceAsm extends ResourceAssemblerSupport<AccountList, AccountListResource> {
 
-
+    /**
+     * Account List Resource Asm constructor
+     */
     public AccountListResourceAsm() {
         super(AccountController.class, AccountListResource.class);
     }
 
+    /**
+     * Function to get all accounts and add to final results list
+     */
     @Override
     public AccountListResource toResource(AccountList accountList) {
         List<AccountResource> resList = new AccountResourceAsm().toResources(accountList.getAccounts());

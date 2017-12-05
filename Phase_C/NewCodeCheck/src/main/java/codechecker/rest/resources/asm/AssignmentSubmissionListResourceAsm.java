@@ -9,12 +9,21 @@ import java.util.List;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.*;
 
+/**
+ * Assignment Submission List Resources class
+ */
 public class AssignmentSubmissionListResourceAsm extends
         ResourceAssemblerSupport<AssignmentSubmissionList, AssignmentSubmissionListResource> {
+    /**
+     * Assignment Submission List Resource Asm constructor
+     */
     public AssignmentSubmissionListResourceAsm() {
         super(AssignmentController.class, AssignmentSubmissionListResource.class);
     }
 
+    /**
+     * Function to add assignment submissions of an account to assignment submission list
+     */
     @Override
     public AssignmentSubmissionListResource toResource(AssignmentSubmissionList list) {
         List<AssignmentSubmissionResource> resources = new AssignmentSubmissionResourceAsm().toResources(list.getEntries());

@@ -7,11 +7,21 @@ import codechecker.rest.resources.AccountResource;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.*;
 
+/**
+ * Account Resource Asm class
+ * extends Resource Assembler Support
+ */
 public class AccountResourceAsm extends ResourceAssemblerSupport<Account, AccountResource> {
+    /**
+     * Account Resource Asm constructor
+     */
     public AccountResourceAsm() {
         super(AccountController.class, AccountResource.class);
     }
 
+    /**
+     * Function to get all details of valid user accounts
+     */
     @Override
     public AccountResource toResource(Account account) {
         AccountResource res = new AccountResource();

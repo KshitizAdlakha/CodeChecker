@@ -8,18 +8,26 @@ import codechecker.rest.mvc.AssignmentSubmissionController;
 import codechecker.rest.resources.AssignmentSubmissionResource;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.*;
 
+/**
+ * Assignment Submission Resource Asm class
+ */
 public class AssignmentSubmissionResourceAsm extends ResourceAssemblerSupport<AssignmentSubmission, AssignmentSubmissionResource> {
 
+    /**
+     * Assignment Submission List Resource Asm constructor
+     */
     public AssignmentSubmissionResourceAsm()
     {
         super(AssignmentSubmissionController.class, AssignmentSubmissionResource.class);
     }
 
+    /**
+     * Function to store details of assignment submission to a list
+     */
     @Override
     public AssignmentSubmissionResource toResource(AssignmentSubmission assignmentSubmission) {
         AssignmentSubmissionResource res = new AssignmentSubmissionResource();
         res.setTitle(assignmentSubmission.getTitle());
-//        res.setContent(assignmentSubmission.getContent());
         res.setRid(assignmentSubmission.getId());
         Link self = linkTo(AssignmentSubmissionController.class).slash(assignmentSubmission.getId()).withSelfRel();
         res.add(self);
