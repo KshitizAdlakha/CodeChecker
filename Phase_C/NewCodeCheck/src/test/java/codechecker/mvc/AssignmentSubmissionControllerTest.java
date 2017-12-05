@@ -21,7 +21,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-
+/*Assignment Submission Controller Test class
+    */
 public class AssignmentSubmissionControllerTest {
     @InjectMocks
     private AssignmentSubmissionController controller;
@@ -31,6 +32,8 @@ public class AssignmentSubmissionControllerTest {
 
     private MockMvc mockMvc;
 
+    /*Initial setup of mocks
+        */
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
@@ -38,6 +41,8 @@ public class AssignmentSubmissionControllerTest {
         mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
     }
 
+    /*Test to get existing assignment submission
+    */
     @Test
     public void getExistingAssignmentSubmission() throws Exception {
         AssignmentSubmission entry = new AssignmentSubmission();
@@ -60,6 +65,8 @@ public class AssignmentSubmissionControllerTest {
                 .andExpect(status().isOk());
     }
 
+    /*Test to get non existing assignment submission
+    */
     @Test
     public void getNonExistingAssignmentSubmission() throws Exception {
         when(service.findAssignmentSubmission(1L)).thenReturn(null);
@@ -68,7 +75,8 @@ public class AssignmentSubmissionControllerTest {
            .andExpect(status().isNotFound());
     }
 
-
+    /*Test to delete existing assignment submission
+        */
     @Test
     public void deleteExistingAssignmentSubmission() throws Exception {
         AssignmentSubmission deletedAssignmentSubmission = new AssignmentSubmission();
@@ -83,6 +91,8 @@ public class AssignmentSubmissionControllerTest {
                 .andExpect(status().isOk());
     }
 
+    /*Test to delete non existing assignment submission
+        */
     @Test
     public void deleteNonExistingAssignmentSubmission() throws Exception {
         when(service.deleteAssignmentSubmission(1L)).thenReturn(null);
@@ -91,6 +101,8 @@ public class AssignmentSubmissionControllerTest {
                 .andExpect(status().isNotFound());
     }
 
+    /*Test to update existing assignment submission
+    */
     @Test
     public void updateExistingAssignmentSubmission() throws Exception {
         AssignmentSubmission updatedEntry = new AssignmentSubmission();
@@ -108,6 +120,8 @@ public class AssignmentSubmissionControllerTest {
                 .andExpect(status().isOk());
     }
 
+    /*Test to update non existing assignment submission
+    */
     @Test
     public void updateNonExistingAssignmentSubmission() throws Exception {
         when(service.updateAssignmentSubmission(eq(1L), any(AssignmentSubmission.class)))
@@ -118,7 +132,9 @@ public class AssignmentSubmissionControllerTest {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());
     }
-    
+
+    /*Test to compare existing assignment submission
+    */
     @Test
     public void testCompareAssignmentSubmissions() throws Exception{
 

@@ -36,6 +36,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+/*Account Controller Test class
+    */
 public class AccountControllerTest {
     @InjectMocks
     private AccountController controller;
@@ -47,6 +49,8 @@ public class AccountControllerTest {
 
     private ArgumentCaptor<Account> accountCaptor;
 
+    /*Initial setup of mocks and accounts
+    */
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
@@ -56,6 +60,8 @@ public class AccountControllerTest {
         accountCaptor = ArgumentCaptor.forClass(Account.class);
     }
 
+    /*Test to find all assignments for account
+    */
     @Test
     public void findAllAssignmentsForAccount() throws Exception {
         List<Assignment> list = new ArrayList<Assignment>();
@@ -80,6 +86,8 @@ public class AccountControllerTest {
                 .andExpect(status().isOk());
     }
 
+    /*Test to find all assignments for non-existing account
+    */
     @Test
     public void findAllAssignmentsForNonExistingAccount() throws Exception {
         List<Assignment> list = new ArrayList<Assignment>();
@@ -102,45 +110,8 @@ public class AccountControllerTest {
                 .andExpect(status().isNotFound());
     }
 
-
-    @Test
-    public void createAssignmentExistingAccount() throws Exception {
-        Assignment createdAssignment = new Assignment();
-        createdAssignment.setId(1L);
-        createdAssignment.setTitle("Test Title");
-
-        when(service.createAssignment(eq(1L), any(Assignment.class))).thenReturn(createdAssignment);
-
-        mockMvc.perform(post("/rest/accounts/1/assignments")
-                .content("{\"title\":\"Test Title\"}")
-                .contentType(MediaType.APPLICATION_JSON))
-                .andDo(print())
-                .andExpect(jsonPath("$.title", is("Test Title")))
-                .andExpect(jsonPath("$.links[*].href", hasItem(endsWith("/assignments/1"))))
-                .andExpect(header().string("Location", endsWith("/assignments/1")))
-                .andExpect(status().isCreated());
-    }
-
-    @Test
-    public void createAssignmentNonExistingAccount() throws Exception {
-        when(service.createAssignment(eq(1L), any(Assignment.class))).thenThrow(new AccountDoesNotExistException());
-
-        mockMvc.perform(post("/rest/accounts/1/assignments")
-                .content("{\"title\":\"Test Title\"}")
-                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isNotFound());
-    }
-
-    @Test
-    public void createAssignmentExistingAssignmentName() throws Exception {
-        when(service.createAssignment(eq(1L), any(Assignment.class))).thenThrow(new AssignmentExistsException());
-
-        mockMvc.perform(post("/rest/accounts/1/assignments")
-                .content("{\"title\":\"Test Title\"}")
-                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isConflict());
-    }
-
+    /*Test to create account for non existing username
+    */
     @Test
     public void createAccountNonExistingUsername() throws Exception {
         Account createdAccount = new Account();
@@ -163,6 +134,8 @@ public class AccountControllerTest {
         assertEquals("test", password);
     }
 
+    /*Test to create account for existing username
+    */
     @Test
     public void createAccountExistingUsername() throws Exception {
         Account createdAccount = new Account();
@@ -178,6 +151,8 @@ public class AccountControllerTest {
                 .andExpect(status().isConflict());
     }
 
+    /*Test to get account for given username
+    */
     @Test
     public void getExistingAccount() throws Exception {
         Account foundAccount = new Account();
@@ -196,6 +171,8 @@ public class AccountControllerTest {
                         .andExpect(status().isOk());
     }
 
+    /*Test to get non-existing account for username
+    */
     @Test
     public void getNonExistingAccount() throws Exception {
         when(service.findAccount(1L)).thenReturn(null);
@@ -204,6 +181,8 @@ public class AccountControllerTest {
                 .andExpect(status().isNotFound());
     }
 
+    /*Test to find all accounts
+    */
     @Test
     public void findAllAccounts() throws Exception {
         List<Account> accounts = new ArrayList<Account>();
@@ -230,7 +209,8 @@ public class AccountControllerTest {
                 .andExpect(status().isOk());
     }
 
-
+    /*Test to find all accounts by name
+        */
     @Test
     public void findAccountsByName() throws Exception {
         List<Account> accounts = new ArrayList<Account>();

@@ -31,6 +31,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+/*Assignment Controller Test class
+    */
 public class AssignmentControllerTest {
     @InjectMocks
     private AssignmentController controller;
@@ -40,6 +42,8 @@ public class AssignmentControllerTest {
 
     private MockMvc mockMvc;
 
+    /*Initial setup of mocks
+        */
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
@@ -47,6 +51,8 @@ public class AssignmentControllerTest {
         mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
     }
 
+    /*Test to find all assignments
+    */
     @Test
     public void findAllAssignments() throws Exception {
         List<Assignment> list = new ArrayList<Assignment>();
@@ -71,31 +77,8 @@ public class AssignmentControllerTest {
                 .andExpect(status().isOk());
     }
 
-    @Test
-    public void getAssignment() throws Exception {
-        Assignment assignment = new Assignment();
-        assignment.setTitle("Test Title");
-        assignment.setId(1L);
-
-        Account account = new Account();
-        account.setId(1L);
-        assignment.setOwner(account);
-
-        when(assignmentService.findAssignment(1L)).thenReturn(assignment);
-
-        mockMvc.perform(get("/rest/assignments/1"))
-                .andExpect(jsonPath("$.links[*].href",
-                        hasItem(endsWith("/assignments/1"))))
-                .andExpect(jsonPath("$.links[*].href",
-                        hasItem(endsWith("/assignments/1/assignment-submissions"))))
-                .andExpect(jsonPath("$.links[*].href",
-                        hasItem(endsWith("/accounts/1"))))
-                .andExpect(jsonPath("$.links[*].rel",
-                        hasItems(is("self"), is("owner"), is("entries"))))
-                .andExpect(jsonPath("$.title", is("Test Title")))
-                .andExpect(status().isOk());
-    }
-
+    /*Test to get Non Existing Assignment
+    */
     @Test
     public void getNonExistingAssignment() throws Exception {
         when(assignmentService.findAssignment(1L)).thenReturn(null);
@@ -104,6 +87,8 @@ public class AssignmentControllerTest {
                 .andExpect(status().isNotFound());
     }
 
+    /*Test to create assignments for existing assignment
+    */
     @Test
     public void createAssignmentEntryExistingAssignment() throws Exception {
         Assignment assignment = new Assignment();
@@ -125,6 +110,8 @@ public class AssignmentControllerTest {
     }
 
 
+    /*Test to create assignment entry for non existing assignment
+    */
     @Test
     public void createAssignmentEntryNonExistingAssignment() throws Exception {
         when(assignmentService.createAssignmentSubmission(eq(1L), any(AssignmentSubmission.class)))
@@ -136,6 +123,8 @@ public class AssignmentControllerTest {
                 .andExpect(status().isNotFound());
     }
 
+    /*Test to list assignment submissions for existing assignment
+    */
     @Test
     public void listAssignmentSubmissionsForExistingAssignment() throws Exception {
 
@@ -162,6 +151,8 @@ public class AssignmentControllerTest {
                 .andExpect(status().isOk());
     }
 
+    /*Test to list assignment submissions for non-existing assignments
+    */
     @Test
     public void listAssignmentSubmissionsForNonExistingAssignment() throws Exception {
         when(assignmentService.findAllAssignmentSubmissions(1L)).thenThrow(new AssignmentNotFoundException());
