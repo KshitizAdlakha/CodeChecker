@@ -4,18 +4,20 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Hashtable;
+import java.util.List;
 
 import com.github.javaparser.JavaParser;
+import com.github.javaparser.TokenRange;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.Node;
+import com.github.javaparser.ast.NodeList;
+import com.github.javaparser.ast.body.ConstructorDeclaration;
 import com.github.javaparser.ast.body.Parameter;
 import com.github.javaparser.ast.body.VariableDeclarator;
-import com.github.javaparser.ast.expr.AssignExpr;
-import com.github.javaparser.ast.expr.BinaryExpr;
-import com.github.javaparser.ast.expr.NameExpr;
-import com.github.javaparser.ast.expr.SimpleName;
-import com.github.javaparser.ast.expr.UnaryExpr;
-import com.github.javaparser.ast.expr.VariableDeclarationExpr;
+import com.github.javaparser.ast.expr.*;
+import com.github.javaparser.ast.stmt.BlockStmt;
+import com.github.javaparser.ast.visitor.GenericVisitor;
+import com.github.javaparser.ast.visitor.VoidVisitor;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 
 
@@ -51,12 +53,27 @@ public class VariableStandardizationVisitor extends VoidVisitorAdapter<Void> {
      */
     public void visit(Node n, Void arg) {
     	
-    	/*
+
+    	if(n instanceof ConstructorDeclaration){
+			List<Node> nodes = n.getChildNodes();
+			for (Node node:nodes) {
+				if(node instanceof BlockStmt){
+//					System.out.println(node);
+					visit(node, null);
+				}
+			}
+		}
+		else if(n instanceof BlockStmt){
+			List<Node> nodes = n.getChildNodes();
+			for (Node node:nodes) {
+				visit(node, null);
+			}
+		}
+		/*
     	 * If this node is an initialization or a declaration,
     	 * replace the variable being set with a standard value.
     	 */
-    	if(n instanceof VariableDeclarationExpr) {
-    		
+    	else if(n instanceof VariableDeclarationExpr) {
     		VariableDeclarator vd = ((VariableDeclarationExpr) n).getVariables().get(0);
     		replaceVariableDeclarator(vd);
     		
@@ -150,6 +167,9 @@ public class VariableStandardizationVisitor extends VoidVisitorAdapter<Void> {
      * @param e - the Node to be renamed
      */
     private void replaceVariable(Node e) {
+//    	System.out.println(e);
+//    	System.out.println(e.getClass());
+//		System.out.println();
 		if(e instanceof NameExpr) {
 			NameExpr ne = (NameExpr)e;
 			
@@ -161,7 +181,33 @@ public class VariableStandardizationVisitor extends VoidVisitorAdapter<Void> {
 			//value to replace it.
 			if(replacementName != null) {
 				ne.setName(replacementName);
+			} else {
+				ne.setName(getNextVariable());
 			}
+		} else if(e instanceof IntegerLiteralExpr){
+			IntegerLiteralExpr ile = (IntegerLiteralExpr) e;
+			ile.setInt(0);
+		} else if(e instanceof StringLiteralExpr){
+			StringLiteralExpr sle = (StringLiteralExpr) e;
+			sle.setString("");
+		} else if(e instanceof FieldAccessExpr){
+			FieldAccessExpr fae = (FieldAccessExpr) e;
+			SimpleName replacementName = replacementMap.get(fae.getName());
+			if(replacementName != null) {
+				fae.setName(replacementName);
+			} else {
+				fae.setName(getNextVariable());
+			}
+
+			String currentScopeName = fae.getScope().toString();
+
+			SimpleName replacementScopeName = replacementMap.get(currentScopeName);
+			if(replacementScopeName==null){
+				replacementScopeName=getNextVariable();
+			}
+			NameExpr ex = new NameExpr(replacementScopeName);
+
+			fae.setScope(ex);
 		}
     }
     
@@ -181,20 +227,4 @@ public class VariableStandardizationVisitor extends VoidVisitorAdapter<Void> {
 		//Replace the variable name
 		vd.setName(newName);
     }
-
-//	public static void main(String [] args){
-//		FileInputStream in = null;
-//		try {
-//		 in = new FileInputStream(new File("src//main//webapp//app//app//upload//1.java"));
-//		  } catch (FileNotFoundException e) {
-//		       e.printStackTrace();
-//		}
-//
-//		// parse the file
-//		CompilationUnit cu = JavaParser.parse(in);
-//		System.out.println(cu.toString());
-//		cu.accept(new VariableStandardizationVisitor(), null);
-//		System.out.println(cu.toString());
-//
-//    }
 }
