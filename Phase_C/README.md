@@ -2,7 +2,7 @@
 
 1. Install Maven on your local system
 2. Run `mvn install` to run import the dependencies included in the pom.xml file
-3. Run `mvn tomcat:run` or `mvn tomcat7:run` to run the application
+3. Run `mvn tomcat7:run` to run the application
 4. Browse to http://localhost:8080/code-checker/#/ to access the application
 
 
