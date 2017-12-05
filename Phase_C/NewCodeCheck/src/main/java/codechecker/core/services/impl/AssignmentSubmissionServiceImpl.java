@@ -84,33 +84,48 @@ public class AssignmentSubmissionServiceImpl implements AssignmentSubmissionServ
 	         */
             CommentRemovalVisitor crv1 = new CommentRemovalVisitor();
             CommentRemovalVisitor crv2 = new CommentRemovalVisitor();
+
             FunctionOrderingVisitor nov1 = new FunctionOrderingVisitor();
             FunctionOrderingVisitor nov2 = new FunctionOrderingVisitor();
-            VariableOrderingVisitor vov1 = new VariableOrderingVisitor();
-            VariableOrderingVisitor vov2 = new VariableOrderingVisitor();
-            VariableStandardizationVisitor vsv1 = new VariableStandardizationVisitor();
-            VariableStandardizationVisitor vsv2 = new VariableStandardizationVisitor();
+
+            VariableOrderingInClassVisitor vov1 = new VariableOrderingInClassVisitor();
+            VariableOrderingInClassVisitor vov2 = new VariableOrderingInClassVisitor();
+
+            VariableOrderInMethodVisitor vomv1 = new VariableOrderInMethodVisitor();
+            VariableOrderInMethodVisitor vomv2 = new VariableOrderInMethodVisitor();
+
             FunctionStandardizationVisitor fsv1 = new FunctionStandardizationVisitor();
             FunctionStandardizationVisitor fsv2 = new FunctionStandardizationVisitor();
+
+            VariableStandardizationVisitor vsv1 = new VariableStandardizationVisitor();
+            VariableStandardizationVisitor vsv2 = new VariableStandardizationVisitor();
+
             VariableDatatypeVisitor vdv1 = new VariableDatatypeVisitor();
             VariableDatatypeVisitor vdv2 = new VariableDatatypeVisitor();
+
             MethodVisitor mv1 = new MethodVisitor();
             MethodVisitor mv2 = new MethodVisitor();
+
             FieldDatatypeVisitor fdv1 = new FieldDatatypeVisitor();
             FieldDatatypeVisitor fdv2 = new FieldDatatypeVisitor();
+
             HashCodeVisitor hcv1 = new HashCodeVisitor();
             HashCodeVisitor hcv2 = new HashCodeVisitor();
 
             cu1.accept(crv1, null); //All the nodes in the AST generated from the first submission are visited and the nodes identified as comments are removed
             cu2.accept(crv2, null); //All the nodes in the AST generated from the second submission are visited and the nodes identified as comments are removed
 
-            // orders Nodes in such a way that the variable declaration is done at the last in a block statement
+            // orders Nodes in such a way that the variable declaration is done at the last in classes
             cu1.accept(vov1, null);
             cu2.accept(vov2, null);
 
+            // order Nodes by Data type in each Bloack Statement
+            cu1.accept(vomv1, null);
+            cu2.accept(vomv2, null);
+
 //            Standardizes variable naming
-//            cu1.accept(vsv1, null);
-//            cu2.accept(vsv2, null);
+            cu1.accept(vsv1, null);
+            cu2.accept(vsv2, null);
 
             //Standardizes all datatypes
             cu1.accept(vdv1, null);
