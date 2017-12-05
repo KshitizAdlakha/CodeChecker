@@ -1,5 +1,6 @@
 package codechecker.core.services.impl;
 
+import codechecker.core.services.impl.visitors.*;
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ast.CompilationUnit;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,9 @@ import codechecker.core.services.AssignmentSubmissionService;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import  org.apache.commons.io.FileUtils;
 
 /**
  * Assignment Submission Service Implementation class
@@ -61,8 +65,6 @@ public class AssignmentSubmissionServiceImpl implements AssignmentSubmissionServ
         FileInputStream in1;
         FileInputStream in2;
         String similarityPercent="0";
-        //Assignment firstSubmission = findAssignment((long) 0, assignmentId);
-        //Assignment secondSubmission  = findAssignment((long) 0, otherAssignmentId);
 
         try {
 			/*
@@ -82,6 +84,10 @@ public class AssignmentSubmissionServiceImpl implements AssignmentSubmissionServ
 	         */
             CommentRemovalVisitor crv1 = new CommentRemovalVisitor();
             CommentRemovalVisitor crv2 = new CommentRemovalVisitor();
+            FunctionOrderingVisitor nov1 = new FunctionOrderingVisitor();
+            FunctionOrderingVisitor nov2 = new FunctionOrderingVisitor();
+            VariableOrderingVisitor vov1 = new VariableOrderingVisitor();
+            VariableOrderingVisitor vov2 = new VariableOrderingVisitor();
             VariableStandardizationVisitor vsv1 = new VariableStandardizationVisitor();
             VariableStandardizationVisitor vsv2 = new VariableStandardizationVisitor();
             FunctionStandardizationVisitor fsv1 = new FunctionStandardizationVisitor();
@@ -91,17 +97,36 @@ public class AssignmentSubmissionServiceImpl implements AssignmentSubmissionServ
 
             cu1.accept(crv1, null); //All the nodes in the AST generated from the first submission are visited and the nodes identified as comments are removed
             cu2.accept(crv2, null); //All the nodes in the AST generated from the second submission are visited and the nodes identified as comments are removed
-            
-            //Standardizes variable naming
-            cu1.accept(vsv1, null);
-            cu2.accept(vsv2, null);
-            
+
+            cu1.accept(vov1, null);
+            cu2.accept(vov2, null);
+
+//            Standardizes variable naming
+//            cu1.accept(vsv1, null);
+//            cu2.accept(vsv2, null);
+
+            //Order nodes in on the number of variables, number of parameters, and the return type
+            cu1.accept(nov1, null);
+            cu2.accept(nov2, null);
+
             //Standardizes function naming
             cu1.accept(fsv1, null);
             cu2.accept(fsv2, null);
             
             cu1.accept(hcv1, null); //All the nodes in the AST generated from the first submission are visited.
             cu2.accept(hcv2, null); //All the nodes in the AST generated from the second submission are visited.
+
+
+            // save transformed files to be displayed
+            try {
+                FileUtils.writeStringToFile(
+                        new File("src//main//webapp//app//app//upload//"+assignmentId+"_transformed.java"), cu1.toString());
+                FileUtils.writeStringToFile(
+                        new File("src//main//webapp//app//app//upload//"+otherAssignmentId+"_transformed.java"), cu2.toString());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
 
 	        /*
 	        * SimilarityPercentGenerator will calculate the percentage based on the similarity of the two programs.

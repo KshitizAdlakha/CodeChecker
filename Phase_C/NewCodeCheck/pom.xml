@@ -156,7 +156,7 @@
                     <source>1.6</source>
                     <target>1.6</target>
                     <excludes>
-                        <exclude>src/main/webapp/app/app/upload/*.java</exclude>
+                        <exclude>**/src/main/webapp/app/app/upload/*.java</exclude>
                     </excludes>
                 </configuration>
             </plugin>

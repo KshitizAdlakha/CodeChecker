@@ -1,4 +1,4 @@
-package codechecker.core.services.impl;
+package codechecker.core.services.impl.visitors;
 
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.Node;

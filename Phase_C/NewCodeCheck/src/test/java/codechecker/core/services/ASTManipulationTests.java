@@ -12,10 +12,10 @@ import org.junit.Test;
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ast.CompilationUnit;
 
-import codechecker.core.services.impl.CommentRemovalVisitor;
-import codechecker.core.services.impl.FunctionStandardizationVisitor;
-import codechecker.core.services.impl.HashCodeVisitor;
-import codechecker.core.services.impl.VariableStandardizationVisitor;
+import codechecker.core.services.impl.visitors.CommentRemovalVisitor;
+import codechecker.core.services.impl.visitors.FunctionStandardizationVisitor;
+import codechecker.core.services.impl.visitors.HashCodeVisitor;
+import codechecker.core.services.impl.visitors.VariableStandardizationVisitor;
 
 public class ASTManipulationTests {
 

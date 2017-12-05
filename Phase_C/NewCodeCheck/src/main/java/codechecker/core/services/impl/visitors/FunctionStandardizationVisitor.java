@@ -1,4 +1,4 @@
-package codechecker.core.services.impl;
+package codechecker.core.services.impl.visitors;
 
 import java.io.File;
 import java.util.Hashtable;
