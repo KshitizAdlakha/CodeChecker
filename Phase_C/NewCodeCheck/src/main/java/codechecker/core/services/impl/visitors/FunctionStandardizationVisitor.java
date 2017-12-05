@@ -1,31 +1,32 @@
 package codechecker.core.services.impl.visitors;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.Hashtable;
 
+import com.github.javaparser.JavaParser;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.Node;
+import com.github.javaparser.ast.PackageDeclaration;
+import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.VariableDeclarator;
-import com.github.javaparser.ast.expr.AssignExpr;
-import com.github.javaparser.ast.expr.BinaryExpr;
-import com.github.javaparser.ast.expr.Expression;
-import com.github.javaparser.ast.expr.MethodCallExpr;
-import com.github.javaparser.ast.expr.NameExpr;
-import com.github.javaparser.ast.expr.SimpleName;
-import com.github.javaparser.ast.expr.UnaryExpr;
-import com.github.javaparser.ast.expr.VariableDeclarationExpr;
+import com.github.javaparser.ast.expr.*;
 import com.github.javaparser.ast.stmt.ExpressionStmt;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 import com.github.javaparser.symbolsolver.javaparser.Navigator;
 import com.github.javaparser.symbolsolver.javaparsermodel.JavaParserFacade;
 import com.github.javaparser.symbolsolver.resolution.typesolvers.JavaParserTypeSolver;
 
-//This class visits all the nodes in the AST and renames the functions
+//This class visits all the nodes in the AST and renames the functions, and classes
 public class FunctionStandardizationVisitor extends VoidVisitorAdapter<Void> {
 
 	private static final String FUNCTION_PREFIX = "v";
-	private int functionCount = 0;
+    private static final String CLASS_PREFIX = "c";
+
+    private int functionCount = 0;
+    private int classCount = 0;
 	private Hashtable<SimpleName, SimpleName> replacementMap =
 			new Hashtable<SimpleName, SimpleName>();
 	
@@ -34,6 +35,12 @@ public class FunctionStandardizationVisitor extends VoidVisitorAdapter<Void> {
 		functionCount++;
 		return nextName;
 	}
+
+	private SimpleName getNextClassName() {
+        SimpleName nextName = new SimpleName(CLASS_PREFIX+classCount);
+        classCount++;
+        return nextName;
+    }
 
     /*
      * Function to visit each of the child nodes of an AST
@@ -50,7 +57,30 @@ public class FunctionStandardizationVisitor extends VoidVisitorAdapter<Void> {
      * standardize the variable names
      */
     public void visit(Node n, Void arg) {
-    	
+
+        // rename classes to a standard name
+    	if(n instanceof ClassOrInterfaceDeclaration){
+
+            ClassOrInterfaceDeclaration cd = (ClassOrInterfaceDeclaration) n;
+            SimpleName oldName = cd.getName();
+            SimpleName newName;
+            if(replacementMap.get(oldName)!=null){
+                newName = replacementMap.get(oldName);
+            } else {
+                newName = getNextClassName();
+                replacementMap.put(oldName, newName);
+            }
+            cd.setName(newName);
+
+        }
+
+        // rename the package to a standard name
+        if(n instanceof PackageDeclaration){
+            PackageDeclaration pd = (PackageDeclaration) n;
+            Name sn = new Name("package");
+            pd.setName(sn);
+        }
+
     	/*
     	 * If this is an initialization or a declaration,
     	 * replace the variable being set with a standard value.
@@ -91,5 +121,4 @@ public class FunctionStandardizationVisitor extends VoidVisitorAdapter<Void> {
             visit(child, arg);
         }
     }
-    
 }
