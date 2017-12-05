@@ -16,6 +16,7 @@ import com.github.javaparser.ast.body.Parameter;
 import com.github.javaparser.ast.body.VariableDeclarator;
 import com.github.javaparser.ast.expr.*;
 import com.github.javaparser.ast.stmt.BlockStmt;
+import com.github.javaparser.ast.stmt.ExpressionStmt;
 import com.github.javaparser.ast.visitor.GenericVisitor;
 import com.github.javaparser.ast.visitor.VoidVisitor;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
@@ -58,7 +59,6 @@ public class VariableStandardizationVisitor extends VoidVisitorAdapter<Void> {
 			List<Node> nodes = n.getChildNodes();
 			for (Node node:nodes) {
 				if(node instanceof BlockStmt){
-//					System.out.println(node);
 					visit(node, null);
 				}
 			}
@@ -67,6 +67,17 @@ public class VariableStandardizationVisitor extends VoidVisitorAdapter<Void> {
 			List<Node> nodes = n.getChildNodes();
 			for (Node node:nodes) {
 				visit(node, null);
+			}
+		}
+		else if(n instanceof ExpressionStmt){
+			if(((ExpressionStmt) n).getExpression().isAssignExpr()){
+				AssignExpr assignExpr = (AssignExpr) ((ExpressionStmt) n).getExpression();
+				replaceVariable(assignExpr.getValue());
+				replaceVariable(assignExpr.getTarget());
+			} else {
+				for (Node node:n.getChildNodes()) {
+					visit(node, null);
+				}
 			}
 		}
 		/*
@@ -167,9 +178,6 @@ public class VariableStandardizationVisitor extends VoidVisitorAdapter<Void> {
      * @param e - the Node to be renamed
      */
     private void replaceVariable(Node e) {
-//    	System.out.println(e);
-//    	System.out.println(e.getClass());
-//		System.out.println();
 		if(e instanceof NameExpr) {
 			NameExpr ne = (NameExpr)e;
 			
@@ -227,4 +235,16 @@ public class VariableStandardizationVisitor extends VoidVisitorAdapter<Void> {
 		//Replace the variable name
 		vd.setName(newName);
     }
+    
+    public static void main(String [] args){
+		FileInputStream in1 = null;
+		try {
+			in1 = new FileInputStream(new File("src//main//webapp//app//app//upload//1.java"));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		CompilationUnit cu1 = JavaParser.parse(in1);
+		cu1.accept(new VariableStandardizationVisitor(), null);
+
+	}
 }

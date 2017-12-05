@@ -60,72 +60,74 @@ public class FunctionStandardizationVisitor extends VoidVisitorAdapter<Void> {
      */
     public void visit(Node n, Void arg) {
 
-        // rename classes and their constructors to a standard name
-    	if(n instanceof ClassOrInterfaceDeclaration){
+        try{
+            // rename classes and their constructors to a standard name
+            if(n instanceof ClassOrInterfaceDeclaration){
+                List<ConstructorDeclaration> constructors = ((ClassOrInterfaceDeclaration) n).getConstructors();
 
-    	    List<ConstructorDeclaration> constructors = ((ClassOrInterfaceDeclaration) n).getConstructors();
-
-            ClassOrInterfaceDeclaration cd = (ClassOrInterfaceDeclaration) n;
-            SimpleName oldName = cd.getName();
-            SimpleName newName;
-            if(replacementMap.get(oldName)!=null){
-                newName = replacementMap.get(oldName);
-            } else {
-                newName = getNextClassName();
-                replacementMap.put(oldName, newName);
+                ClassOrInterfaceDeclaration cd = (ClassOrInterfaceDeclaration) n;
+                SimpleName oldName = cd.getName();
+                SimpleName newName;
+                if(replacementMap.get(oldName)!=null){
+                    newName = replacementMap.get(oldName);
+                } else {
+                    newName = getNextClassName();
+                    replacementMap.put(oldName, newName);
+                }
+                for(ConstructorDeclaration constructorDeclaration: constructors){
+                    constructorDeclaration.setName(newName);
+                }
+                cd.setName(newName);
             }
-            for(ConstructorDeclaration constructorDeclaration: constructors){
-                constructorDeclaration.setName(newName);
-            }
-            cd.setName(newName);
-        }
 
-        // rename the package to a standard name
-        else if(n instanceof PackageDeclaration){
-            PackageDeclaration pd = (PackageDeclaration) n;
-            Name sn = new Name("package");
-            pd.setName(sn);
-        }
+            // rename the package to a standard name
+            else if(n instanceof PackageDeclaration){
+                PackageDeclaration pd = (PackageDeclaration) n;
+                Name sn = new Name("package");
+                pd.setName(sn);
+            }
 
     	/*
     	 * If this is an initialization or a declaration,
     	 * replace the variable being set with a standard value.
     	 */
-    	else if(n instanceof MethodDeclaration) {
-    		
-    		MethodDeclaration md = ((MethodDeclaration) n);
-    		SimpleName newName = getNextFunction();
-    		SimpleName oldName = md.getName();
+            else if(n instanceof MethodDeclaration) {
 
-	    	replacementMap.put(oldName, newName);
-    		
-    		//Replace the function name
-    		md.setName(newName);
-    	}
-    	
-    	else if(n instanceof MethodCallExpr) {
-    		
-    		MethodCallExpr mce = ((MethodCallExpr) n);
-    		SimpleName newName;
-    		SimpleName oldName = mce.getName();
-    		
-    		if(replacementMap.get(mce.getName()) != null) {
-    			newName = replacementMap.get(mce.getName());
-    		}
-    		
-    		else {
-    			newName = getNextFunction();
-    			replacementMap.put(oldName, newName);
-    		}
- 
-    		//Replace the function name
-    		mce.setName(newName);
-    		
-    	}
-    	
-        for(Node child : n.getChildNodes()) {
-            visit(child, arg);
+                MethodDeclaration md = ((MethodDeclaration) n);
+                SimpleName newName = getNextFunction();
+                SimpleName oldName = md.getName();
+
+                replacementMap.put(oldName, newName);
+
+                // Replace the function name
+                md.setName(newName);
+            }
+
+            else if(n instanceof MethodCallExpr) {
+
+                MethodCallExpr mce = ((MethodCallExpr) n);
+                SimpleName newName;
+                SimpleName oldName = mce.getName();
+
+                if(replacementMap.get(oldName) != null) {
+                    newName = replacementMap.get(mce.getName());
+                } else {
+                    newName = getNextFunction();
+                    replacementMap.put(oldName, newName);
+                }
+
+                //Replace the function name
+                mce.setName(newName);
+
+            }
+
+            for(Node child : n.getChildNodes()) {
+                visit(child, null);
+            }
+        } catch (Exception e){
+            System.out.println(e);
         }
+
     }
 
 }

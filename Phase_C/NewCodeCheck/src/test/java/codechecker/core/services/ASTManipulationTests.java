@@ -67,7 +67,6 @@ public class ASTManipulationTests {
             assertEquals(true, a.equals(b));
 
         } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
         	fail("Not yet implemented");
         }
 	}
@@ -107,7 +106,6 @@ public class ASTManipulationTests {
             assertEquals(true, a.equals(b));
 
         } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
             fail("Not yet implemented");
         }
     }
@@ -148,7 +146,6 @@ public class ASTManipulationTests {
             assertEquals(false, a.equals(b));
 
         } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
             fail("Not yet implemented");
         }
     }
@@ -241,7 +238,6 @@ public class ASTManipulationTests {
             assertEquals(true, a.equals(b));
 
         } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
             fail("Not yet implemented");
         }
     }
@@ -279,7 +275,6 @@ public class ASTManipulationTests {
             assertEquals(false, a.equals(b));
 
         } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
             fail("Not yet implemented");
         }
     }
@@ -335,7 +330,6 @@ public class ASTManipulationTests {
                 assertEquals(true, a.equals(b));
 
             } catch (FileNotFoundException e) {
-                // TODO Auto-generated catch block
             	fail("Not yet implemented");
             }
 	}
@@ -390,7 +384,6 @@ public class ASTManipulationTests {
                 assertEquals(true, a.equals(b));
 
             } catch (FileNotFoundException e) {
-                // TODO Auto-generated catch block
             	fail("Not yet implemented");
             }
 	}
@@ -445,7 +438,6 @@ public class ASTManipulationTests {
                 assertEquals(true, a.equals(b));
 
             } catch (FileNotFoundException e) {
-                // TODO Auto-generated catch block
             	fail("Not yet implemented");
             }
 	}
@@ -502,7 +494,6 @@ public class ASTManipulationTests {
             assertEquals(true, a.equals(b));
 
         } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
             fail("Not yet implemented");
         }
     }
@@ -558,7 +549,6 @@ public class ASTManipulationTests {
             assertEquals(true, a.equals(b));
 
         } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
             fail("Not yet implemented");
         }
     }
@@ -613,7 +603,6 @@ public class ASTManipulationTests {
             assertEquals(true, a.equals(b));
 
         } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
             fail("Not yet implemented");
         }
     }
@@ -668,7 +657,6 @@ public class ASTManipulationTests {
             assertEquals(true, a.equals(b));
 
         } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
             fail("Not yet implemented");
         }
     }
@@ -724,7 +712,6 @@ public class ASTManipulationTests {
             assertEquals(false, a.equals(b));
 
         } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
             fail("Not yet implemented");
         }
     }
@@ -779,7 +766,6 @@ public class ASTManipulationTests {
             assertEquals(false, a.equals(b));
 
         } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
             fail("Not yet implemented");
         }
     }

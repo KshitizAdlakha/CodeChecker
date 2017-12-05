@@ -175,7 +175,6 @@ public class AssignmentSubmissionServiceImpl implements AssignmentSubmissionServ
             similarityPercent = String.format("%.2f", spg.getSimilarityPercent(hcv1, hcv2)); //Converted to string to display the percent rounded off to two decimal places
 
         } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return similarityPercent;

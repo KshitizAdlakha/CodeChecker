@@ -50,7 +50,6 @@ public class AssignmentSubmission {
             // prints the resulting compilation unit to default system output
             return cu.toString();
         } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
             return "";
         }
