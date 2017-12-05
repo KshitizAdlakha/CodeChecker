@@ -92,6 +92,12 @@ public class AssignmentSubmissionServiceImpl implements AssignmentSubmissionServ
             VariableStandardizationVisitor vsv2 = new VariableStandardizationVisitor();
             FunctionStandardizationVisitor fsv1 = new FunctionStandardizationVisitor();
             FunctionStandardizationVisitor fsv2 = new FunctionStandardizationVisitor();
+            VariableDatatypeVisitor vdv1 = new VariableDatatypeVisitor();
+            VariableDatatypeVisitor vdv2 = new VariableDatatypeVisitor();
+            MethodVisitor mv1 = new MethodVisitor();
+            MethodVisitor mv2 = new MethodVisitor();
+            FieldDatatypeVisitor fdv1 = new FieldDatatypeVisitor();
+            FieldDatatypeVisitor fdv2 = new FieldDatatypeVisitor();
             HashCodeVisitor hcv1 = new HashCodeVisitor();
             HashCodeVisitor hcv2 = new HashCodeVisitor();
 
@@ -106,6 +112,14 @@ public class AssignmentSubmissionServiceImpl implements AssignmentSubmissionServ
 //            cu1.accept(vsv1, null);
 //            cu2.accept(vsv2, null);
 
+            //Standardizes all datatypes
+            cu1.accept(vdv1, null);
+            cu2.accept(vdv2, null);
+            cu1.accept(mv1, null);
+            cu2.accept(mv2, null);
+            cu1.accept(fdv1, null);
+            cu2.accept(fdv2, null);
+            
             //Order nodes in on the basis of number of variables, number of parameters, and the return type
             cu1.accept(nov1, null);
             cu2.accept(nov2, null);
