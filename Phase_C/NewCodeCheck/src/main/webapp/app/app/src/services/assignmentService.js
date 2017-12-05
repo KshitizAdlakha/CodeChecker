@@ -3,8 +3,8 @@ angular
     .factory('assignmentService', function ($http, $resource){
         var service = {};
         service.createAssignment = function(userId, assignment) {
-            var Assignment = $resource("/code-checker/rest/accounts/:paramAccountId/assignments");
-            return Assignment.save({paramAccountId: userId}, assignment).$promise;
+            assignment.title=userId+"_"+assignment.title;
+            return $http.post("/code-checker/rest/accounts/"+userId+"/assignments", assignment)
         };
 
         service.getAllAssignments = function() {
@@ -14,8 +14,16 @@ angular
             });
         };
 
+        service.createAssignmentSubmissions = function (assignmentId, assignmentSubmission) {
+            return $http.post("/code-checker/rest/assignments/"+assignmentId+"/assignment-submissions", assignmentSubmission)
+        };
+
         service.compareAssignments = function (id1, id2) {
             return $http.get("/code-checker/rest/assignment-submissions/compare?assignmentId="+id1+"&otherAssignmentId="+id2);
+        };
+
+        service.checkIfAssignmentAlreadyExists = function (assignment, accountId) {
+            return $http.get("/code-checker/rest/assignments/name/"+accountId+"_"+assignment.title);
         };
 
         service.getAssignmentsForAccount = function(accountId) {

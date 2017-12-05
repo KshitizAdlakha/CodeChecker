@@ -87,7 +87,7 @@ public class AssignmentControllerTest {
                 .andExpect(jsonPath("$.links[*].href",
                         hasItem(endsWith("/assignments/1"))))
                 .andExpect(jsonPath("$.links[*].href",
-                        hasItem(endsWith("/assignments/1/assignment-entries"))))
+                        hasItem(endsWith("/assignments/1/assignment-submissions"))))
                 .andExpect(jsonPath("$.links[*].href",
                         hasItem(endsWith("/accounts/1"))))
                 .andExpect(jsonPath("$.links[*].rel",

@@ -1,7 +1,7 @@
 (function() {
     angular
         .module('codeChecker')
-        .service('sessionService', function ($http, $base64, $location) {
+        .service('sessionService', function ($http, $base64) {
             var session = {};
             session.login = function(data) {
                 return $http.post("/code-checker/login", "username=" + data.name +

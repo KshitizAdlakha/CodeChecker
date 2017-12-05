@@ -70,8 +70,8 @@ public class AssignmentSubmissionServiceImpl implements AssignmentSubmissionServ
 			 *  in1 = new FileInputStream(firstSubmission.getAssociatedFile());
 			 *  in2 = new FileInputStream(secondSubmission.getAssociatedFile());
 			 */
-            in1 = new FileInputStream(new File("src//test//java//codechecker//Test1.java"));
-            in2 = new FileInputStream(new File("src//test//java//codechecker//Test2.java"));
+            in1 = new FileInputStream(new File("src//main//webapp//app//app//upload//"+assignmentId+".java"));
+            in2 = new FileInputStream(new File("src//main//webapp//app//app//upload//"+otherAssignmentId+".java"));
 
             // parse the file
             CompilationUnit cu1 = JavaParser.parse(in1);
@@ -84,6 +84,8 @@ public class AssignmentSubmissionServiceImpl implements AssignmentSubmissionServ
             CommentRemovalVisitor crv2 = new CommentRemovalVisitor();
             VariableStandardizationVisitor vsv1 = new VariableStandardizationVisitor();
             VariableStandardizationVisitor vsv2 = new VariableStandardizationVisitor();
+            FunctionStandardizationVisitor fsv1 = new FunctionStandardizationVisitor();
+            FunctionStandardizationVisitor fsv2 = new FunctionStandardizationVisitor();
             HashCodeVisitor hcv1 = new HashCodeVisitor();
             HashCodeVisitor hcv2 = new HashCodeVisitor();
 
@@ -93,6 +95,10 @@ public class AssignmentSubmissionServiceImpl implements AssignmentSubmissionServ
             //Standardizes variable naming
             cu1.accept(vsv1, null);
             cu2.accept(vsv2, null);
+            
+            //Standardizes function naming
+            cu1.accept(fsv1, null);
+            cu2.accept(fsv2, null);
             
             cu1.accept(hcv1, null); //All the nodes in the AST generated from the first submission are visited.
             cu2.accept(hcv2, null); //All the nodes in the AST generated from the second submission are visited.

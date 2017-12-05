@@ -50,7 +50,7 @@
                 <div class="row">
                     <div class="col s12 m8 push-m2 input-field">
                         <div class="row">
-                            <div class="col s6 file-field">
+                            <div class="col s12 m6 file-field">
                                 <div class="btn">
                                     <span>File 1</span>
                                     <input type="file" accept=".java" ng-class="{invalid: !invalidFileType}"
@@ -61,7 +61,7 @@
                                            placeholder="Select first file">
                                 </div>
                             </div>
-                            <div class="col s6 file-field">
+                            <div class="col s12 m6 file-field">
                                 <div class="btn">
                                     <span>File 2</span>
                                     <input type="file" accept=".java" ng-class="{invalid: !invalidFileType}"
@@ -72,6 +72,10 @@
                                            placeholder="Select second file">
                                 </div>
                             </div>
+                            <div class="progress col s12 m8 push-m2" ng-if="model.loader==1">
+                                <div class="determinate" ng-bind="model.progressPercentage + '%'"
+                                     style="width: {{model.progressPercentage}}%"></div>
+                            </div>
                         </div>
 
                     </div>
@@ -80,34 +84,16 @@
                     <div class="center col s12 m8 push-m2">
                         We only allow .java files for now, so make sure the files you upload are written in JAVA
                     </div>
-                    <div class="center col s12 m8 push-m2">
-                        Note: The application currently uses dummy files. File upload will be working soon
-                    </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12 m8 push-m2">
                         <a class="btn center form-control t1-login-btn"
                            ng-disabled="model.loader==1 || !assignment.title || !model.file1 || !model.file2"
-                           href="#/side-by-side?submissionId1=1&submissionId2=2"
+                           ng-click="model.uploadFiles(assignment, model.file1, model.file2); model.loader=1"
                            type="submit">
                             Analyze Results
                         </a>
                     </div>
-                    <!--ng-click="model.loader=1; model.uploadFiles(assignment)"-->
-
-                    <!--<div class="input-field col s12 m8 push-m2">-->
-                        <!--<a class="btn center form-control t1-analysis-history-btn"-->
-                           <!--href="#/analysis-history"-->
-                           <!--type="submit">-->
-                            <!--Analysis History-->
-                        <!--</a>-->
-                        <!--<div class="active" ng-if="model.loginLoader==1">-->
-                            <!--<br>-->
-                            <!--<div class="progress">-->
-                                <!--<div class="indeterminate"></div>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
                 </div>
             </form>
         </div>
