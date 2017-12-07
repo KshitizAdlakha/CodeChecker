@@ -1,0 +1,5 @@
+• overall, good presentation covering algorithm, tool, some aspects of the design
+• tool looks good, nice self-help instructions on start-up
+• side-by-side diff is helpful, but doesn't highlight the lines that are different (TA comment: ""Very well designed application – code highlighting would have been incredibly helpful or at least segregation of similar code snippets"")
+• limited to single-file comparison
+• tool provides interesting view that illustrates how ASTs are normalized
