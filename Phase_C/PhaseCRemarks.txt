@@ -1,0 +1,17 @@
+- System can only handle single files
+- For very similar files, similarity score was appropriate
+- In one comparison case, some file content seems to be cut off	
+
+- Very good work on UI - although code highlighting would have been very helpful
+- Panes showing code could be of equal lengths	Installation was very easy - no issues faced as such	
+
+- Exceptions are simply printed on the console (e.printStackTrace()) - could have been handled better, could have been logged or displayed as an error message, etc
+- In several places, variables are declared with over-specific types such as HashSet<Integer>, where Set<Integer> would have suffices and made the design more flexible. Similarly, methods are declared with over-specific types.	
+
+- ReadMe was detailed and listed all steps 	
+
+- Tests could use more descriptive names
+- Some amount of dead code	
+
+- All members have similar number of commits
+- As a team they created 13 branches - the team acknowledged all issues on GitHub by reviewers	- For some cases the similarity % reported was very low for two files despite identical snippets
