@@ -1,5 +1,5 @@
 
-#### Repository moved from https://github.ccs.neu.edu/cs5500/team-1/tree/master/Phase_C
+Repository moved from https://github.ccs.neu.edu/cs5500/team-1/tree/master/Phase_C
 
 ### CodeChecker is a plagiarism detection tool for programming assignments written in JAVA language.
 
