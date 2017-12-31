@@ -1,8 +1,0 @@
-logs/*
-!.gitkeep
-node_modules/
-tmp
-.DS_Store
-.idea
-target
-src/main/webapp/app/app/upload/*.java

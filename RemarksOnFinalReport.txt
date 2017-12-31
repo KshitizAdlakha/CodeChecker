@@ -1,6 +1,0 @@
-- Well-written and well-organized report.
-- Functionality of the system is well-explained, including limitations.
-- Clear exposition of the algorithm used for plagiarism detection.
-- Some results of applying the tool to the example problem sets are discussed.
-- Cited references lack publication details such as conference or journal name.
-- Overall, good job!
